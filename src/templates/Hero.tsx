@@ -1,11 +1,23 @@
 import Link from 'next/link';
 
-import { Background } from '../background/Background';
-import { Button } from '../button/Button';
-import { HeroOneButton } from '../hero/HeroOneButton';
+import { Button } from '../components/atoms/button/Button';
+import { Card } from '../components/atoms/Card';
+import { Background } from '../components/background/Background';
+import { HeroOneButton } from '../components/hero/HeroOneButton';
+import { NavbarTwoColumns } from '../components/navigation/NavbarTwoColumns';
 import { Section } from '../layout/Section';
-import { NavbarTwoColumns } from '../navigation/NavbarTwoColumns';
 import { Logo } from './Logo';
+
+const obj = {
+  title: '123',
+  description: '222',
+  cover: '1222',
+  author: 'mike',
+  imageAlt: 'sdeee',
+  reward: 200,
+  startTime: new Date(),
+  endTime: new Date(),
+};
 
 const Hero = () => (
   <Background color="bg-gray-100">
@@ -23,7 +35,7 @@ const Hero = () => (
         </li>
       </NavbarTwoColumns>
     </Section>
-
+    <Card {...obj} />
     <Section yPadding="pt-20 pb-32">
       <HeroOneButton
         title={
