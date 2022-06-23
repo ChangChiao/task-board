@@ -22,7 +22,7 @@ export const LoginPage: NextPage = () => {
       <input {...register('firstName')} />
       <input {...register('lastName')} />
       <input type="email" {...register('email')} />
-
+      <input type="password" {...register('lastName')} />
       <input type="submit" />
       {{ user }}
     </form>

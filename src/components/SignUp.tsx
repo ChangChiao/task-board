@@ -1,23 +1,22 @@
-import { FcGoogle } from 'react-icons/fc';
-import { GrFacebook } from 'react-icons/gr';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { BASE_URL } from '../config';
+type FormValues = {
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
 
-const oauthGoogle = `${BASE_URL}/auth/google`;
-const oauthFB = `${BASE_URL}/auth/facebook`;
 const SignUp = () => {
+  const { register, handleSubmit } = useForm<FormValues>();
+  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
   return (
     <div>
-      <button>
-        <a className="flex items-center" href={oauthGoogle}>
-          <FcGoogle className="mr-2" />
-          Sign up with Google
-        </a>
-        <a className="flex items-center" href={oauthFB}>
-          <GrFacebook className="mr-2" />
-          Sign up with FaceBook
-        </a>
-      </button>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input type="email" {...register('email')} />
+        <input type="password" {...register('password')} />
+        <input type="password" {...register('confirmPassword')} />
+        <input type="submit" />
+      </form>
     </div>
   );
 };
