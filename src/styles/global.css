@@ -8,4 +8,17 @@
   body {
     font-family: 'Outfit', sans-serif;
   }
+  input{
+    @apply outline-none;
+  }
+}
+
+
+@layer components {
+  .field {
+    @apply mb-2 border w-36;
+  }
+  .btn {
+    @apply h-8 text-white rounded-md w-36 bg-cyan-900;
+  }
 }

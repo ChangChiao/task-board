@@ -19,6 +19,8 @@ type FormValues = {
 
 const SignIn = () => {
   const [user, setUser] = useRecoilState(userState);
+  console.log('user', user);
+
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
   useEffect(() => setUser({}));
@@ -28,7 +30,6 @@ const SignIn = () => {
         <input type="email" {...register('email')} />
         <input type="password" {...register('lastName')} />
         <input type="submit" />
-        {{ user }}
       </form>
       <button>
         <a className="flex items-center" href={oauthGoogle}>

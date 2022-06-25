@@ -14,6 +14,8 @@ type FormValues = {
 
 export const LoginPage: NextPage = () => {
   const [user, setUser] = useRecoilState(userState);
+  console.log('user', user);
+
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
   useEffect(() => setUser({}));
@@ -24,7 +26,6 @@ export const LoginPage: NextPage = () => {
       <input type="email" {...register('email')} />
       <input type="password" {...register('lastName')} />
       <input type="submit" />
-      {{ user }}
     </form>
   );
 };
