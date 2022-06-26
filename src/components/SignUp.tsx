@@ -1,4 +1,6 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import * as Yup from 'yup';
 
 import { signUp } from '../utils/http/auth';
 
@@ -8,12 +10,25 @@ type FormValues = {
   confirmPassword: string;
 };
 
+const validationSchema = Yup.object().shape({
+  email: Yup.string().required('信箱為必填').email('信箱格式無效'),
+  password: Yup.string()
+    .required('密碼為必填')
+    .min(8, '密碼至少為8個字元')
+    .max(16, '密碼不可超過16個字元'),
+  confirmPassword: Yup.string()
+    .required('確認密碼為必填')
+    .oneOf([Yup.ref('password'), null], '密碼不一致'),
+});
+
 const SignUp = () => {
   const {
     register,
     handleSubmit,
-    // formState: { errors },
-  } = useForm<FormValues>();
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: yupResolver(validationSchema),
+  });
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     console.log('data', data);
     await signUp(data);
@@ -24,25 +39,34 @@ const SignUp = () => {
         <input
           className="field"
           placeholder="email"
-          type="email"
+          type="text"
           {...register('email')}
-          // {...(register('email'), { required: true })}
         />
-        {/* {errors.exampleRequired && <span>This field is required</span>} */}
+        {errors.email?.message && (
+          <span className="text-sm text-red-500">{errors.email?.message}</span>
+        )}
         <input
           className="field"
           placeholder="password"
           type="password"
           {...register('password')}
-          // {...(register('password'), { required: true })}
         />
+        {errors.password?.message && (
+          <span className="text-sm text-red-500">
+            {errors.password?.message}
+          </span>
+        )}
         <input
           className="field"
           placeholder="confirmPassword"
           type="password"
           {...register('confirmPassword')}
-          // {...(register('confirmPassword'), { required: true })}
         />
+        {errors.confirmPassword?.message && (
+          <span className="text-sm text-red-500">
+            {errors.confirmPassword?.message}
+          </span>
+        )}
         <input className="btn" type="submit" />
       </form>
     </div>

@@ -32,7 +32,7 @@ service.interceptors.response.use(
     const { status } = error.response;
     console.log(`error--${status}`, 'error');
     console.warn(' error.response', error.response);
-    const errorMsg = error.response?.data.message;
+    const errorMsg = error.response?.data?.message;
     if (errorMsg) toast.error(errorMsg);
     // eslint-disable-next-line prefer-promise-reject-errors
     return Promise.reject(error);
