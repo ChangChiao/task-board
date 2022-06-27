@@ -16,6 +16,7 @@ const oauthFB = `${BASE_URL}/auth/facebook`;
 type FormValues = {
   email: string;
   password: string;
+  remember: Boolean;
 };
 const validationSchema = Yup.object().shape({
   email: Yup.string().required('信箱為必填').email('信箱格式無效'),
@@ -32,12 +33,26 @@ const SignIn = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(validationSchema),
   });
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
-  useEffect(() => setUser({}), []);
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log(data)
+    if(data.remember){
+      localStorage.setItem("email", data.email)
+    }
+  };
+  useEffect(() => {
+    setUser({})
+    const saveEmail = localStorage.getItem("email")
+    if(saveEmail){
+      reset({
+        email: saveEmail
+      })
+    }
+  }, []);
   return (
     <div>
       <form className="flex flex-col w-28" onSubmit={handleSubmit(onSubmit)}>
@@ -51,6 +66,10 @@ const SignIn = () => {
             {errors.password?.message}
           </span>
         )}
+        <div className='flex items-center text-white'>
+          <label htmlFor="remember">記住我</label>
+          <input id="remember" type="checkbox" {...register('remember')} />
+        </div>
         <input className="btn" type="submit" />
       </form>
       <button className="field">
