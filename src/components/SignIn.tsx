@@ -37,7 +37,7 @@ const SignIn = () => {
     resolver: yupResolver(validationSchema),
   });
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
-  useEffect(() => setUser({}));
+  useEffect(() => setUser({}), []);
   return (
     <div>
       <form className="flex flex-col w-28" onSubmit={handleSubmit(onSubmit)}>

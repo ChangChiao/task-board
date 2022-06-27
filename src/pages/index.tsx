@@ -1,12 +1,21 @@
+import Card from '../components/atoms/Card';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
-import { Base } from '../templates/Base';
+
+const parma = {
+  title: 'heorkpeook reorepowkr',
+  description: 'reowprkoperopwerfewrwe[rwe[]rl',
+  author: 'chang',
+  reward: 1000,
+  // startTime: new Date(),
+};
 
 const Index = () => (
   <>
     <SignUp />
     <SignIn />
-    <Base />
+    <Card {...parma} />
+    {/* <Base /> */}
   </>
 );
 export default Index;

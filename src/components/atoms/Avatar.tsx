@@ -1,10 +1,10 @@
 type AvatarParam = {
   image: string;
-  size: number;
-  onClick: () => void;
+  size?: number;
+  onClick?: () => void;
 };
 
-const Avatar = ({ image, size }: AvatarParam) => {
+const Avatar = ({ image, size = 40 }: AvatarParam) => {
   const style = {
     width: `${size}px`,
     height: `${size}px`,
