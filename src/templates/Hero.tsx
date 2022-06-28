@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { Button } from '../components/atoms/button/Button';
-import { Card } from '../components/atoms/Card';
+import Card from '../components/atoms/Card';
 import { Background } from '../components/background/Background';
 import { HeroOneButton } from '../components/hero/HeroOneButton';
 import { NavbarTwoColumns } from '../components/navigation/NavbarTwoColumns';
