@@ -1,3 +1,6 @@
+import { useRef } from 'react';
+
+import clsx from 'clsx';
 import Link from 'next/link';
 
 import Avatar from './atoms/Avatar';
@@ -7,6 +10,11 @@ type HeaderParam = {
 };
 
 const Header = ({ handleMenu }: HeaderParam) => {
+  const isShowMenu = useRef(false);
+  const handClick = () => {
+    isShowMenu.current = !isShowMenu.current;
+  };
+
   return (
     <header>
       <Link href="/">
@@ -14,6 +22,42 @@ const Header = ({ handleMenu }: HeaderParam) => {
       </Link>
 
       <Avatar onClick={handleMenu} size={40} image={''} />
+      <input type="checkbox" className="peer" />
+      <div
+        onClick={handClick}
+        className={clsx(
+          isShowMenu.current && 'active',
+          'w-[60px] h-[60px] absolute top-0 right-[10px] cursor-pointer hidden items-center justify-center'
+        )}
+      >
+        <span className="hamburg"></span>
+      </div>
+      <style jsx>
+        {`
+          &.mobile-active {
+            .hamburg {
+              @apply rotate-45;
+            }
+            .hamburg::before {
+              @apply rotate-90 top-0;
+            }
+            .hamburg::after {
+              @apply rotate-90 bottom-0;
+            }
+          }
+
+          .hamburg::before,
+          .hamburg::after {
+            @apply bg-white content-[''] absolute w-full h-full ease-in-out duration-[30];
+          }
+          .hamburg::before {
+            @apply -top-[10px];
+          }
+          .hamburg::after {
+            @apply -bottom-[10px];
+          }
+        `}
+      </style>
     </header>
   );
 };
