@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Menu from '../components/Menu';
 
 const Layout: FC = ({ children }) => {
-  const [isShowMenu, setShowMenu] = useState(false);
+  const [isShowMenu, setShowMenu] = useState<boolean>(false);
   const handleMenu = () => {
     setShowMenu(!isShowMenu);
   };
