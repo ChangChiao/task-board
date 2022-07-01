@@ -16,6 +16,16 @@ module.exports = {
         hero: '4.5rem',
       },
     },
+    keyframes: {
+      fadeOut: {
+        '0%': { opacity: 0 },
+        '50%': { opacity: 0.8 },
+        '100%': { opacity: 0 },
+      },
+    },
+    animation: {
+      fadeOut: 'fadeOut 2s infinite',
+    },
   },
   variants: {},
   plugins: [],
