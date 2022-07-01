@@ -24,16 +24,16 @@ const UploadFile: FC = () => {
   return (
     <div>
       <label
-        htmlFor="fileUpload"
-        className="mt-5 cursor-pointer block w-[128px] h-[32px] leading-7 bg-black text-white text-center"
+        className="block mb-2 text-sm font-medium text-gray-900"
+        htmlFor="file_input"
       >
         上傳圖片
       </label>
       <input
         onChange={uploadImage}
-        className="hidden"
+        className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none "
+        id="file_input"
         type="file"
-        id="fileUpload"
       />
       {showError && <span>{showError}</span>}
     </div>
