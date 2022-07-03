@@ -1,19 +1,11 @@
 import { FC } from "react"; 
 import { createOrder } from "../utils/http/payment";
+import { useRouter } from 'next/router'
 
-// type Order = {
-//   _id: String;
-//   Amt: String;
-//   ItemDesc: String;
-// }
-
-// type OrderAPIResponse = {
-//   status: String;
-//   order: Order;
-// }
 
 
 const Pay: FC = () => {
+  const router = useRouter()
   const orderInfo = {
     Email: 'joe.chang1014@gmail.com',
     Amt: 80,
@@ -21,7 +13,7 @@ const Pay: FC = () => {
   }
   const handleOrder = async () => {
     const res = await createOrder(orderInfo)
-    window.location.href = `/checkOrder/?order=${res.order._id}`
+    router.push(`/checkOrder/?order=${res.order._id}`)
   }
   return <div>
     {/* <form action=""> */}
