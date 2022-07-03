@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { getOrder } from "../utils/http/payment";
-
+import { PAY_URL } from '../config';
 type OrderInfo = {
   Amt: number;
   ItemDesc: string;
@@ -29,7 +29,7 @@ export const checkOrder: NextPage = () => {
     <div className="text-white">
       checkOrder
       <form
-        action="https://ccore.spgateway.com/MPG/mpg_gateway"
+        action={PAY_URL}
         id="spg"
         // className="hidden"
         method="post"
