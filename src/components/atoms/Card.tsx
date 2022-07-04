@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+
 import { getDaysFrom } from '../../utils';
 import Avatar from './Avatar';
 
@@ -32,7 +33,8 @@ const Card = ({
         <h3 className="pt-2 text-xl font-semibold text-white">{title}</h3>
         <div className="leading-9 text-gray-400">{description}</div>
         <div className="font-bold text-secondary">
-          {reward} <span className="tetx-primary">{getDaysFrom(startTime)}</span>
+          {reward}{' '}
+          <span className="tetx-primary">{getDaysFrom(startTime)}</span>
         </div>
         <div className="flex items-center">
           <Avatar image={avatar} />

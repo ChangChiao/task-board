@@ -39,18 +39,18 @@ const SignIn = () => {
     resolver: yupResolver(validationSchema),
   });
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data)
-    if(data.remember){
-      localStorage.setItem("email", data.email)
+    console.log(data);
+    if (data.remember) {
+      localStorage.setItem('email', data.email);
     }
   };
   useEffect(() => {
-    setUser({})
-    const saveEmail = localStorage.getItem("email")
-    if(saveEmail){
+    setUser({});
+    const saveEmail = localStorage.getItem('email');
+    if (saveEmail) {
       reset({
-        email: saveEmail
-      })
+        email: saveEmail,
+      });
     }
   }, []);
   return (
@@ -66,7 +66,7 @@ const SignIn = () => {
             {errors.password?.message}
           </span>
         )}
-        <div className='flex items-center text-white'>
+        <div className="flex items-center text-white">
           <label htmlFor="remember">記住我</label>
           <input id="remember" type="checkbox" {...register('remember')} />
         </div>

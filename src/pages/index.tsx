@@ -1,7 +1,8 @@
 import Card from '../components/atoms/Card';
+import Pay from '../components/Pay';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
-import Pay from '../components/Pay';
+
 const parma = {
   title: 'heorkpeook reorepowkr',
   description: 'reowprkoperopwerfewrwe[rwe[]rl',
