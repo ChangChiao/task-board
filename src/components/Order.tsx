@@ -1,7 +1,6 @@
 import { FC, useState } from 'react';
 
 import { PAY_URL } from '../config';
-import { OrderDetail } from '../types';
 import { createOrder } from '../utils/http';
 
 const orderParam = {
@@ -10,7 +9,7 @@ const orderParam = {
   ItemDesc: 'vip一個月',
 };
 const Order: FC = () => {
-  const [orderInfo, setOrder] = useState<Partial<OrderDetail>>({});
+  const [orderInfo, setOrder] = useState<Partial<APIData.OrderDetail>>({});
 
   const handleOrder = async () => {
     const res = await createOrder(orderParam);
