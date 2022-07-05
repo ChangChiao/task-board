@@ -13,9 +13,8 @@ declare namespace APIData {
     payment: string;
     user: { email: string; id: string };
   }
-
   interface OrderAPIResponse {
-    // message: string;
+    message: string;
     status: string;
     data: OrderDetail;
   }
