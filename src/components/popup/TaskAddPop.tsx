@@ -1,21 +1,23 @@
-import { FC, useEffect } from 'react';
+import { FC, useState } from 'react';
 
-import flatpickr from 'flatpickr';
+import DatePicker from 'react-datepicker';
 
+import 'react-datepicker/dist/react-datepicker.css';
 import { usePopupContext } from '../../hooks/usePopupContext';
 // eslint-disable-next-line import/no-cycle
 import PopupTemplate from './PopupTemplate';
 
 const TaskAddPop: FC = () => {
   const { isPopupShow } = usePopupContext();
-  useEffect(() => {
-    flatpickr('#calendar', {});
-  }, []);
+  const [startDate, setStartDate] = useState(new Date());
   return (
     <>
       {isPopupShow && (
         <PopupTemplate>
-          <div id="calendar"></div>
+          <DatePicker
+            selected={startDate}
+            onChange={(date: Date) => setStartDate(date)}
+          />
         </PopupTemplate>
       )}
     </>

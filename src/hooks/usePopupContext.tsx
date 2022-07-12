@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 type PopupType = {
   isPopupShow: boolean;
@@ -13,6 +13,9 @@ export const PopupContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [isPopupShow, setPopup] = useState<boolean>(false);
+  useEffect(() => {
+    console.log('8777', isPopupShow);
+  }, [isPopupShow]);
   return (
     <Context.Provider value={{ isPopupShow, setPopup }}>
       {children}

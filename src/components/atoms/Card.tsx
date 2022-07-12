@@ -27,6 +27,10 @@ const Card = ({
 }: CardProps) => {
   const router = useRouter();
   const { setPopup } = usePopupContext();
+  const handlePop = () => {
+    console.log('setPopup', setPopup);
+    setPopup(true);
+  };
   return (
     <div className="relative p-4 bg-blue-500 shadow-3xl w-80 rounded-xl">
       {status === 1 && <div className="card-mask">已結束</div>}
@@ -44,7 +48,7 @@ const Card = ({
         <div className="flex items-center">
           <Avatar image={avatar} />
           <span className="pl-2 text-gray-400"> {author}</span>
-          <button onClick={() => setPopup(true)} className="btn">
+          <button onClick={handlePop} className="btn">
             我要接任務
           </button>
         </div>
