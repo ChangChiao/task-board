@@ -1,23 +1,29 @@
-import Card from '../components/atoms/Card';
+import { createContext } from 'react';
+
+// eslint-disable-next-line import/no-cycle
+import CardWall from '../components/CardWall';
 import Pay from '../components/Pay';
+// eslint-disable-next-line import/no-cycle
+import TaskAddPop from '../components/popup/TaskAddPop';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
+import { PopupContextProvider } from '../hooks/usePopupContext';
 
-const parma = {
-  title: 'heorkpeook reorepowkr',
-  description: 'reowprkoperopwerfewrwe[rwe[]rl',
-  author: 'chang',
-  reward: 1000,
-  // startTime: new Date(),
+type PopupType = {
+  isPopupShow: boolean;
+  setPopup: (value: boolean) => void;
 };
 
-const Index = () => (
-  <>
-    <SignUp />
-    <SignIn />
-    <Pay />
-    <Card {...parma} />
-    {/* <Base /> */}
-  </>
-);
+export const context = createContext<PopupType>({} as PopupType);
+const Index = () => {
+  return (
+    <PopupContextProvider>
+      <SignUp />
+      <SignIn />
+      <Pay />
+      <CardWall />
+      <TaskAddPop />
+    </PopupContextProvider>
+  );
+};
 export default Index;

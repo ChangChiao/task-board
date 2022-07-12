@@ -1,10 +1,21 @@
-import { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
+
+import { usePopupContext } from '../../hooks/usePopupContext';
+// eslint-disable-next-line import/no-cycle
 
 type PopupType = {
-  children?: React.ReactNode;
+  children?: ReactNode | null;
 };
 
-const PopupTemplate: FC = ({ children }: PopupType) => {
+const PopupTemplate: FC<PopupType> = ({
+  children,
+}: // setPopup,
+// isPopupShow,
+PopupType) => {
+  const { isPopupShow, setPopup } = usePopupContext();
+  const handlePop = () => {
+    setPopup(!isPopupShow);
+  };
   return (
     <div
       id="authentication-modal"
@@ -17,6 +28,7 @@ const PopupTemplate: FC = ({ children }: PopupType) => {
             type="button"
             className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
             data-modal-toggle="authentication-modal"
+            onClick={handlePop}
           >
             <svg
               className="w-5 h-5"
