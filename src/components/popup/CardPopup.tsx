@@ -6,6 +6,7 @@ import { applyTask } from '../../utils/http';
 import Avatar from '../atoms/Avatar';
 
 const CardPopup = ({
+  id,
   title,
   description,
   cover = '/assets/images/image-equilibrium.jpg',
@@ -16,8 +17,8 @@ const CardPopup = ({
 }: Card.CardDetail) => {
   const router = useRouter();
   const { setPopup } = usePopupContext();
-  const handleClick = () => {
-    applyTask();
+  const handleClick = async () => {
+    await applyTask(id);
   };
   const closeCardDetail = () => {
     setPopup(false);

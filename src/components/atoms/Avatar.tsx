@@ -1,10 +1,13 @@
 type AvatarParam = {
-  image: string;
+  image: string | undefined;
   size?: number;
   onClick?: () => void;
 };
 
-const Avatar = ({ image, size = 40 }: AvatarParam) => {
+const Avatar = ({
+  image = '/assets/images/image-avatar.png',
+  size = 40,
+}: AvatarParam) => {
   const style = {
     width: `${size}px`,
     height: `${size}px`,

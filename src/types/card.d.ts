@@ -1,5 +1,6 @@
 declare namespace Card {
   interface CardDetail {
+    id: string;
     title: string;
     description: string;
     cover?: string;
@@ -15,5 +16,11 @@ declare namespace Card {
     reward: number;
     description: string;
     expire?: Date;
+  }
+
+  interface Applicant {
+    id: string;
+    author: string;
+    avatar?: string;
   }
 }

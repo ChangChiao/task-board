@@ -11,12 +11,22 @@ interface TaskParam {
   expire: string;
 }
 
+interface PickOneParam {
+  taskId: string;
+  userId: string;
+}
+
 export const addTask = (param: TaskParam) => {
   const headers = getAuthorizationImgHeader();
   return service.post(TASK_PATH, param, { headers });
 };
 
-export const applyTask = () => {
+export const applyTask = (taskId: string) => {
   const headers = getAuthorizationHeader();
-  return service.post(TASK_PATH, {}, { headers });
+  return service.post(`${TASK_PATH}/${taskId}`, { headers });
+};
+
+export const pickOne = ({ taskId, userId }: PickOneParam) => {
+  const headers = getAuthorizationHeader();
+  return service.patch(`${TASK_PATH}/${taskId}`, { userId }, { headers });
 };

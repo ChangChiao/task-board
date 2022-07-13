@@ -5,6 +5,7 @@ import Card from './atoms/Card';
 import CardPopup from './popup/CardPopup';
 
 const parma = {
+  id: '13232323231233',
   title: 'heorkpeook reorepowkr',
   description: 'reowprkoperopwerfewrwe[rwe[]rl',
   cover: '',

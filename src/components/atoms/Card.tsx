@@ -9,11 +9,12 @@ type CardProps = Card.CardDetail & {
 };
 
 const Card = ({
+  id,
   title,
   description,
   cover = '/assets/images/image-equilibrium.jpg',
   author,
-  avatar = '/assets/images/image-avatar.png',
+  avatar,
   reward,
   status,
   expire = new Date(),
@@ -24,6 +25,7 @@ const Card = ({
   const handleClick = () => {
     setPopup(true);
     setDetail({
+      id,
       title,
       description,
       cover,
