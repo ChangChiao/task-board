@@ -4,15 +4,8 @@ import { usePopupContext } from '../../hooks/usePopupContext';
 import { getDaysFrom } from '../../utils';
 import Avatar from './Avatar';
 
-type CardProps = {
-  title: string;
-  description: string;
-  cover?: string;
-  author: string;
-  avatar?: string;
-  reward: number;
-  status: number;
-  startTime?: Date;
+type CardProps = Card.CardDetail & {
+  setDetail: (value: Card.CardDetail) => void;
 };
 
 const Card = ({
@@ -23,7 +16,7 @@ const Card = ({
   avatar = '/assets/images/image-avatar.png',
   reward,
   status,
-  startTime = new Date(),
+  expire = new Date(),
 }: CardProps) => {
   const router = useRouter();
   const { setPopup } = usePopupContext();
@@ -31,8 +24,12 @@ const Card = ({
     console.log('setPopup', setPopup);
     setPopup(true);
   };
+  const handleClick = () => {};
   return (
-    <div className="relative p-4 bg-blue-500 shadow-3xl w-80 rounded-xl">
+    <div
+      onClick={handleClick}
+      className="relative p-4 bg-blue-500 shadow-3xl w-80 rounded-xl"
+    >
       {status === 1 && <div className="card-mask">已結束</div>}
       {status === 2 && <div className="card-mask">已過期</div>}
       <div className="w-full">
@@ -42,8 +39,7 @@ const Card = ({
         <h3 className="pt-2 text-xl font-semibold text-white">{title}</h3>
         <div className="leading-9 text-gray-400">{description}</div>
         <div className="font-bold text-secondary">
-          {reward}{' '}
-          <span className="tetx-primary">{getDaysFrom(startTime)}</span>
+          {reward} <span className="tetx-primary">{getDaysFrom(expire)}</span>
         </div>
         <div className="flex items-center">
           <Avatar image={avatar} />

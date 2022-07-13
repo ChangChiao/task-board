@@ -1,12 +1,13 @@
-import { FC, useEffect } from 'react';
+import { FC, useState } from 'react';
 
 import { usePopupContext } from '../hooks/usePopupContext';
 import Card from './atoms/Card';
-import TaskAddPop from './popup/TaskAddPop';
+import CardPopup from './popup/CardPopup';
 
 const parma = {
   title: 'heorkpeook reorepowkr',
   description: 'reowprkoperopwerfewrwe[rwe[]rl',
+  cover: '',
   author: 'chang',
   reward: 1000,
   status: 0,
@@ -14,14 +15,13 @@ const parma = {
 };
 
 const CardWall: FC = () => {
+  const [detail, setDetail] = useState({});
   const { isPopupShow } = usePopupContext();
-  useEffect(() => {
-    console.log('666666', isPopupShow);
-  }, [isPopupShow]);
   return (
     <>
-      <Card {...parma} />
-      {isPopupShow && <TaskAddPop />}
+      <Card {...parma} setDetail={setDetail} />
+      {isPopupShow && <CardPopup {...detail} {...parma} />}
+      {/* {isPopupShow && <TaskAddPop />} */}
     </>
   );
 };

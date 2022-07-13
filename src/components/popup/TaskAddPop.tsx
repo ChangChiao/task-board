@@ -10,16 +10,10 @@ import { usePopupContext } from '../../hooks/usePopupContext';
 // eslint-disable-next-line import/no-cycle
 import PopupTemplate from './PopupTemplate';
 
-type FormValues = {
-  title: string;
-  reward: number;
-  content: string;
-};
-
 const validationSchema = Yup.object().shape({
   title: Yup.string().required('標題為必填'),
   reward: Yup.string().required('酬勞為必填'),
-  content: Yup.string().required('內容為必填'),
+  description: Yup.string().required('內容為必填'),
 });
 
 const TaskAddPop: FC = () => {
@@ -29,11 +23,11 @@ const TaskAddPop: FC = () => {
     handleSubmit,
     // reset,
     formState: { errors },
-  } = useForm<FormValues>({
+  } = useForm<Card.CardCreate>({
     resolver: yupResolver(validationSchema),
   });
   const [startDate, setStartDate] = useState(new Date());
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<Card.CardCreate> = (data) => {
     console.log(data);
     // if (data.remember) {
     //   localStorage.setItem('email', data.email);
@@ -56,10 +50,10 @@ const TaskAddPop: FC = () => {
                 {errors.reward?.message}
               </span>
             )}
-            <textarea {...register('content')} />
-            {errors.content?.message && (
+            <textarea {...register('description')} />
+            {errors.description?.message && (
               <span className="text-sm text-red-500">
-                {errors.content?.message}
+                {errors.description?.message}
               </span>
             )}
             <DatePicker

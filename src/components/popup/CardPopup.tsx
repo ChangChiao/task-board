@@ -5,26 +5,15 @@ import { getDaysFrom } from '../../utils';
 import { applyTask } from '../../utils/http';
 import Avatar from '../atoms/Avatar';
 
-type CardProps = {
-  title: string;
-  description: string;
-  cover?: string;
-  author: string;
-  avatar?: string;
-  reward: number;
-  status: number;
-  startTime?: Date;
-};
-
-const Card = ({
+const CardPopup = ({
   title,
   description,
   cover = '/assets/images/image-equilibrium.jpg',
   author,
   avatar = '/assets/images/image-avatar.png',
   reward,
-  startTime = new Date(),
-}: CardProps) => {
+  expire = new Date(),
+}: Card.CardDetail) => {
   const router = useRouter();
   const { setPopup } = usePopupContext();
   const handleClick = () => {
@@ -45,8 +34,7 @@ const Card = ({
           <h3 className="pt-2 text-xl font-semibold text-white">{title}</h3>
           <div className="leading-9 text-gray-400">{description}</div>
           <div className="font-bold text-secondary">
-            {reward}{' '}
-            <span className="tetx-primary">{getDaysFrom(startTime)}</span>
+            {reward} <span className="tetx-primary">{getDaysFrom(expire)}</span>
           </div>
           <div className="flex items-center">
             <Avatar image={avatar} />
@@ -71,4 +59,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default CardPopup;
