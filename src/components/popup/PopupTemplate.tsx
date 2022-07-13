@@ -18,7 +18,7 @@ const PopupTemplate: FC<PopupType> = ({ children }: PopupType) => {
       aria-hidden="true"
       className="fixed top-0 left-0 right-0 z-50 w-full h-full"
     >
-      <div className="w-full h-full bg-black/50"></div>
+      <div className="mask"></div>
       <div className=" absolute h-[400px] p-2 top-0 right-0 left-0 bottom-0 m-auto bg-white rounded-lg w-1/3 max-w-[300px] shadow">
         <h3 className="pt-2 text-xl text-center">test</h3>
         <button

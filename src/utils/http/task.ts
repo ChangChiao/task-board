@@ -1,15 +1,8 @@
 import { BASE_URL } from '../../config';
 import service from './axiosConfig';
+import { getAuthorizationImgHeader, getAuthorizationHeader } from './header';
 
 const TASK_PATH = `${BASE_URL}/task`;
-
-const getAuthorizationImgHeader = () => {
-  const token = localStorage.getItem('token');
-  return {
-    'Content-Type': 'multipart/form-data',
-    authorization: `Bearer ${token}`,
-  };
-};
 
 interface TaskParam {
   title: string;
@@ -21,4 +14,9 @@ interface TaskParam {
 export const addTask = (param: TaskParam) => {
   const headers = getAuthorizationImgHeader();
   return service.post(TASK_PATH, param, { headers });
+};
+
+export const applyTask = () => {
+  const headers = getAuthorizationHeader();
+  return service.post(TASK_PATH, {}, { headers });
 };
