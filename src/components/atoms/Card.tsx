@@ -17,14 +17,23 @@ const Card = ({
   reward,
   status,
   expire = new Date(),
+  setDetail,
 }: CardProps) => {
   const router = useRouter();
   const { setPopup } = usePopupContext();
-  const handlePop = () => {
-    console.log('setPopup', setPopup);
+  const handleClick = () => {
     setPopup(true);
+    setDetail({
+      title,
+      description,
+      cover,
+      author,
+      avatar,
+      reward,
+      status,
+      expire,
+    });
   };
-  const handleClick = () => {};
   return (
     <div
       onClick={handleClick}
@@ -37,16 +46,13 @@ const Card = ({
       </div>
       <div className="">
         <h3 className="pt-2 text-xl font-semibold text-white">{title}</h3>
-        <div className="leading-9 text-gray-400">{description}</div>
+        {/* <div className="leading-9 text-gray-400">{description}</div> */}
         <div className="font-bold text-secondary">
           {reward} <span className="tetx-primary">{getDaysFrom(expire)}</span>
         </div>
         <div className="flex items-center">
           <Avatar image={avatar} />
           <span className="pl-2 text-gray-400"> {author}</span>
-          <button onClick={handlePop} className="btn">
-            我要接任務
-          </button>
         </div>
       </div>
       <style jsx>
