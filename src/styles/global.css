@@ -23,6 +23,6 @@
     @apply h-8 text-white rounded-md w-36 bg-cyan-900;
   }
   .mask{
-    @apply "w-full h-full bg-black/50;
+    @apply w-full h-full bg-black/50;
   }
 }

@@ -17,10 +17,13 @@ const Order: FC = () => {
     console.log('res', res);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log('orderInfo--', orderInfo);
-    orderInfo.MerchantID && formEl?.current?.submit();
-  }, [orderInfo])
+    console.log('Email--', orderInfo.user);
+    if (orderInfo.MerchantID) {
+      formEl?.current?.submit();
+    }
+  }, [orderInfo]);
 
   return (
     <div className="text-white">
@@ -33,7 +36,12 @@ const Order: FC = () => {
         className="hidden"
         method="post"
       >
-        <input type="text" name="MerchantID" value={orderInfo.MerchantID || ''} />
+        <input
+          readOnly
+          type="text"
+          name="MerchantID"
+          value={orderInfo.MerchantID || ''}
+        />
         <input
           readOnly
           type="text"
@@ -52,7 +60,12 @@ const Order: FC = () => {
           name="TimeStamp"
           value={orderInfo.TimeStamp || ''}
         />
-        <input readOnly type="text" name="Version" value={orderInfo.Version || 1.5} />
+        <input
+          readOnly
+          type="text"
+          name="Version"
+          value={orderInfo.Version || 1.5}
+        />
         <input
           readOnly
           type="text"
