@@ -4,12 +4,8 @@ import { MENU } from '../config';
 import Avatar from './atoms/Avatar';
 
 const Menu = () => {
-  // const userList = [
-  //   { text: '個人資訊', link: '' },
-  //   { text: '登出', link: '' },
-  // ];
   return (
-    <div className="w-[300px] p-4 text-white h-screen bg-cyan-900">
+    <div className="w-full h-screen p-4 text-white bg-cyan-900 md:hidden">
       <img
         className="w-20 h-20"
         src="/assets/logo/logo_size_invert.jpg"

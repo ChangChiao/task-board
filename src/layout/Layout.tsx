@@ -12,10 +12,8 @@ const Layout: FC = ({ children }) => {
   return (
     <div className="h-screen">
       <Header handleMenu={handleMenu} />
-      <main className="flex">
-        <Menu />
-        {children}
-      </main>
+      <Menu />
+      <main className="h-[calc(100%-64px-40px)]">{children}</main>
       <Footer />
     </div>
   );

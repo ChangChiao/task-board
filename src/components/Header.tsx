@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 
+import { MENU } from '../config';
 import Avatar from './atoms/Avatar';
 
 type HeaderParam = {
@@ -16,13 +17,27 @@ const Header = ({ handleMenu }: HeaderParam) => {
   };
 
   return (
-    <header className="text-white md:hidden">
+    <header className="flex items-center h-16 px-4 text-white bg-cyan-900">
       <Link href="/">
-        <img src="" alt="" />
+        <img
+          className="w-20 h-20"
+          src="/assets/logo/logo_size_invert.jpg"
+          alt=""
+        />
       </Link>
 
-      <Avatar onClick={handleMenu} size={40} image={''} />
-      <input type="checkbox" className="peer" />
+      <ul className="flex flex-1 pl-10">
+        {MENU.map((item) => (
+          <li className="pr-4" key={item.text}>
+            <Link href={item.link}>{item.text}</Link>
+          </li>
+        ))}
+      </ul>
+      <div className="flex items-center">
+        <Avatar image={'/assets/avatar/1.png'} />
+        <span className="pl-3">userName</span>
+      </div>
+      <input type="checkbox" className="hidden peer" />
       <div
         onClick={handClick}
         className={clsx(
