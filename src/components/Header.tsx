@@ -16,7 +16,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
   };
 
   return (
-    <header>
+    <header className="text-white md:hidden">
       <Link href="/">
         <img src="" alt="" />
       </Link>
@@ -27,25 +27,22 @@ const Header = ({ handleMenu }: HeaderParam) => {
         onClick={handClick}
         className={clsx(
           isShowMenu.current && 'active',
-          'w-[60px] h-[60px] absolute top-0 right-[10px] cursor-pointer hidden items-center justify-center'
+          'mobile w-[60px] h-[60px] absolute top-0 right-[10px] cursor-pointer hidden items-center justify-center'
         )}
       >
         <span className="hamburg"></span>
       </div>
       <style jsx>
         {`
-          &.mobile-active {
-            .hamburg {
-              @apply rotate-45;
-            }
-            .hamburg::before {
-              @apply rotate-90 top-0;
-            }
-            .hamburg::after {
-              @apply rotate-90 bottom-0;
-            }
+          .mobile.active .hamburg {
+            @apply rotate-45;
           }
-
+          .mobile.active .hamburg::before {
+            @apply rotate-90 top-0;
+          }
+          .mobile.active .hamburg::after {
+            @apply rotate-90 bottom-0;
+          }
           .hamburg::before,
           .hamburg::after {
             @apply bg-white content-[''] absolute w-full h-full ease-in-out duration-[30];

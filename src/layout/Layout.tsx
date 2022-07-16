@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Menu from '../components/Menu';
 
@@ -9,10 +10,13 @@ const Layout: FC = ({ children }) => {
     setShowMenu(!isShowMenu);
   };
   return (
-    <div>
+    <div className="h-screen">
       <Header handleMenu={handleMenu} />
-      {isShowMenu && <Menu />}
-      {children}
+      <main className="flex">
+        <Menu />
+        {children}
+      </main>
+      <Footer />
     </div>
   );
 };

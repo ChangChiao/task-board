@@ -15,17 +15,20 @@ const Menu = () => {
     { text: '登出', link: '' },
   ];
   return (
-    <>
-      <div>
-        <ul>
-          {menuList.map((item) => (
-            <li key={item.text}>
-              <Link href={item.link}>{item.text}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div>
+    <div className="w-[300px] p-4 text-white h-screen bg-cyan-900">
+      <img
+        className="w-20 h-20"
+        src="/assets/logo/logo_size_invert.jpg"
+        alt=""
+      />
+      <ul>
+        {menuList.map((item) => (
+          <li className="py-2" key={item.text}>
+            <Link href={item.link}>{item.text}</Link>
+          </li>
+        ))}
+      </ul>
+      <div className="pt-10">
         <div className="flex items-center">
           <Avatar image={'/assets/avatar/1.png'} />
           <span>userName</span>
@@ -38,7 +41,7 @@ const Menu = () => {
           ))}
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 
