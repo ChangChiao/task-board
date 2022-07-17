@@ -3,6 +3,7 @@
   "extends": [
     "airbnb-base",
     "next/core-web-vitals",
+    "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
   "rules": {
