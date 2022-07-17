@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { ToastContainer } from 'react-toastify';
 import { RecoilRoot } from 'recoil';
 
+import { PopupContextProvider } from '../hooks/usePopupContext';
 import Layout from '../layout/Layout';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/global.css';
@@ -13,8 +14,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
       <title>任務派發</title>
     </Head>
     <RecoilRoot>
-      <Component {...pageProps} />
-      <ToastContainer />
+      <PopupContextProvider>
+        <Component {...pageProps} />
+        <ToastContainer />
+      </PopupContextProvider>
     </RecoilRoot>
   </Layout>
 );

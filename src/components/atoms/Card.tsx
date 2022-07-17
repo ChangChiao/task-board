@@ -49,8 +49,9 @@ const Card = ({
       <div className="">
         <h3 className="pt-2 text-xl font-semibold text-white">{title}</h3>
         {/* <div className="leading-9 text-gray-400">{description}</div> */}
-        <div className="font-bold text-secondary">
-          {reward} <span className="tetx-primary">{getDaysFrom(expire)}</span>
+        <div className="py-2 font-bold text-secondary">
+          <span> $ {reward} </span>
+          <span className="tetx-primary">{getDaysFrom(expire)}</span>
         </div>
         <div className="flex items-center">
           <Avatar image={avatar} />

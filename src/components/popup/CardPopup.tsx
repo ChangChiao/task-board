@@ -37,7 +37,7 @@ const CardPopup = ({
             {description}
           </div>
           <div className="flex justify-between py-2 text-lg font-bold text-secondary">
-            <span> {reward} </span>
+            <span> $ {reward} </span>
             <span className="tetx-primary">{getDaysFrom(expire)}</span>
           </div>
           <div className="flex items-center">
