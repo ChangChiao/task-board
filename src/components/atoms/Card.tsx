@@ -23,7 +23,7 @@ const Card = ({
   const router = useRouter();
   const { setPopup } = usePopupContext();
   const handleClick = () => {
-    setPopup(true);
+    setPopup('card');
     setDetail({
       id,
       title,

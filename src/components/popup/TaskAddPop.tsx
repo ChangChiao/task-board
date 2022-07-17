@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const TaskAddPop: FC = () => {
-  const { isPopupShow } = usePopupContext();
+  const { showPopupName } = usePopupContext();
   const {
     register,
     handleSubmit,
@@ -35,7 +35,7 @@ const TaskAddPop: FC = () => {
   };
   return (
     <>
-      {isPopupShow && (
+      {showPopupName === 'signIn' && (
         <PopupTemplate>
           <form action="" onSubmit={handleSubmit(onSubmit)}>
             <input className="field" {...register('title')} />

@@ -2,8 +2,10 @@ import { useRef } from 'react';
 
 import clsx from 'clsx';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { MENU } from '../config';
+import { usePopupContext } from '../hooks/usePopupContext';
 import Avatar from './atoms/Avatar';
 
 type HeaderParam = {
@@ -12,10 +14,18 @@ type HeaderParam = {
 
 const Header = ({ handleMenu }: HeaderParam) => {
   const isShowMenu = useRef(false);
+  const { setPopup } = usePopupContext();
+  const router = useRouter();
   const handClick = () => {
     isShowMenu.current = !isShowMenu.current;
   };
-
+  const handleClickMenu = ({ id, link }: Menu.MenuItem) => {
+    if (id === 'singIn') {
+      setPopup('singIn');
+      return;
+    }
+    router.push(link);
+  };
   return (
     <header className="flex items-center h-16 px-4 text-white bg-cyan-900">
       <Link href="/">
@@ -28,7 +38,11 @@ const Header = ({ handleMenu }: HeaderParam) => {
 
       <ul className="flex flex-1 pl-10">
         {MENU.map((item) => (
-          <li className="pr-4" key={item.text}>
+          <li
+            onClick={() => handleClickMenu(item)}
+            className="pr-4 hover:text-slate-200"
+            key={item.text}
+          >
             <Link href={item.link}>{item.text}</Link>
           </li>
         ))}

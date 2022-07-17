@@ -12,7 +12,7 @@ const tabList = [
 ];
 const SignInPop: FC = () => {
   const [tab, setTab] = useState<string>('signIn');
-  // const { isPopupShow } = usePopupContext();
+  // const { showPopupName } = usePopupContext();
   return (
     <>
       <PopupTemplate>

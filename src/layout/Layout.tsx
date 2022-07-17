@@ -9,7 +9,7 @@ import { usePopupContext } from '../hooks/usePopupContext';
 
 const Layout: FC = ({ children }) => {
   const [isShowMenu, setShowMenu] = useState<boolean>(false);
-  const { isPopupShow } = usePopupContext();
+  const { showPopupName } = usePopupContext();
   const handleMenu = () => {
     setShowMenu(!isShowMenu);
   };
@@ -19,8 +19,8 @@ const Layout: FC = ({ children }) => {
       <Menu />
       <main className="h-[calc(100%-64px-40px)]">{children}</main>
       <Footer />
-      {isPopupShow && <TaskAddPop />}
-      {isPopupShow && <SignInPop />}
+      {showPopupName === 'taskAdd' && <TaskAddPop />}
+      {showPopupName === 'signIn' && <SignInPop />}
     </div>
   );
 };

@@ -17,12 +17,12 @@ const parma = {
 
 const CardWall: FC = () => {
   const [detail, setDetail] = useState({});
-  const { isPopupShow } = usePopupContext();
+  const { showPopupName } = usePopupContext();
   return (
     <>
       <Card {...parma} setDetail={setDetail} />
-      {isPopupShow && <CardPopup {...detail} {...parma} />}
-      {/* {isPopupShow && <TaskAddPop />} */}
+      {showPopupName === 'card' && <CardPopup {...detail} {...parma} />}
+      {/* {showPopupName && <TaskAddPop />} */}
     </>
   );
 };

@@ -21,7 +21,7 @@ const CardPopup = ({
     await applyTask(id);
   };
   const closeCardDetail = () => {
-    setPopup(false);
+    setPopup('');
   };
 
   return (

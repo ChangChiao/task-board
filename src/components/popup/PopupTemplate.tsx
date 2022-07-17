@@ -8,9 +8,9 @@ type PopupType = {
 };
 
 const PopupTemplate: FC<PopupType> = ({ children }: PopupType) => {
-  const { isPopupShow, setPopup } = usePopupContext();
+  const { setPopup } = usePopupContext();
   const handlePop = () => {
-    setPopup(!isPopupShow);
+    setPopup('');
   };
   return (
     <div

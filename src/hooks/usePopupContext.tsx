@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
 type PopupType = {
-  isPopupShow: boolean;
-  setPopup: (value: boolean) => void;
+  showPopupName: string;
+  setPopup: (value: string) => void;
 };
 
 const Context = createContext<PopupType>({} as PopupType);
@@ -12,12 +12,12 @@ export const PopupContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [isPopupShow, setPopup] = useState<boolean>(false);
+  const [showPopupName, setPopup] = useState<string>('');
   useEffect(() => {
-    console.log('8777', isPopupShow);
-  }, [isPopupShow]);
+    console.log('8777', showPopupName);
+  }, [showPopupName]);
   return (
-    <Context.Provider value={{ isPopupShow, setPopup }}>
+    <Context.Provider value={{ showPopupName, setPopup }}>
       {children}
     </Context.Provider>
   );
