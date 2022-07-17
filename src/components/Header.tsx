@@ -14,14 +14,14 @@ type HeaderParam = {
 
 const Header = ({ handleMenu }: HeaderParam) => {
   const isShowMenu = useRef(false);
-  const { setPopup } = usePopupContext();
   const router = useRouter();
+  const { setPopup } = usePopupContext();
   const handClick = () => {
     isShowMenu.current = !isShowMenu.current;
   };
   const handleClickMenu = ({ id, link }: Menu.MenuItem) => {
-    if (id === 'singIn') {
-      setPopup('singIn');
+    if (id === 'signIn') {
+      setPopup('signIn');
       return;
     }
     router.push(link);
@@ -40,10 +40,10 @@ const Header = ({ handleMenu }: HeaderParam) => {
         {MENU.map((item) => (
           <li
             onClick={() => handleClickMenu(item)}
-            className="pr-4 hover:text-slate-200"
+            className="pr-4 cursor-pointer hover:text-slate-200"
             key={item.text}
           >
-            <Link href={item.link}>{item.text}</Link>
+            {item.text}
           </li>
         ))}
       </ul>

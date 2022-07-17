@@ -4,10 +4,11 @@ import { usePopupContext } from '../../hooks/usePopupContext';
 // eslint-disable-next-line import/no-cycle
 
 type PopupType = {
+  titleName: string;
   children?: ReactNode | null;
 };
 
-const PopupTemplate: FC<PopupType> = ({ children }: PopupType) => {
+const PopupTemplate: FC<PopupType> = ({ children, titleName }: PopupType) => {
   const { setPopup } = usePopupContext();
   const handlePop = () => {
     setPopup('');
@@ -19,8 +20,8 @@ const PopupTemplate: FC<PopupType> = ({ children }: PopupType) => {
       className="fixed top-0 left-0 right-0 z-50 w-full h-full"
     >
       <div className="mask"></div>
-      <div className=" absolute h-[400px] p-2 top-0 right-0 left-0 bottom-0 m-auto bg-white rounded-lg w-1/3 max-w-[300px] shadow">
-        <h3 className="pt-2 text-xl text-center">test</h3>
+      <div className=" absolute h-[500px] py-2 px-6 top-0 right-0 left-0 bottom-0 m-auto bg-gray-200 rounded-lg w-1/3 max-w-[400px] shadow">
+        <h3 className="pt-2 text-xl text-center">{titleName}</h3>
         <button
           type="button"
           className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"

@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 type TabItem = {
   id: string;
   name: string;
@@ -5,13 +7,15 @@ type TabItem = {
 
 type TabParam = {
   tabList: TabItem[];
+  tab: string;
   setTab: (value: string) => void;
+  style?: string;
 };
 
-const Tab = ({ tabList, setTab }: TabParam) => {
+const Tab = ({ tabList, setTab, style, tab }: TabParam) => {
   return (
     <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200">
-      <ul className="flex flex-wrap -mb-px">
+      <ul className={clsx('flex flex-wrap -mb-px', style)}>
         {tabList.map((item) => {
           return (
             <li
@@ -23,7 +27,10 @@ const Tab = ({ tabList, setTab }: TabParam) => {
             >
               <a
                 href="#"
-                className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 "
+                className={clsx(
+                  'tab-item inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-900 hover:border-gray-300',
+                  tab === item.id && 'active'
+                )}
               >
                 {item.name}
               </a>
@@ -31,6 +38,13 @@ const Tab = ({ tabList, setTab }: TabParam) => {
           );
         })}
       </ul>
+      <style jsx>
+        {`
+          .tab-item.active {
+            @apply text-gray-900 border-gray-300;
+          }
+        `}
+      </style>
     </div>
   );
 };

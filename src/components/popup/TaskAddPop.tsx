@@ -36,7 +36,7 @@ const TaskAddPop: FC = () => {
   return (
     <>
       {showPopupName === 'signIn' && (
-        <PopupTemplate>
+        <PopupTemplate titleName="新增任務">
           <form action="" onSubmit={handleSubmit(onSubmit)}>
             <input className="field" {...register('title')} />
             {errors.title?.message && (

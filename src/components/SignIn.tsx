@@ -54,8 +54,8 @@ const SignIn = () => {
     }
   }, []);
   return (
-    <div>
-      <form className="flex flex-col w-28" onSubmit={handleSubmit(onSubmit)}>
+    <div className="pt-2">
+      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <input className="field" {...register('email')} />
         {errors.email?.message && (
           <span className="text-sm text-red-500">{errors.email?.message}</span>
@@ -66,24 +66,34 @@ const SignIn = () => {
             {errors.password?.message}
           </span>
         )}
-        <div className="flex items-center text-white">
-          <label htmlFor="remember">記住我</label>
+        <div className="flex items-center justify-end text-slate-500">
+          <label className="mr-1" htmlFor="remember">
+            記住我
+          </label>
           <input id="remember" type="checkbox" {...register('remember')} />
         </div>
-        <input className="btn" type="submit" />
+        <input className="mt-2 btn" value="送出" type="submit" />
       </form>
-      <button className="field">
-        <a className="flex items-center" href={oauthGoogle}>
-          <FcGoogle className="mr-2" />
-          Sign up with Google
-        </a>
-      </button>
-      <button className="field">
-        <a className="flex items-center" href={oauthFB}>
-          <GrFacebook className="mr-2" />
-          Sign up with FaceBook
-        </a>
-      </button>
+      <div className="flex flex-col items-center justify-center pt-5">
+        <button className="pt-2">
+          <a
+            className="flex items-center text-gray-800 hover:text-gray-500"
+            href={oauthGoogle}
+          >
+            <FcGoogle className="mr-2 " />
+            使用FaceBook繼續
+          </a>
+        </button>
+        <button className="pt-2">
+          <a
+            className="flex items-center text-gray-800 hover:text-gray-500"
+            href={oauthFB}
+          >
+            <GrFacebook className="mr-2 text-blue-900" />
+            使用Google繼續
+          </a>
+        </button>
+      </div>
     </div>
   );
 };

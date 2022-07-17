@@ -19,6 +19,7 @@ const Layout: FC = ({ children }) => {
       <Menu />
       <main className="h-[calc(100%-64px-40px)]">{children}</main>
       <Footer />
+      {showPopupName}
       {showPopupName === 'taskAdd' && <TaskAddPop />}
       {showPopupName === 'signIn' && <SignInPop />}
     </div>

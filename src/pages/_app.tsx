@@ -9,17 +9,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/global.css';
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <Layout>
-    <Head>
-      <title>任務派發</title>
-    </Head>
+  <PopupContextProvider>
     <RecoilRoot>
-      <PopupContextProvider>
+      <Layout>
+        <Head>
+          <title>任務派發</title>
+        </Head>
         <Component {...pageProps} />
         <ToastContainer />
-      </PopupContextProvider>
+      </Layout>
     </RecoilRoot>
-  </Layout>
+  </PopupContextProvider>
 );
 
 export default MyApp;
