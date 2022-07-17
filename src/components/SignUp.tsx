@@ -34,8 +34,8 @@ const SignUp = () => {
     await signUp(data);
   };
   return (
-    <div>
-      <form className="flex flex-col w-28" onSubmit={handleSubmit(onSubmit)}>
+    <div className="pt-2">
+      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <input
           className="field"
           placeholder="email"
@@ -67,7 +67,7 @@ const SignUp = () => {
             {errors.confirmPassword?.message}
           </span>
         )}
-        <input className="btn" type="submit" />
+        <input className="mt-2 btn" value="送出" type="submit" />
       </form>
     </div>
   );

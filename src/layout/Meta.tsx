@@ -30,20 +30,20 @@ const Meta = (props: IMetaProps) => {
         <link
           rel="icon"
           type="image/png"
-          sizes="32x32"
-          href={`${router.basePath}/favicon-32x32.png`}
-          key="icon32"
+          sizes="64x64"
+          href={`${router.basePath}/tools_icon-icons.com.png`}
+          key="icon64"
         />
-        <link
+        {/* <link
           rel="icon"
           type="image/png"
           sizes="16x16"
           href={`${router.basePath}/favicon-16x16.png`}
           key="icon16"
-        />
+        /> */}
         <link
           rel="icon"
-          href={`${router.basePath}/favicon.ico`}
+          href={`${router.basePath}/tools_icon-icons.com.ico`}
           key="favicon"
         />
       </Head>

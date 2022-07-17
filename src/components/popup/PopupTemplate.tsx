@@ -20,7 +20,7 @@ const PopupTemplate: FC<PopupType> = ({ children, titleName }: PopupType) => {
       className="fixed top-0 left-0 right-0 z-50 w-full h-full"
     >
       <div className="mask"></div>
-      <div className=" absolute h-[500px] py-2 px-6 top-0 right-0 left-0 bottom-0 m-auto bg-gray-200 rounded-lg w-1/3 max-w-[400px] shadow">
+      <div className="absolute h-[500px] py-2 px-6 top-0 right-0 left-0 bottom-0 m-auto bg-gray-200 rounded-lg w-1/3 max-w-[400px] shadow">
         <h3 className="pt-2 text-xl text-center">{titleName}</h3>
         <button
           type="button"

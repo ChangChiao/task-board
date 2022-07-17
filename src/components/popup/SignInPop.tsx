@@ -8,7 +8,7 @@ import PopupTemplate from './PopupTemplate';
 
 const tabList = [
   { id: 'signIn', name: '登入' },
-  { id: 'signUp', name: '登出' },
+  { id: 'signUp', name: '註冊' },
 ];
 
 const SignInPop: FC = () => {
@@ -22,12 +22,14 @@ const SignInPop: FC = () => {
       <PopupTemplate titleName={popTitle}>
         {tab === 'signIn' && <SignIn />}
         {tab === 'signUp' && <SignUp />}
-        <Tab
-          style="justify-center pt-36"
-          tab={tab}
-          setTab={setTab}
-          tabList={tabList}
-        />
+        <div className="absolute left-0 right-0 bottom-5">
+          <Tab
+            style="justify-center"
+            tab={tab}
+            setTab={setTab}
+            tabList={tabList}
+          />
+        </div>
       </PopupTemplate>
     </>
   );
