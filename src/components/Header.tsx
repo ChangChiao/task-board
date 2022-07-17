@@ -17,6 +17,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
   const router = useRouter();
   const { setPopup } = usePopupContext();
   const handClick = () => {
+    handleMenu();
     isShowMenu.current = !isShowMenu.current;
   };
   const handleClickMenu = ({ id, link }: Menu.MenuItem) => {
