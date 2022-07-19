@@ -29,6 +29,7 @@
     "react-icons": "^4.4.0",
     "react-toastify": "^9.0.5",
     "recoil": "^0.7.3",
+    "recoil-persist": "^4.2.0",
     "styled-jsx-plugin-postcss": "^4.0.1",
     "yup": "^0.32.11"
   },

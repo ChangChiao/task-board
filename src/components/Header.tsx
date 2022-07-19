@@ -3,9 +3,11 @@ import { useRef } from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
 
 import { MENU } from '../config';
 import { usePopupContext } from '../hooks/usePopupContext';
+import { userState } from '../store/user';
 import Avatar from './atoms/Avatar';
 
 type HeaderParam = {
@@ -13,6 +15,7 @@ type HeaderParam = {
 };
 
 const Header = ({ handleMenu }: HeaderParam) => {
+  const [user] = useRecoilState(userState);
   const isShowMenu = useRef(false);
   const router = useRouter();
   const { setPopup } = usePopupContext();
@@ -49,8 +52,8 @@ const Header = ({ handleMenu }: HeaderParam) => {
         ))}
       </ul>
       <div className="flex items-center">
-        <Avatar image={'/assets/avatar/1.png'} />
-        <span className="pl-3">userName</span>
+        <Avatar image={user?.avatar || '/assets/avatar/1.png'} />
+        <span className="pl-3">{user?.name ?? 'userName'}</span>
       </div>
       <input type="checkbox" className="hidden peer" />
       <div
