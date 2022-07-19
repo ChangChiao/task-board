@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useRef, useState, RefObject } from 'react';
 
 import { usePopupContext } from '../hooks/usePopupContext';
 import Card from './atoms/Card';
@@ -16,10 +16,23 @@ const parma = {
 };
 
 const CardWall: FC = () => {
+  const cardWallRef = useRef() as RefObject<HTMLDivElement>;
   const [detail, setDetail] = useState({});
   const { showPopupName } = usePopupContext();
+  const handleScroll = () => {
+    if (cardWallRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = cardWallRef.current;
+      if (scrollTop + clientHeight === scrollHeight) {
+        console.log('isBottom!');
+      }
+    }
+  };
   return (
-    <div className="flex flex-wrap justify-between p-10 max-w-[1600px]">
+    <div
+      onScroll={handleScroll}
+      ref={cardWallRef}
+      className="flex flex-wrap justify-between p-10 max-w-[1600px]"
+    >
       <Card {...parma} setDetail={setDetail} />
       <Card {...parma} setDetail={setDetail} />
       <Card {...parma} setDetail={setDetail} />
