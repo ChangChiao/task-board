@@ -1,11 +1,11 @@
 import { pickOne } from '../../utils/http';
-import Avatar from './Avatar';
+import Avatar from '../atoms/Avatar';
 
 type ListItemProp = Card.CardDetail & {
   applicant: Card.Applicant[];
 };
 
-const ListItem = ({
+const CreateTaskItem = ({
   id,
   title,
   description,
@@ -45,4 +45,4 @@ const ListItem = ({
   );
 };
 
-export default ListItem;
+export default CreateTaskItem;

@@ -8,3 +8,9 @@ export const MENU = [
   { id: 'info', text: '個人資訊', link: '/' },
   { id: 'signIn', text: '登入', link: '/' },
 ];
+
+export const TASK_STATUS = {
+  '0': '進行中',
+  '1': '已結束',
+  '2': '已過期',
+};

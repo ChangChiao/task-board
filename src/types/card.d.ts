@@ -23,4 +23,8 @@ declare namespace Card {
     author: string;
     avatar?: string;
   }
+
+  interface ApplyResult {
+    contactInfo: string;
+  }
 }
