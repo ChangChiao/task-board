@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { InView } from 'react-intersection-observer';
 
 import { usePopupContext } from '../../hooks/usePopupContext';
 import { getDaysFrom } from '../../utils';
@@ -36,15 +37,36 @@ const Card = ({
       expire,
     });
   };
+
+  const handleInView = (inView: boolean) => {
+    console.log('Inview---:', inView);
+    if (!inView) return;
+    // TODO use card Id
+    const ele = document.querySelector('.cover') as HTMLImageElement;
+    const { src } = ele.dataset;
+    ele.src = src!;
+  };
+
   return (
-    <div
+    // <div
+    //   onClick={handleClick}
+    //   className="relative p-4 mb-10 bg-blue-500 shadow-3xl w-80 rounded-xl"
+    // >
+    <InView
+      as="div"
+      triggerOnce={true}
       onClick={handleClick}
       className="relative p-4 mb-10 bg-blue-500 shadow-3xl w-80 rounded-xl"
+      onChange={handleInView}
     >
       {status === 1 && <div className="card-mask">已結束</div>}
       {status === 2 && <div className="card-mask">已過期</div>}
       <div className="w-full">
-        <img src={`${router.basePath}${cover}`} alt="cover" />
+        <img
+          className="cover"
+          data-src={`${router.basePath}${cover}`}
+          alt="cover"
+        />
       </div>
       <div className="">
         <h3 className="pt-2 text-xl font-semibold text-white">{title}</h3>
@@ -65,7 +87,8 @@ const Card = ({
           }
         `}
       </style>
-    </div>
+    </InView>
+    // </div>
   );
 };
 
