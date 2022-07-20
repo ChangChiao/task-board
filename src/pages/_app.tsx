@@ -14,6 +14,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
       <Layout>
         <Head>
           <title>任務派發</title>
+          <link rel="shortcut icon" href="/tools_icon-icons.com.ico" />
         </Head>
         <Component {...pageProps} />
         <ToastContainer />
