@@ -12,6 +12,7 @@ const parma = {
   author: 'chang',
   reward: 1000,
   status: 0,
+  city: 'Taipei',
   // startTime: new Date(),
 };
 

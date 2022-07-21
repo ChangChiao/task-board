@@ -18,6 +18,7 @@ const Card = ({
   avatar,
   reward,
   status,
+  city,
   expire = new Date(),
   setDetail,
 }: CardProps) => {
@@ -35,6 +36,7 @@ const Card = ({
       reward,
       status,
       expire,
+      city,
     });
   };
 
@@ -75,9 +77,12 @@ const Card = ({
           <span> $ {reward} </span>
           <span className="tetx-primary">{getDaysFrom(expire)}</span>
         </div>
-        <div className="flex items-center">
-          <Avatar image={avatar} />
-          <span className="pl-2 text-gray-400"> {author}</span>
+        <div className="flex items-center justify-between">
+          <div>
+            <Avatar image={avatar} />
+            <span className="pl-2 text-gray-400"> {author}</span>
+          </div>
+          <span>{city}</span>
         </div>
       </div>
       <style jsx>

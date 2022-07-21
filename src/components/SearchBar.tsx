@@ -3,8 +3,11 @@ import { FC, useState } from 'react';
 import { BsChevronDown } from 'react-icons/bs';
 import { FiSearch } from 'react-icons/fi';
 
+import CitySelect from './atoms/CitySelect';
+
 const SearchBar: FC = () => {
   const [searchText, setSearchText] = useState<string>('');
+  const [city, setCity] = useState<string>('');
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
     setSearchText(newValue);
@@ -27,35 +30,9 @@ const SearchBar: FC = () => {
           All categories
           <BsChevronDown />
         </button>
-        <div
-          id="dropdown"
-          className="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 "
-          data-popper-reference-hidden=""
-          data-popper-escaped=""
-          data-popper-placement="top"
-          style={{
-            position: 'absolute',
-            inset: 'auto auto 0px 0px',
-            margin: '0px',
-            transform: 'translate3d(897px, 5637px, 0px)',
-          }}
-        >
-          <ul
-            className="py-1 text-sm text-gray-700 "
-            aria-labelledby="dropdown-button"
-          >
-            <li>
-              <button type="button" className="inline-flex w-full px-4 py-2">
-                Mockups
-              </button>
-            </li>
-            <li>
-              <button type="button" className="inline-flex w-full px-4 py-2">
-                Templates
-              </button>
-            </li>
-          </ul>
-        </div>
+        <select>
+          <option value=""></option>
+        </select>
         <div className="relative w-full">
           <input
             type="search"
@@ -73,6 +50,7 @@ const SearchBar: FC = () => {
             <FiSearch />
           </button>
         </div>
+        <CitySelect city={city} setCity={setCity} />
       </div>
     </form>
   );

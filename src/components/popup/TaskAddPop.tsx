@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import 'react-datepicker/dist/react-datepicker.css';
 import { usePopupContext } from '../../hooks/usePopupContext';
 // eslint-disable-next-line import/no-cycle
+import CitySelect from '../atoms/CitySelect';
 import PopupTemplate from './PopupTemplate';
 
 const validationSchema = Yup.object().shape({
@@ -27,6 +28,7 @@ const TaskAddPop: FC = () => {
     resolver: yupResolver(validationSchema),
   });
   const [startDate, setStartDate] = useState(new Date());
+  const [city, setCity] = useState<string>('');
   const onSubmit: SubmitHandler<Card.CardCreate> = (data) => {
     console.log(data);
     // if (data.remember) {
@@ -60,6 +62,7 @@ const TaskAddPop: FC = () => {
               selected={startDate}
               onChange={(date: Date) => setStartDate(date)}
             />
+            <CitySelect city={city} setCity={setCity} />
             <input className="btn" type="submit" />
           </form>
         </PopupTemplate>

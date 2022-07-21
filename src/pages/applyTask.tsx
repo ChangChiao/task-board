@@ -9,6 +9,7 @@ const parma = {
   reward: 1000,
   status: 0,
   contactInfo: 'line Id 1232323',
+  city: 'Taipei',
 };
 
 const AcceptedTask = () => {

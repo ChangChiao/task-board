@@ -6,6 +6,7 @@ declare namespace Card {
     cover?: string;
     author: string;
     avatar?: string;
+    city: string;
     reward: number;
     status: number;
     expire?: Date;

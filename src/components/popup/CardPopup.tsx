@@ -13,6 +13,7 @@ const CardPopup = ({
   author,
   avatar = '/assets/images/image-avatar.png',
   reward,
+  city,
   expire = new Date(),
 }: Card.CardDetail) => {
   const router = useRouter();
@@ -40,9 +41,12 @@ const CardPopup = ({
             <span> $ {reward} </span>
             <span className="tetx-primary">{getDaysFrom(expire)}</span>
           </div>
-          <div className="flex items-center">
-            <Avatar image={avatar} />
-            <span className="pl-2 text-gray-400"> {author}</span>
+          <div className="flex items-center justify-between">
+            <div>
+              <Avatar image={avatar} />
+              <span className="pl-2 text-gray-400"> {author}</span>
+            </div>
+            <span>{city}</span>
           </div>
           <div className="flex items-center justify-center pt-4">
             <button onClick={handleClick} className="btn">
