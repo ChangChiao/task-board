@@ -16,6 +16,10 @@ interface PickOneParam {
   userId: string;
 }
 
+export const getAllTask = () => {
+  return service.post(`${TASK_PATH}/`);
+};
+
 export const addTask = (param: TaskParam) => {
   const headers = getAuthorizationImgHeader();
   return service.post(TASK_PATH, param, { headers });
