@@ -6,7 +6,11 @@ const errorList = {
 };
 const imgType = ['jpg', 'jpeg', 'png'];
 
-const UploadFile: FC = () => {
+type UploadFileProp = {
+  setUploadFile: (value: File) => void;
+};
+
+const UploadFile: FC<UploadFileProp> = ({ setUploadFile }: UploadFileProp) => {
   const [showError, setShowError] = useState<String>('');
   const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputRef = event.target as HTMLInputElement;
@@ -17,8 +21,11 @@ const UploadFile: FC = () => {
     }
     if (file && file.size > 1024 * 1024) {
       setShowError(errorList.large);
+      return;
     }
-    // sendImgToImgur(file);
+    if (file) {
+      setUploadFile(file);
+    }
   };
 
   return (
