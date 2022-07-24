@@ -26,7 +26,6 @@ const Header = ({ handleMenu }: HeaderParam) => {
   const handleClickMenu = ({ link }: Menu.MenuItem) => {
     router.push(link);
   };
-
   const signIn = () => {
     setPopup('signIn');
   };

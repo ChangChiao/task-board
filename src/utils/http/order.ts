@@ -10,4 +10,4 @@ type OrderParam = {
 };
 
 export const createOrder = async (param: OrderParam) =>
-  service.post<OrderParam, APIData.OrderAPIResponse>(`${PAY_PATH}`, param);
+  service.post<OrderParam, Order.OrderAPIResponse>(`${PAY_PATH}`, param);

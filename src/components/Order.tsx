@@ -9,7 +9,7 @@ const orderParam = {
   ItemDesc: 'vip一個月',
 };
 const Order: FC = () => {
-  const [orderInfo, setOrder] = useState<Partial<APIData.OrderDetail>>({});
+  const [orderInfo, setOrder] = useState<Partial<Order.OrderDetail>>({});
   const formEl = useRef<HTMLFormElement>(null);
   const handleOrder = async () => {
     const res = await createOrder(orderParam);

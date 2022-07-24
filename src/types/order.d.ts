@@ -1,4 +1,4 @@
-declare namespace APIData {
+declare namespace Order {
   interface OrderDetail {
     _id: string;
     Amt: number;

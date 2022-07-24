@@ -27,7 +27,7 @@ export const addTask = (param: TaskParam) => {
 
 export const applyTask = (taskId: string) => {
   const headers = getAuthorizationHeader();
-  return service.post(`${TASK_PATH}/${taskId}`, { headers });
+  return service.post(`${TASK_PATH}/${taskId}`, {}, { headers });
 };
 
 export const pickOne = ({ taskId, userId }: PickOneParam) => {
