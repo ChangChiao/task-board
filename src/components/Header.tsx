@@ -15,7 +15,7 @@ type HeaderParam = {
 };
 
 const Header = ({ handleMenu }: HeaderParam) => {
-  const [user] = useRecoilState(userState);
+  const [user, setUser] = useRecoilState(userState);
   const isShowMenu = useRef(false);
   const router = useRouter();
   const { setPopup } = usePopupContext();
@@ -23,13 +23,19 @@ const Header = ({ handleMenu }: HeaderParam) => {
     handleMenu();
     isShowMenu.current = !isShowMenu.current;
   };
-  const handleClickMenu = ({ id, link }: Menu.MenuItem) => {
-    if (id === 'signIn') {
-      setPopup('signIn');
-      return;
-    }
+  const handleClickMenu = ({ link }: Menu.MenuItem) => {
     router.push(link);
   };
+
+  const signIn = () => {
+    setPopup('signIn');
+  };
+
+  const signOut = () => {
+    localStorage.removeItem('token');
+    setUser({});
+  };
+
   return (
     <header className="flex items-center h-16 px-4 text-white bg-cyan-900">
       <Link href="/">
@@ -51,10 +57,17 @@ const Header = ({ handleMenu }: HeaderParam) => {
           </li>
         ))}
       </ul>
-      <div className="flex items-center">
-        <Avatar image={user?.avatar || '/assets/avatar/1.png'} />
-        <span className="pl-3">{user?.name ?? 'userName'}</span>
-      </div>
+      {user.id ? (
+        <>
+          <div className="flex items-center mr-2">
+            <Avatar image={user?.avatar || '/assets/avatar/1.png'} />
+            <span className="pl-3">{user?.name ?? 'userName'}</span>
+          </div>
+          <button onClick={signOut}>登出</button>
+        </>
+      ) : (
+        <button onClick={signIn}>登入</button>
+      )}
       <input type="checkbox" className="hidden peer" />
       <div
         onClick={handClick}

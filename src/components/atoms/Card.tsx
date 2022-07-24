@@ -78,11 +78,11 @@ const Card = ({
           <span className="tetx-primary">{getDaysFrom(expire)}</span>
         </div>
         <div className="flex items-center justify-between">
-          <div>
+          <div className="flex items-center">
             <Avatar image={avatar} />
             <span className="pl-2 text-gray-400"> {author}</span>
           </div>
-          <span>{city}</span>
+          <span className="text-white">{city}</span>
         </div>
       </div>
       <style jsx>

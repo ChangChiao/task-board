@@ -81,7 +81,7 @@ const SignIn: FC = () => {
             href={oauthGoogle}
           >
             <FcGoogle className="mr-2 " />
-            使用FaceBook繼續
+            使用Google繼續
           </a>
         </button>
         <button className="pt-2">
@@ -90,7 +90,7 @@ const SignIn: FC = () => {
             href={oauthFB}
           >
             <GrFacebook className="mr-2 text-blue-900" />
-            使用Google繼續
+            使用FaceBook繼續
           </a>
         </button>
       </div>
