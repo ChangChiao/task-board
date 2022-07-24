@@ -8,4 +8,10 @@ declare namespace User {
     chatRecord: string;
     // isVip: boolean;
   }
+
+  interface UserInfoApiResponse {
+    status: string;
+    message: string;
+    data: UserInfo;
+  }
 }

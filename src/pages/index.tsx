@@ -25,7 +25,7 @@ const Index = () => {
     if (token) {
       localStorage.setItem('token', token as string);
     }
-    getUser();
+    queryUser();
   }, []);
   return (
     <>
