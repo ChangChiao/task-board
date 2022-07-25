@@ -1,5 +1,5 @@
-declare namespace Card {
-  interface CardDetail {
+declare namespace Task {
+  interface TaskDetail {
     id: string;
     title: string;
     description: string;
@@ -12,7 +12,11 @@ declare namespace Card {
     expire?: Date;
   }
 
-  interface CardCreate {
+  interface TaskAPIResponse extends Api.ApiResponse {
+    data: TaskDetail[];
+  }
+
+  interface TaskCreate {
     title: string;
     reward: number;
     description: string;

@@ -1,3 +1,5 @@
+import { NumberLocale } from 'yup/lib/locale';
+
 import { BASE_URL } from '../../config';
 import service from './axiosConfig';
 import { getAuthorizationImgHeader, getAuthorizationHeader } from './header';
@@ -11,13 +13,24 @@ interface TaskParam {
   expire: string;
 }
 
+interface QueryTaskParam {
+  order: string;
+  sortby: string;
+  city: string;
+  keywprd: string;
+  page: NumberLocale;
+}
+
 interface PickOneParam {
   taskId: string;
   userId: string;
 }
 
-export const getAllTask = () => {
-  return service.post(`${TASK_PATH}/`);
+export const getAllTask = (param: Partial<QueryTaskParam>) => {
+  return service.post<Partial<QueryTaskParam>, Task.TaskAPIResponse>(
+    `${TASK_PATH}/`,
+    param
+  );
 };
 
 export const addTask = (param: TaskParam) => {

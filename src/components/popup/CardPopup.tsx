@@ -15,19 +15,19 @@ const CardPopup = ({
   reward,
   city,
   expire = new Date(),
-}: Card.CardDetail) => {
+}: Task.TaskDetail) => {
   const router = useRouter();
   const { setPopup } = usePopupContext();
   const handleClick = async () => {
     await applyTask(id);
   };
-  const closeCardDetail = () => {
+  const closeTaskDetail = () => {
     setPopup('');
   };
 
   return (
     <div className="fixed top-0 left-0 w-full h-full transition-all duration-300 ease-in-out">
-      <div className="mask" onClick={closeCardDetail}></div>
+      <div className="mask" onClick={closeTaskDetail}></div>
       <div className="absolute h-[700px] top-0 bottom-0 left-0 right-0 m-auto p-4 bg-blue-500 shadow-3xl w-96 rounded-xl">
         <div className="w-full">
           <img src={`${router.basePath}${cover}`} alt="cover" />
@@ -52,7 +52,7 @@ const CardPopup = ({
             <button onClick={handleClick} className="btn">
               我要接任務
             </button>
-            <button className="ml-2 btn" onClick={closeCardDetail}>
+            <button className="ml-2 btn" onClick={closeTaskDetail}>
               取消
             </button>
           </div>

@@ -5,8 +5,8 @@ import { usePopupContext } from '../../hooks/usePopupContext';
 import { getDaysFrom } from '../../utils';
 import Avatar from './Avatar';
 
-type CardProps = Card.CardDetail & {
-  setDetail: (value: Card.CardDetail) => void;
+type CardProps = Task.TaskDetail & {
+  setDetail: (value: Task.TaskDetail) => void;
 };
 
 const Card = ({

@@ -1,8 +1,8 @@
 import { pickOne } from '../../utils/http';
 import Avatar from '../atoms/Avatar';
 
-type ListItemProp = Card.CardDetail & {
-  applicant: Card.Applicant[];
+type ListItemProp = Task.TaskDetail & {
+  applicant: Task.Applicant[];
 };
 
 const CreateTaskItem = ({

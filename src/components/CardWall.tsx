@@ -8,7 +8,7 @@ import Card from './atoms/Card';
 import CardPopup from './popup/CardPopup';
 
 export const getStaticProps: GetStaticProps = async () => {
-  const result = await getAllTask();
+  const result = await getAllTask({});
   const cardList = result.data;
   return {
     props: {
@@ -33,6 +33,7 @@ const CardWall: FC = () => {
   const cardWallRef = useRef() as RefObject<HTMLDivElement>;
   const [detail, setDetail] = useState({});
   const { showPopupName } = usePopupContext();
+
   const handleScroll = () => {
     if (cardWallRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = cardWallRef.current;

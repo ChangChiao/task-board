@@ -13,9 +13,7 @@ declare namespace Order {
     payment: string;
     user: { email: string; id: string };
   }
-  interface OrderAPIResponse {
-    message: string;
-    status: string;
+  interface OrderAPIResponse extends Api.ApiResponse {
     data: OrderDetail;
   }
 }

@@ -24,12 +24,12 @@ const TaskAddPop: FC = () => {
     handleSubmit,
     // reset,
     formState: { errors },
-  } = useForm<Card.CardCreate>({
+  } = useForm<Task.TaskCreate>({
     resolver: yupResolver(validationSchema),
   });
   const [startDate, setStartDate] = useState(new Date());
   const [city, setCity] = useState<string>('');
-  const onSubmit: SubmitHandler<Card.CardCreate> = (data) => {
+  const onSubmit: SubmitHandler<Task.TaskCreate> = (data) => {
     console.log(data);
     // if (data.remember) {
     //   localStorage.setItem('email', data.email);

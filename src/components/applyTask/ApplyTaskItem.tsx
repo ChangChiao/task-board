@@ -1,6 +1,6 @@
 import Avatar from '../atoms/Avatar';
 
-type ListItemProp = Card.CardDetail & Card.ApplyResult;
+type ListItemProp = Task.TaskDetail & Task.ApplyResult;
 
 const ApplyTaskItem = ({
   title,
