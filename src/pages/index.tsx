@@ -42,6 +42,10 @@ const Index = () => {
     }
     queryUser();
   }, []);
+
+  useEffect(() => {
+    queryCardList();
+  }, [city, sortType]);
   return (
     <>
       <SearchBar

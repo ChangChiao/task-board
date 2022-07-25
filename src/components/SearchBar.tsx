@@ -22,18 +22,34 @@ const SearchBar: FC<SearchBarProps> = ({
   setCity,
   sortType,
   setSortType,
+  queryCardList,
 }: SearchBarProps) => {
   // const [searchText, setSearchText] = useState<string>('');
   // const [city, setCity] = useState<string>('');
   // const [sortType, setSortType] = useState<string>('');
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
+    console.log('newValue', newValue);
     setSearchText(newValue);
   };
+
+  const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setCity(event.target.value);
+  };
+
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortType(event.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    queryCardList();
+  };
+
   return (
-    <form>
-      <SortSelect sortType={sortType} setSortType={setSortType} />
-      <CitySelect city={city} setCity={setCity} />
+    <form onSubmit={handleSubmit}>
+      <SortSelect handleSortChange={handleSortChange} sortType={sortType} />
+      <CitySelect handleCityChange={handleCityChange} city={city} />
       <div className="relative w-full">
         <input
           type="search"

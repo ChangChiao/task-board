@@ -35,6 +35,10 @@ const TaskAddPop: FC = () => {
     //   localStorage.setItem('email', data.email);
     // }
   };
+
+  const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setCity(event.target.value);
+  };
   return (
     <>
       {showPopupName === 'signIn' && (
@@ -62,7 +66,7 @@ const TaskAddPop: FC = () => {
               selected={startDate}
               onChange={(date: Date) => setStartDate(date)}
             />
-            <CitySelect city={city} setCity={setCity} />
+            <CitySelect city={city} handleCityChange={handleCityChange} />
             <input className="btn" type="submit" />
           </form>
         </PopupTemplate>

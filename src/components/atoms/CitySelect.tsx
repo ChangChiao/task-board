@@ -4,18 +4,15 @@ import { CITY_LIST } from '../../config';
 
 type CitySelectParam = {
   city: string;
-  setCity: (value: string) => void;
+  handleCityChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 //
 const CitySelect: FC<CitySelectParam> = ({
   city,
-  setCity,
+  handleCityChange,
 }: CitySelectParam) => {
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCity(event.target.value);
-  };
   return (
-    <select value={city} name="" id="" onChange={handleChange}>
+    <select value={city} name="" id="" onChange={handleCityChange}>
       {CITY_LIST.map((item) => (
         <option key={item.value} value={item.value}>
           {item.label}

@@ -2,21 +2,19 @@ import React, { FC } from 'react';
 
 type CitySelectParam = {
   sortType: string;
-  setSortType: (value: string) => void;
+  handleSortChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 const sortList = [
+  { label: '排序方式', value: '' },
   { label: '報酬由高至低', value: 'desc' },
   { label: '報酬由低至高', value: 'asc' },
 ];
 const SortSelect: FC<CitySelectParam> = ({
   sortType,
-  setSortType,
+  handleSortChange,
 }: CitySelectParam) => {
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortType(event.target.value);
-  };
   return (
-    <select value={sortType} name="" id="" onChange={handleChange}>
+    <select value={sortType} name="" id="" onChange={handleSortChange}>
       {sortList.map((item) => (
         <option key={item.value} value={item.value}>
           {item.label}
