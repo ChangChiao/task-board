@@ -12,6 +12,13 @@
   input{
     @apply outline-none;
   }
+  select {
+    /* Reset Select */
+    @apply 
+    appearance-none outline-0 border-0 shadow-none;
+    /* Personalize */
+    @apply flex-1 text-white bg-slate-500  p-2 cursor-pointer;
+  }
 }
 
 
@@ -24,5 +31,9 @@
   }
   .mask{
     @apply w-full h-full bg-black/50;
+  }
+  .select {
+    @apply relative flex w-20 h-4 rounded overflow-hidden after:content-['\25BC']
+    after:absolute after:top-0 after:right-0 after:p-4 after:bg-[#34495e] after:pointer-events-none;
   }
 }

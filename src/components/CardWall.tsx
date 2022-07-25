@@ -46,7 +46,7 @@ const CardWall: FC = () => {
     <div
       onScroll={handleScroll}
       ref={cardWallRef}
-      className="flex flex-wrap justify-between p-10 max-w-[1600px]"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-around p-10 max-w-[1600px]"
     >
       <Card {...parma} setDetail={setDetail} />
       <Card {...parma} setDetail={setDetail} />

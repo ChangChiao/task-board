@@ -13,6 +13,7 @@ const CitySelect: FC<CitySelectParam> = ({
 }: CitySelectParam) => {
   return (
     <select value={city} name="" id="" onChange={handleCityChange}>
+      <option value="">地區</option>
       {CITY_LIST.map((item) => (
         <option key={item.value} value={item.value}>
           {item.label}

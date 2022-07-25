@@ -31,7 +31,7 @@ const Index = () => {
       order: sortType,
       sortby: 'pay',
       city,
-      keywprd: searchText,
+      keyword: searchText,
     };
     await getAllTask(param);
   }, [searchText, city, sortType]);

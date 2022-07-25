@@ -47,7 +47,7 @@ const SearchBar: FC<SearchBarProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="w-[800px] flex" onSubmit={handleSubmit}>
       <SortSelect handleSortChange={handleSortChange} sortType={sortType} />
       <CitySelect handleCityChange={handleCityChange} city={city} />
       <div className="relative w-full">

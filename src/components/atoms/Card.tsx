@@ -58,7 +58,7 @@ const Card = ({
       as="div"
       triggerOnce={true}
       onClick={handleClick}
-      className="relative p-4 mb-10 bg-blue-500 shadow-3xl w-80 rounded-xl"
+      className="relative p-4 mb-10 mr-auto bg-blue-500 shadow-3xl w-80 rounded-xl"
       onChange={handleInView}
     >
       {status === 1 && <div className="card-mask">已結束</div>}
