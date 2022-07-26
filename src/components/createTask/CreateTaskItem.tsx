@@ -1,4 +1,4 @@
-import { pickOne } from '../../utils/http';
+import { pickStaff } from '../../utils/http';
 import Avatar from '../atoms/Avatar';
 
 type ListItemProp = Task.TaskDetail & {
@@ -16,7 +16,7 @@ const CreateTaskItem = ({
   expire = new Date(),
 }: ListItemProp) => {
   const handleClick = async (userId: string) => {
-    await pickOne({ taskId: id, userId });
+    await pickStaff({ taskId: id, userId });
   };
   return (
     <div className="rounded-lg shadow-lg min-h-[300px] p-2">

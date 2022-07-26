@@ -1,5 +1,3 @@
-import { NumberLocale } from 'yup/lib/locale';
-
 import { BASE_URL } from '../../config';
 import service from './axiosConfig';
 import { getAuthorizationImgHeader, getAuthorizationHeader } from './header';
@@ -11,6 +9,7 @@ interface TaskParam {
   content: string;
   cover: File;
   expire: string;
+  pay: number;
 }
 
 interface QueryTaskParam {
@@ -18,10 +17,15 @@ interface QueryTaskParam {
   sortby: string;
   city: string;
   keywprd: string;
-  page: NumberLocale;
+  page: number;
 }
 
-interface PickOneParam {
+interface QueryTaskUserParam {
+  status: number;
+  page: number;
+}
+
+interface PickStaffParam {
   taskId: string;
   userId: string;
 }
@@ -33,17 +37,45 @@ export const getAllTask = (param: Partial<QueryTaskParam>) => {
   );
 };
 
+export const getUserTask = (param: Partial<QueryTaskUserParam>) => {
+  const headers = getAuthorizationHeader();
+  return service.post<Partial<QueryTaskUserParam>, Task.TaskAPIResponse>(
+    TASK_PATH,
+    param,
+    { headers }
+  );
+};
+
 export const addTask = (param: TaskParam) => {
   const headers = getAuthorizationImgHeader();
   return service.post(TASK_PATH, param, { headers });
 };
 
-export const applyTask = (taskId: string) => {
+export const deleteTask = (taskId: string) => {
   const headers = getAuthorizationHeader();
-  return service.post(`${TASK_PATH}/${taskId}`, {}, { headers });
+  return service.delete(`${TASK_PATH}/${taskId}`, { headers });
 };
 
-export const pickOne = ({ taskId, userId }: PickOneParam) => {
+export const updateTask = async (param: Partial<QueryTaskUserParam>) => {
+  const headers = getAuthorizationImgHeader();
+  return service.patch<Partial<QueryTaskParam>, Task.TaskAPIResponse>(
+    `${TASK_PATH}/`,
+    param,
+    { headers }
+  );
+};
+
+export const applyTask = (taskId: string) => {
   const headers = getAuthorizationHeader();
-  return service.patch(`${TASK_PATH}/${taskId}`, { userId }, { headers });
+  return service.post(`${TASK_PATH}/${taskId}/applicant`, {}, { headers });
+};
+
+export const cancelApplyTask = (taskId: string) => {
+  const headers = getAuthorizationHeader();
+  return service.delete(`${TASK_PATH}/${taskId}/applicant`, { headers });
+};
+
+export const pickStaff = ({ taskId, userId }: PickStaffParam) => {
+  const headers = getAuthorizationHeader();
+  return service.patch(`${TASK_PATH}/${taskId}/staff`, { userId }, { headers });
 };
