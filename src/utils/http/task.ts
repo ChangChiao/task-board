@@ -20,11 +20,6 @@ interface QueryTaskParam {
   page: number;
 }
 
-interface QueryTaskUserParam {
-  status: number;
-  page: number;
-}
-
 interface PickStaffParam {
   taskId: string;
   userId: string;
@@ -37,13 +32,18 @@ export const getAllTask = (param: Partial<QueryTaskParam>) => {
   );
 };
 
-export const getUserTask = (param: Partial<QueryTaskUserParam>) => {
+export const getUserCreateTaskList = () => {
   const headers = getAuthorizationHeader();
-  return service.post<Partial<QueryTaskUserParam>, Task.TaskAPIResponse>(
-    TASK_PATH,
-    param,
-    { headers }
-  );
+  return service.post<{}, Task.TaskAPIResponse>(`${TASK_PATH}/createTaskList`, {
+    headers,
+  });
+};
+
+export const getUserApplyTaskList = () => {
+  const headers = getAuthorizationHeader();
+  return service.post<{}, Task.TaskAPIResponse>(`${TASK_PATH}/applyTaskList`, {
+    headers,
+  });
 };
 
 export const addTask = (param: TaskParam) => {
@@ -56,9 +56,9 @@ export const deleteTask = (taskId: string) => {
   return service.delete(`${TASK_PATH}/${taskId}`, { headers });
 };
 
-export const updateTask = async (param: Partial<QueryTaskUserParam>) => {
+export const updateTask = async (param: Partial<TaskParam>) => {
   const headers = getAuthorizationImgHeader();
-  return service.patch<Partial<QueryTaskParam>, Task.TaskAPIResponse>(
+  return service.patch<Partial<TaskParam>, Task.TaskAPIResponse>(
     `${TASK_PATH}/`,
     param,
     { headers }
