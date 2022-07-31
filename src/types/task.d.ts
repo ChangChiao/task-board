@@ -9,7 +9,7 @@ declare namespace Task {
     city: string;
     reward: number;
     status: number;
-    expire?: Date;
+    expire: string;
   }
 
   interface TaskAPIResponse extends Api.ApiResponse {
@@ -20,13 +20,13 @@ declare namespace Task {
     title: string;
     reward: number;
     description: string;
-    expire?: Date;
+    expire: string;
   }
 
   interface Applicant {
     id: string;
     author: string;
-    avatar?: string;
+    avatar: string;
   }
 
   interface ApplyResult {

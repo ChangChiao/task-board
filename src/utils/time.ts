@@ -1,6 +1,8 @@
-import moment from "moment";
+import moment from 'moment';
+
 export const second = (num: number) => num * 1000;
 
-export const getDaysFrom = (date: Date) => {
-  return moment(date).fromNow(true);
+export const getDaysFrom = (date: string) => {
+  // return moment(date).fromNow(true);
+  return moment(date).format('YYYY/MM/DD HH:mm');
 };

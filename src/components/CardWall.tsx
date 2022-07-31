@@ -26,6 +26,7 @@ const parma = {
   reward: 1000,
   status: 0,
   city: 'Taipei',
+  expire: '2022-07-31T12:13:46.960Z',
   // startTime: new Date(),
 };
 
