@@ -23,7 +23,11 @@ const Header = ({ handleMenu }: HeaderParam) => {
     handleMenu();
     isShowMenu.current = !isShowMenu.current;
   };
-  const handleClickMenu = ({ link }: Menu.MenuItem) => {
+  const handleClickMenu = ({ link, id }: Menu.MenuItem) => {
+    if (id === 'vip') {
+      setPopup('upgrade');
+      return;
+    }
     router.push(link);
   };
   const signIn = () => {

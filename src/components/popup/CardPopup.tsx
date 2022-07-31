@@ -52,7 +52,7 @@ const CardPopup = ({
             <button onClick={handleClick} className="btn">
               我要接任務
             </button>
-            <button className="ml-2 btn" onClick={closeTaskDetail}>
+            <button className="ml-2 bg-gray-400 btn" onClick={closeTaskDetail}>
               取消
             </button>
           </div>
