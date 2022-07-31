@@ -2,6 +2,7 @@ declare namespace Order {
   interface OrderDetail {
     _id: string;
     Amt: number;
+    Email: string;
     ItemDesc: string;
     TradeInfo: string;
     TradeSha: string;

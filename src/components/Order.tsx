@@ -3,16 +3,11 @@ import { FC, useState, useRef, useEffect } from 'react';
 import { PAY_URL } from '../config';
 import { createOrder } from '../utils/http';
 
-const orderParam = {
-  Email: 'joe.chang1014@gmail.com',
-  Amt: 80,
-  ItemDesc: 'vip一個月',
-};
 const Order: FC = () => {
   const [orderInfo, setOrder] = useState<Partial<Order.OrderDetail>>({});
   const formEl = useRef<HTMLFormElement>(null);
   const handleOrder = async () => {
-    const res = await createOrder(orderParam);
+    const res = await createOrder();
     setOrder(res.data);
     console.log('res', res);
   };
@@ -73,12 +68,7 @@ const Order: FC = () => {
           value={orderInfo.MerchantOrderNo || ''}
         />
         <input readOnly type="text" name="Amt" value={orderInfo.Amt || 0} />
-        <input
-          readOnly
-          type="email"
-          name="Email"
-          value="joe.chang1014@gmail.com"
-        />
+        <input readOnly type="email" name="Email" value={orderInfo.Email} />
         <button type="submit">送出</button>
       </form>
     </div>
