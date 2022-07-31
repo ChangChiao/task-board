@@ -38,7 +38,9 @@ const Index = () => {
 
   useEffect(() => {
     if (token) {
+      queryUser();
       localStorage.setItem('token', token as string);
+      return;
     }
     queryUser();
   }, []);

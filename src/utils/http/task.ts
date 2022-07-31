@@ -13,11 +13,12 @@ interface TaskParam {
 }
 
 interface QueryTaskParam {
-  order: string;
-  sortby: string;
-  city: string;
-  keywprd: string;
-  page: number;
+  [key: string]: string | number;
+  // order: string;
+  // sortby: string;
+  // city: string;
+  // keywprd: string;
+  // page: number;
 }
 
 interface PickStaffParam {
@@ -25,11 +26,21 @@ interface PickStaffParam {
   userId: string;
 }
 
-export const getAllTask = (param: Partial<QueryTaskParam>) => {
-  return service.post<Partial<QueryTaskParam>, Task.TaskAPIResponse>(
-    `${TASK_PATH}/`,
-    param
-  );
+const genQueryStr = (obj: QueryTaskParam) => {
+  const queryKey = Object.keys(obj);
+  if (queryKey?.length === 0) return undefined;
+  Object.keys(obj).reduce((a, b) => {
+    return typeof b === 'string' ? `${a}&${b}=${obj[b]}` : b;
+  }, '');
+};
+
+export const getAllTask = (param: QueryTaskParam) => {
+  const queryStr = genQueryStr(param);
+  let path = `${TASK_PATH}/`;
+  if (queryStr) {
+    path += `?${queryStr}`;
+  }
+  return service.get<QueryTaskParam, Task.TaskAPIResponse>(path);
 };
 
 export const getUserCreateTaskList = () => {
