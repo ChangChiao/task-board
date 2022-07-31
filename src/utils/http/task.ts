@@ -36,9 +36,9 @@ const genQueryStr = (obj: QueryTaskParam) => {
 
 export const getAllTask = (param: QueryTaskParam) => {
   const queryStr = genQueryStr(param);
-  let path = `${TASK_PATH}/`;
+  let path = `${TASK_PATH}`;
   if (queryStr) {
-    path += `?${queryStr}`;
+    path += `/?${queryStr}`;
   }
   return service.get<QueryTaskParam, Task.TaskAPIResponse>(path);
 };

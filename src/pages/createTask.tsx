@@ -1,4 +1,6 @@
-import ApplyTaskItem from '../components/applyTask/ApplyTaskItem';
+import { NextPage } from 'next';
+
+import CreateTaskItem from '../components/createTask/CreateTaskItem';
 
 const parma = {
   id: '13232323231233',
@@ -12,11 +14,11 @@ const parma = {
   city: 'Taipei',
 };
 
-const AcceptedTask = () => {
+const createTask: NextPage = () => {
   return (
     <div>
-      <ApplyTaskItem {...parma} />
+      <CreateTaskItem {...parma} />
     </div>
   );
 };
-export default AcceptedTask;
+export default createTask;
