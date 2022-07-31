@@ -1,4 +1,4 @@
-import ApplyTaskItem from '../components/applyTask/ApplyTaskItem';
+import AcceptedTaskItem from '../components/applyTask/AcceptedTaskItem';
 
 const parma = {
   id: '13232323231233',
@@ -10,12 +10,13 @@ const parma = {
   status: 0,
   contactInfo: 'line Id 1232323',
   city: 'Taipei',
+  expire: '2022-07-31T12:55:04.994Z',
 };
 
 const acceptedTask = () => {
   return (
-    <div>
-      <ApplyTaskItem {...parma} />
+    <div className="wrapper">
+      <AcceptedTaskItem {...parma} />
     </div>
   );
 };
