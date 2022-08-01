@@ -12,8 +12,8 @@ declare namespace Task {
     expire: string;
   }
 
-  interface TaskAPIResponse extends Api.ApiResponse {
-    data: TaskDetail[];
+  interface TaskAPIResponse<T> extends Api.ApiResponse {
+    data: T[];
   }
 
   interface TaskCreate {
@@ -24,9 +24,13 @@ declare namespace Task {
   }
 
   interface Applicant {
-    id: string;
-    author: string;
+    _id: string;
+    name: string;
     avatar: string;
+  }
+
+  interface TaskWithApplicant extends TaskDetail {
+    applicant: Task.Applicant[] | [];
   }
 
   interface ApplyResult {

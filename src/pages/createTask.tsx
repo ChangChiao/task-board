@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 
 import AddButton from '../components/atoms/button/AddButton';
 import CreateTaskItem from '../components/createTask/CreateTaskItem';
+import ApplicantPop from '../components/popup/ApplicantPop';
 // import { getUserCreateTaskList } from '../utils/http/task';
 
 // export const getStaticProps: GetStaticProps = async () => {
@@ -33,6 +34,7 @@ const createTask: NextPage = () => {
     <div className="wrapper">
       <CreateTaskItem {...parma} />
       <AddButton />
+      <ApplicantPop applicantList={[]} taskId="1233333" />
     </div>
   );
 };

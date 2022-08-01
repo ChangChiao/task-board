@@ -17,7 +17,7 @@ interface QueryTaskParam {
   // order: string;
   // sortby: string;
   // city: string;
-  // keywprd: string;
+  // keyword: string;
   // page: number;
 }
 
@@ -29,7 +29,7 @@ interface PickStaffParam {
 const genQueryStr = (obj: QueryTaskParam) => {
   const queryKey = Object.keys(obj);
   if (queryKey?.length === 0) return undefined;
-  Object.keys(obj).reduce((a, b) => {
+  return Object.keys(obj).reduce((a, b) => {
     return typeof b === 'string' ? `${a}&${b}=${obj[b]}` : b;
   }, '');
 };
@@ -40,21 +40,29 @@ export const getAllTask = (param: QueryTaskParam) => {
   if (queryStr) {
     path += `/?${queryStr}`;
   }
-  return service.get<QueryTaskParam, Task.TaskAPIResponse>(path);
+  return service.get<QueryTaskParam, Task.TaskAPIResponse<Task.TaskDetail>>(
+    path
+  );
 };
 
 export const getUserCreateTaskList = () => {
   const headers = getAuthorizationHeader();
-  return service.post<{}, Task.TaskAPIResponse>(`${TASK_PATH}/createTaskList`, {
-    headers,
-  });
+  return service.post<{}, Task.TaskAPIResponse<Task.TaskDetail>>(
+    `${TASK_PATH}/createTaskList`,
+    {
+      headers,
+    }
+  );
 };
 
 export const getUserApplyTaskList = () => {
   const headers = getAuthorizationHeader();
-  return service.post<{}, Task.TaskAPIResponse>(`${TASK_PATH}/applyTaskList`, {
-    headers,
-  });
+  return service.post<{}, Task.TaskAPIResponse<Task.TaskDetail>>(
+    `${TASK_PATH}/applyTaskList`,
+    {
+      headers,
+    }
+  );
 };
 
 export const addTask = (param: TaskParam) => {
@@ -69,11 +77,10 @@ export const deleteTask = (taskId: string) => {
 
 export const updateTask = async (param: Partial<TaskParam>) => {
   const headers = getAuthorizationImgHeader();
-  return service.patch<Partial<TaskParam>, Task.TaskAPIResponse>(
-    `${TASK_PATH}/`,
-    param,
-    { headers }
-  );
+  return service.patch<
+    Partial<TaskParam>,
+    Task.TaskAPIResponse<Task.TaskDetail>
+  >(`${TASK_PATH}/`, param, { headers });
 };
 
 export const applyTask = (taskId: string) => {
@@ -88,5 +95,8 @@ export const cancelApplyTask = (taskId: string) => {
 
 export const pickStaff = ({ taskId, userId }: PickStaffParam) => {
   const headers = getAuthorizationHeader();
-  return service.patch(`${TASK_PATH}/${taskId}/staff`, { userId }, { headers });
+  return service.patch<
+    PickStaffParam,
+    Task.TaskAPIResponse<Task.TaskWithApplicant>
+  >(`${TASK_PATH}/${taskId}/staff`, { userId }, { headers });
 };

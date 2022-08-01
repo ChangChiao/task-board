@@ -19,7 +19,7 @@ const Card = ({
   reward,
   status,
   city,
-  expire = new Date(),
+  expire,
   setDetail,
 }: CardProps) => {
   const router = useRouter();
@@ -41,7 +41,7 @@ const Card = ({
   };
 
   const handleInView = (inView: boolean) => {
-    console.log('Inview---:', inView);
+    // console.log('Inview---:', inView);
     if (!inView) return;
     // TODO use card Id
     const ele = document.querySelector('.cover') as HTMLImageElement;
