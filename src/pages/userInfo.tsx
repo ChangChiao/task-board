@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 
-export const userInfo: NextPage = () => {
+export const UserInfo: NextPage = () => {
   return <div></div>;
 };
 
-export default userInfo;
+export default UserInfo;

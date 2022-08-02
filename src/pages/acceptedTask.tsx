@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 import AcceptedTaskItem from '../components/applyTask/AcceptedTaskItem';
+import Tab from '../components/atoms/Tab';
 
 const parma = {
   id: '13232323231233',
@@ -13,11 +16,19 @@ const parma = {
   expire: '2022-07-31T12:55:04.994Z',
 };
 
-const acceptedTask = () => {
+const tabList = [
+  { name: '進行中', id: 0 },
+  { name: '已結束', id: 1 },
+  { name: '已過期', id: 2 },
+];
+
+const AcceptedTask = () => {
+  const [tab, setTab] = useState<number>(0);
   return (
     <div className="wrapper">
+      <Tab tab={tab} setTab={setTab} tabList={tabList} />
       <AcceptedTaskItem {...parma} />
     </div>
   );
 };
-export default acceptedTask;
+export default AcceptedTask;

@@ -1,5 +1,5 @@
-const favorite = () => {
+const Favorite = () => {
   return <div>favorite</div>;
 };
 
-export default favorite;
+export default Favorite;

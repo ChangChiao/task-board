@@ -1,6 +1,9 @@
+import { useState } from 'react';
+
 import { NextPage } from 'next';
 
 import AddButton from '../components/atoms/button/AddButton';
+import Tab from '../components/atoms/Tab';
 import CreateTaskItem from '../components/createTask/CreateTaskItem';
 import ApplicantPop from '../components/popup/ApplicantPop';
 // import { getUserCreateTaskList } from '../utils/http/task';
@@ -29,13 +32,21 @@ const parma = {
   applicant: [],
 };
 
-const createTask: NextPage = () => {
+const tabList = [
+  { name: '進行中', id: 0 },
+  { name: '已結束', id: 1 },
+  { name: '已過期', id: 2 },
+];
+
+const CreateTask: NextPage = () => {
+  const [tab, setTab] = useState<number>(0);
   return (
     <div className="wrapper">
+      <Tab tab={tab} setTab={setTab} tabList={tabList} />
       <CreateTaskItem {...parma} />
       <AddButton />
       <ApplicantPop applicantList={[]} taskId="1233333" />
     </div>
   );
 };
-export default createTask;
+export default CreateTask;

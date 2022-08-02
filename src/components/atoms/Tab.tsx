@@ -1,14 +1,14 @@
 import clsx from 'clsx';
 
 type TabItem = {
-  id: string;
+  id: number;
   name: string;
 };
 
 type TabParam = {
   tabList: TabItem[];
-  tab: string;
-  setTab: (value: string) => void;
+  tab: number;
+  setTab: (value: number) => void;
   style?: string;
 };
 

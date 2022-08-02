@@ -2,8 +2,8 @@ import { NextPage } from 'next';
 
 import Order from '../components/Order';
 
-export const checkOrder: NextPage = () => {
+export const CheckOrder: NextPage = () => {
   return <Order />;
 };
 
-export default checkOrder;
+export default CheckOrder;

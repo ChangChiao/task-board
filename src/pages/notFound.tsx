@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 
-export const notFound: NextPage = () => {
+export const NotFound: NextPage = () => {
   return <div></div>;
 };
 
-export default notFound;
+export default NotFound;
