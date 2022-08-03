@@ -6,6 +6,8 @@ import AddButton from '../components/atoms/button/AddButton';
 import Tab from '../components/atoms/Tab';
 import CreateTaskItem from '../components/createTask/CreateTaskItem';
 import ApplicantPop from '../components/popup/ApplicantPop';
+import ConfirmPop from '../components/popup/ConfirmPop';
+import { usePopupContext } from '../hooks/usePopupContext';
 // import { getUserCreateTaskList } from '../utils/http/task';
 
 // export const getStaticProps: GetStaticProps = async () => {
@@ -33,19 +35,21 @@ const parma = {
 };
 
 const tabList = [
-  { name: '進行中', id: 0 },
-  { name: '已結束', id: 1 },
-  { name: '已過期', id: 2 },
+  { name: '進行中', id: 'inProgress' },
+  { name: '已結束', id: 'end' },
+  { name: '已過期', id: 'expired' },
 ];
 
 const CreateTask: NextPage = () => {
-  const [tab, setTab] = useState<number>(0);
+  const [tab, setTab] = useState<string>('inProgress');
+  const { showPopupName } = usePopupContext();
   return (
     <div className="wrapper">
       <Tab tab={tab} setTab={setTab} tabList={tabList} />
       <CreateTaskItem {...parma} />
       <AddButton />
       <ApplicantPop applicantList={[]} taskId="1233333" />
+      {showPopupName === 'confirm' && <ConfirmPop taskId="1233333" />}
     </div>
   );
 };

@@ -72,7 +72,10 @@ export const addTask = (param: TaskParam) => {
 
 export const deleteTask = (taskId: string) => {
   const headers = getAuthorizationHeader();
-  return service.delete(`${TASK_PATH}/${taskId}`, { headers });
+  return service.delete<string, Task.TaskAPIResponse<{}>>(
+    `${TASK_PATH}/${taskId}`,
+    { headers }
+  );
 };
 
 export const updateTask = async (param: Partial<TaskParam>) => {

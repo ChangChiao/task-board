@@ -13,7 +13,7 @@ declare namespace Task {
   }
 
   interface TaskAPIResponse<T> extends Api.ApiResponse {
-    data: T[];
+    data?: T[];
   }
 
   interface TaskCreate {

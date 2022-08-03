@@ -17,13 +17,13 @@ const parma = {
 };
 
 const tabList = [
-  { name: '進行中', id: 0 },
-  { name: '已結束', id: 1 },
-  { name: '已過期', id: 2 },
+  { name: '進行中', id: 'inProgress' },
+  { name: '已結束', id: 'end' },
+  { name: '已過期', id: 'expired' },
 ];
 
 const AcceptedTask = () => {
-  const [tab, setTab] = useState<number>(0);
+  const [tab, setTab] = useState<string>('inProgress');
   return (
     <div className="wrapper">
       <Tab tab={tab} setTab={setTab} tabList={tabList} />
