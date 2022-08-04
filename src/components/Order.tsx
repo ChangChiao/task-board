@@ -1,9 +1,9 @@
-import { FC, useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import { PAY_URL } from '../config';
 import { createOrder } from '../utils/http';
 
-const Order: FC = () => {
+const Order = () => {
   const [orderInfo, setOrder] = useState<Partial<Order.OrderDetail>>({});
   const formEl = useRef<HTMLFormElement>(null);
   const handleOrder = async () => {

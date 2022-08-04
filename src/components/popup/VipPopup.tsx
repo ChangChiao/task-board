@@ -1,11 +1,9 @@
-import { FC } from 'react';
-
 import { useRouter } from 'next/router';
 
 import { usePopupContext } from '../../hooks/usePopupContext';
 import PopupTemplate from './PopupTemplate';
 
-const VipPopup: FC = () => {
+const VipPopup = () => {
   const { showPopupName, setPopup } = usePopupContext();
   const router = useRouter();
   const closePopup = () => {

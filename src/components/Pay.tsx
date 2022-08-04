@@ -1,8 +1,6 @@
-import { FC } from 'react';
-
 import { useRouter } from 'next/router';
 
-const Pay: FC = () => {
+const Pay = () => {
   const router = useRouter();
   const handleOrder = async () => {
     router.push(`/checkOrder`);

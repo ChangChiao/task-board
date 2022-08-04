@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 import { FiSearch } from 'react-icons/fi';
 
 import CitySelect from './atoms/CitySelect';
@@ -15,7 +13,7 @@ type SearchBarProps = {
   queryCardList: () => void;
 };
 
-const SearchBar: FC<SearchBarProps> = ({
+const SearchBar = ({
   searchText,
   setSearchText,
   city,

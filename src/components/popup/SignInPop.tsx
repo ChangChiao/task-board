@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 // import { usePopupContext } from '../../hooks/usePopupContext';
 import Tab from '../atoms/Tab';
@@ -11,7 +11,7 @@ const tabList = [
   { id: 'signUp', name: '註冊' },
 ];
 
-const SignInPop: FC = () => {
+const SignInPop = () => {
   const [tab, setTab] = useState<string>('signIn');
   const popTitle = useMemo(() => {
     return tabList.find((item) => item.id === tab)?.name as string;

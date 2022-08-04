@@ -1,4 +1,4 @@
-import { useEffect, FC } from 'react';
+import { useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -26,7 +26,7 @@ const validationSchema = Yup.object().shape({
     .max(16, '密碼不可超過16個字元'),
 });
 
-const SignIn: FC = () => {
+const SignIn = () => {
   const [user, setUser] = useRecoilState(userState);
   console.log('user', user);
 

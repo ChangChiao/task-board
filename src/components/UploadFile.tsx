@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 
 const errorList = {
   large: '圖片檔案過大，僅限 1mb 以下檔案',
@@ -10,7 +10,7 @@ type UploadFileProp = {
   setUploadFile: (value: File) => void;
 };
 
-const UploadFile: FC<UploadFileProp> = ({ setUploadFile }: UploadFileProp) => {
+const UploadFile = ({ setUploadFile }: UploadFileProp) => {
   const [showError, setShowError] = useState<String>('');
   const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputRef = event.target as HTMLInputElement;

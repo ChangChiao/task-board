@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 import { AiOutlineClose } from 'react-icons/ai';
 
@@ -10,7 +10,7 @@ type PopupType = {
   children?: ReactNode | null;
 };
 
-const PopupTemplate: FC<PopupType> = ({ children, titleName }: PopupType) => {
+const PopupTemplate = ({ children, titleName }: PopupType) => {
   const { setPopup } = usePopupContext();
   const handlePop = () => {
     setPopup('');

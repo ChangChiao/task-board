@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 import { toast } from 'react-toastify';
 
 import { usePopupContext } from '../../hooks/usePopupContext';
@@ -9,7 +7,7 @@ import PopupTemplate from './PopupTemplate';
 type ConfirmProps = {
   taskId: string;
 };
-const ConfirmPop: FC<ConfirmProps> = ({ taskId }: ConfirmProps) => {
+const ConfirmPop = ({ taskId }: ConfirmProps) => {
   const { showPopupName, setPopup } = usePopupContext();
   const closePopup = () => {
     setPopup('');

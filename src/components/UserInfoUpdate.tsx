@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
   contact: Yup.string().required('聯絡方式為必填'),
 });
 
-const UserInfoUpdate: FC = () => {
+const UserInfoUpdate = () => {
   const [avatar, setAvatar] = useState<string>('');
   const [file, setUploadFile] = useState<File | null>(null);
   const [user, setUser] = useRecoilState(userState);

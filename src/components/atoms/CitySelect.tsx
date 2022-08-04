@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import { CITY_LIST } from '../../config';
 
@@ -7,10 +7,7 @@ type CitySelectParam = {
   handleCityChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 //
-const CitySelect: FC<CitySelectParam> = ({
-  city,
-  handleCityChange,
-}: CitySelectParam) => {
+const CitySelect = ({ city, handleCityChange }: CitySelectParam) => {
   return (
     <select value={city} name="" id="" onChange={handleCityChange}>
       <option value="">地區</option>

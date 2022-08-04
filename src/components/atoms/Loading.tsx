@@ -1,7 +1,5 @@
-import { FC } from 'react';
-
 const LoadingText = ['L', 'o', 'a', 'd', 'i', 'n', 'g', '...'];
-const Loading: FC = () => {
+const Loading = () => {
   return (
     <div className="loading-text">
       {LoadingText.map((item, i) => (

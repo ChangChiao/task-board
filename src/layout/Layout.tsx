@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import React, { useState } from 'react';
 
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -8,7 +8,7 @@ import TaskAddPop from '../components/popup/TaskAddPop';
 import VipPopup from '../components/popup/VipPopup';
 import { usePopupContext } from '../hooks/usePopupContext';
 
-const Layout: FC = ({ children }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isShowMenu, setShowMenu] = useState<boolean>(false);
   const { showPopupName } = usePopupContext();
   const handleMenu = () => {

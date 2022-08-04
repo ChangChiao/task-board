@@ -1,10 +1,8 @@
-import { FC } from 'react';
-
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import { usePopupContext } from '../../../hooks/usePopupContext';
 
-const AddButton: FC = () => {
+const AddButton = () => {
   const { setPopup } = usePopupContext();
   const handleClick = () => {
     setPopup('taskAdd');

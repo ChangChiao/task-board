@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import DatePicker from 'react-datepicker';
@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
   description: Yup.string().required('內容為必填'),
 });
 
-const TaskAddPop: FC = () => {
+const TaskAddPop = () => {
   const { showPopupName } = usePopupContext();
   const {
     register,

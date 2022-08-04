@@ -1,5 +1,3 @@
-import React, { FC } from 'react';
-
 type CitySelectParam = {
   sortType: string;
   handleSortChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -9,10 +7,7 @@ const sortList = [
   { label: '報酬由高至低', value: 'desc' },
   { label: '報酬由低至高', value: 'asc' },
 ];
-const SortSelect: FC<CitySelectParam> = ({
-  sortType,
-  handleSortChange,
-}: CitySelectParam) => {
+const SortSelect = ({ sortType, handleSortChange }: CitySelectParam) => {
   return (
     <select value={sortType} name="" id="" onChange={handleSortChange}>
       {sortList.map((item) => (

@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 import { usePopupContext } from '../../hooks/usePopupContext';
 import { pickStaff } from '../../utils/http/task';
 import Avatar from '../atoms/Avatar';
@@ -9,10 +7,7 @@ type ApplicantProps = {
   applicantList: any;
   taskId: string;
 };
-const ApplicantPop: FC<ApplicantProps> = ({
-  applicantList,
-  taskId,
-}: ApplicantProps) => {
+const ApplicantPop = ({ applicantList, taskId }: ApplicantProps) => {
   const { showPopupName, setPopup } = usePopupContext();
   const handleClick = async (id: string) => {
     const params = {

@@ -1,4 +1,4 @@
-import { FC, useRef, useState, RefObject } from 'react';
+import { useRef, useState, RefObject } from 'react';
 
 import { GetStaticProps } from 'next';
 
@@ -30,7 +30,7 @@ const parma = {
   // startTime: new Date(),
 };
 
-const CardWall: FC = () => {
+const CardWall = () => {
   const cardWallRef = useRef() as RefObject<HTMLDivElement>;
   const [detail, setDetail] = useState({});
   const { showPopupName } = usePopupContext();
