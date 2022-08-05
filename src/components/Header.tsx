@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -19,6 +19,12 @@ const Header = ({ handleMenu }: HeaderParam) => {
   const isShowMenu = useRef(false);
   const router = useRouter();
   const { setPopup } = usePopupContext();
+  const menuList = useMemo(() => {
+    if (user.isVip) {
+      return MENU.filter((item) => item.id !== 'vip');
+    }
+    return MENU;
+  }, [user]);
   const handClick = () => {
     handleMenu();
     isShowMenu.current = !isShowMenu.current;
@@ -50,7 +56,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
       </Link>
 
       <ul className="flex flex-1 pl-10">
-        {MENU.map((item) => (
+        {menuList.map((item) => (
           <li
             onClick={() => handleClickMenu(item)}
             className="pr-4 cursor-pointer hover:text-slate-200"

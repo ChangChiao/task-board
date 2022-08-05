@@ -5,6 +5,7 @@ type User = {
   name: string;
   avatar: string;
   contact: string;
+  isVip: boolean;
 };
 
 export const userState = atom({

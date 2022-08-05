@@ -1,9 +1,20 @@
+import { useMemo } from 'react';
+
 import Link from 'next/link';
+import { useRecoilState } from 'recoil';
 
 import { MENU } from '../config';
+import { userState } from '../store/user';
 import Avatar from './atoms/Avatar';
 
 const Menu = () => {
+  const [user] = useRecoilState(userState);
+  const menuList = useMemo(() => {
+    if (user.isVip) {
+      return MENU.filter((item) => item.id !== 'vip');
+    }
+    return MENU;
+  }, [user]);
   return (
     <div className="w-full h-screen p-4 text-white bg-cyan-900 md:hidden">
       <img
@@ -16,7 +27,7 @@ const Menu = () => {
         <span className="pl-3">userName</span>
       </div>
       <ul>
-        {MENU.map((item) => (
+        {menuList.map((item) => (
           <li className="py-2" key={item.text}>
             <Link href={item.link}>{item.text}</Link>
           </li>
