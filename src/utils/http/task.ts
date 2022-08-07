@@ -49,6 +49,7 @@ export const getUserCreateTaskList = () => {
   const headers = getAuthorizationHeader();
   return service.post<{}, Task.TaskAPIResponse<Task.TaskDetail>>(
     `${TASK_PATH}/createTaskList`,
+    {},
     {
       headers,
     }

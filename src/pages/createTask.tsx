@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { NextPage } from 'next';
 
@@ -8,7 +8,7 @@ import ConfirmPop from '../components/atoms/popup/ConfirmPop';
 import Tab from '../components/atoms/Tab';
 import CreateTaskItem from '../components/createTask/CreateTaskItem';
 import { usePopupContext } from '../hooks/usePopupContext';
-// import { getUserCreateTaskList } from '../utils/http/task';
+import { getUserCreateTaskList } from '../utils/http/task';
 
 // export const getStaticProps: GetStaticProps = async () => {
 //   const result = await getUserCreateTaskList();
@@ -21,7 +21,7 @@ import { usePopupContext } from '../hooks/usePopupContext';
 // };
 
 const parma = {
-  id: '13232323231233',
+  _id: '13232323231233',
   title: 'heorkpeook reorepowkr',
   description: 'reowprkoperopwerfewrwe[rwe[]rl',
   cover: '/assets/images/image-equilibrium.jpg',
@@ -42,11 +42,25 @@ const tabList = [
 
 const CreateTask: NextPage = () => {
   const [tab, setTab] = useState<string>('inProgress');
+  const [taskList, setTaskList] = useState<Task.TaskWithApplicant[] | []>([]);
   const { showPopupName } = usePopupContext();
+  const getList = async () => {
+    const res = await getUserCreateTaskList();
+
+    if (res.status === 'success') {
+      setTaskList(res.data as Task.TaskWithApplicant[]);
+    }
+  };
+  useEffect(() => {
+    getList();
+  }, []);
 
   return (
     <div className="wrapper">
       <Tab tab={tab} setTab={setTab} tabList={tabList} />
+      {taskList.map((item) => (
+        <CreateTaskItem key={item._id} {...item} />
+      ))}
       <CreateTaskItem {...parma} />
       <AddButton />
       <ApplicantPop applicantList={[]} taskId="1233333" />

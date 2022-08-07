@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { sendData } from 'next/dist/server/api-utils';
 import DatePicker from 'react-datepicker';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -22,7 +21,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const TaskAddPop = () => {
-  const { showPopupName } = usePopupContext();
+  const { showPopupName, setPopup } = usePopupContext();
   const {
     register,
     handleSubmit,
@@ -41,16 +40,17 @@ const TaskAddPop = () => {
       toast.error('請上傳封面照！');
       return;
     }
-    formData.append('file', file);
+    formData.append('cover', file);
     formData.append('title', title);
     formData.append('reward', reward.toString());
     formData.append('description', description);
     formData.append('expire', endDate.toISOString());
 
-    console.log(sendData);
+    console.log('sendData', file, formData);
     const res = await addTask(formData);
     if (res?.status === 'success') {
       toast(res.message);
+      setPopup('');
     }
   };
 

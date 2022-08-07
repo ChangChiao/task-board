@@ -16,8 +16,6 @@ const Index = () => {
   const [sortType, setSortType] = useState<string>('');
   const router = useRouter();
 
-  const { token } = router.query;
-
   const queryUser = async () => {
     const result = await getUser();
     const { status, data } = result;
@@ -37,6 +35,7 @@ const Index = () => {
   }, [searchText, city, sortType]);
 
   useEffect(() => {
+    const { token } = router.query;
     if (token) {
       localStorage.setItem('token', token as string);
       queryUser();
