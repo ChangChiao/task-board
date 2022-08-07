@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 
 import { AiOutlineClose } from 'react-icons/ai';
 
-import { usePopupContext } from '../../hooks/usePopupContext';
+import { usePopupContext } from '../../../hooks/usePopupContext';
 // eslint-disable-next-line import/no-cycle
 
 type PopupType = {

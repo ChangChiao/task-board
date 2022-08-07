@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import { usePopupContext } from '../../hooks/usePopupContext';
+import { usePopupContext } from '../../../hooks/usePopupContext';
 import PopupTemplate from './PopupTemplate';
 
 const VipPopup = () => {

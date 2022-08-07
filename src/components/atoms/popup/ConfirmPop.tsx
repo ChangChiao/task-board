@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
-import { usePopupContext } from '../../hooks/usePopupContext';
-import { deleteTask } from '../../utils/http';
+import { usePopupContext } from '../../../hooks/usePopupContext';
+import { deleteTask } from '../../../utils/http';
 import PopupTemplate from './PopupTemplate';
 
 type ConfirmProps = {

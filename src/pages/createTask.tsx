@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { NextPage } from 'next';
 
 import AddButton from '../components/atoms/button/AddButton';
+import ApplicantPop from '../components/atoms/popup/ApplicantPop';
+import ConfirmPop from '../components/atoms/popup/ConfirmPop';
 import Tab from '../components/atoms/Tab';
 import CreateTaskItem from '../components/createTask/CreateTaskItem';
-import ApplicantPop from '../components/popup/ApplicantPop';
-import ConfirmPop from '../components/popup/ConfirmPop';
 import { usePopupContext } from '../hooks/usePopupContext';
 // import { getUserCreateTaskList } from '../utils/http/task';
 

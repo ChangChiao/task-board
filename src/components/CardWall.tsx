@@ -5,7 +5,7 @@ import { GetStaticProps } from 'next';
 import { usePopupContext } from '../hooks/usePopupContext';
 import { getAllTask } from '../utils/http';
 import Card from './atoms/Card';
-import CardPopup from './popup/CardPopup';
+import CardPopup from './atoms/popup/CardPopup';
 
 export const getStaticProps: GetStaticProps = async () => {
   const result = await getAllTask({});

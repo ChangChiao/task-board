@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
 
 // import { usePopupContext } from '../../hooks/usePopupContext';
-import Tab from '../atoms/Tab';
-import SignIn from '../SignIn';
-import SignUp from '../SignUp';
+import SignIn from '../../SignIn';
+import SignUp from '../../SignUp';
+import Tab from '../Tab';
 import PopupTemplate from './PopupTemplate';
 
 const tabList = [

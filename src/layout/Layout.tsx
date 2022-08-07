@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
+import SignInPop from '../components/atoms/popup/SignInPop';
+import TaskAddPop from '../components/atoms/popup/TaskAddPop';
+import VipPopup from '../components/atoms/popup/VipPopup';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Menu from '../components/Menu';
-import SignInPop from '../components/popup/SignInPop';
-import TaskAddPop from '../components/popup/TaskAddPop';
-import VipPopup from '../components/popup/VipPopup';
 import { usePopupContext } from '../hooks/usePopupContext';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {

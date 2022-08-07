@@ -6,9 +6,9 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import { usePopupContext } from '../../hooks/usePopupContext';
+import { usePopupContext } from '../../../hooks/usePopupContext';
 // eslint-disable-next-line import/no-cycle
-import CitySelect from '../atoms/CitySelect';
+import CitySelect from '../CitySelect';
 import PopupTemplate from './PopupTemplate';
 
 const validationSchema = Yup.object().shape({

@@ -1,6 +1,6 @@
-import { usePopupContext } from '../../hooks/usePopupContext';
-import { pickStaff } from '../../utils/http/task';
-import Avatar from '../atoms/Avatar';
+import { usePopupContext } from '../../../hooks/usePopupContext';
+import { pickStaff } from '../../../utils/http/task';
+import Avatar from '../Avatar';
 import PopupTemplate from './PopupTemplate';
 // TODOTask.TaskWithApplicant
 type ApplicantProps = {
