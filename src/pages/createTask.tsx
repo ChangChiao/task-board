@@ -43,6 +43,7 @@ const tabList = [
 const CreateTask: NextPage = () => {
   const [tab, setTab] = useState<string>('inProgress');
   const { showPopupName } = usePopupContext();
+
   return (
     <div className="wrapper">
       <Tab tab={tab} setTab={setTab} tabList={tabList} />

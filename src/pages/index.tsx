@@ -29,7 +29,7 @@ const Index = () => {
   const queryCardList = useCallback(async () => {
     const param = {
       order: sortType,
-      sortby: 'pay',
+      sortby: 'reward',
       city,
       keyword: searchText,
     };
@@ -38,8 +38,8 @@ const Index = () => {
 
   useEffect(() => {
     if (token) {
-      queryUser();
       localStorage.setItem('token', token as string);
+      queryUser();
       return;
     }
     queryUser();

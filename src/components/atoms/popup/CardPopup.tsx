@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 
-import { usePopupContext } from '../../hooks/usePopupContext';
-import { getDaysFrom } from '../../utils';
-import { applyTask } from '../../utils/http';
-import Avatar from '../atoms/Avatar';
+import { usePopupContext } from '../../../hooks/usePopupContext';
+import { getDaysFrom } from '../../../utils';
+import { applyTask } from '../../../utils/http';
+import Avatar from '../Avatar';
 
 const CardPopup = ({
   id,

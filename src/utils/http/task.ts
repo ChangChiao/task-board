@@ -6,10 +6,10 @@ const TASK_PATH = `${BASE_URL}/task`;
 
 interface TaskParam {
   title: string;
-  content: string;
+  reward: number;
+  description: string;
   cover: File;
   expire: string;
-  pay: number;
 }
 
 interface QueryTaskParam {
@@ -65,9 +65,11 @@ export const getUserApplyTaskList = () => {
   );
 };
 
-export const addTask = (param: TaskParam) => {
+export const addTask = (param: FormData) => {
   const headers = getAuthorizationImgHeader();
-  return service.post(TASK_PATH, param, { headers });
+  return service.post<TaskParam, Task.TaskAPIResponse<{}>>(TASK_PATH, param, {
+    headers,
+  });
 };
 
 export const deleteTask = (taskId: string) => {

@@ -5,6 +5,8 @@ import { usePopupContext } from '../../../hooks/usePopupContext';
 const AddButton = () => {
   const { setPopup } = usePopupContext();
   const handleClick = () => {
+    console.log('8777');
+
     setPopup('taskAdd');
   };
   return (

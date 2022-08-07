@@ -14,7 +14,7 @@ type TabParam = {
 
 const Tab = ({ tabList, setTab, style, tab }: TabParam) => {
   return (
-    <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200">
+    <div className="mb-6 text-sm font-medium text-center text-gray-500 border-b border-gray-500">
       <ul className={clsx('flex flex-wrap -mb-px', style)}>
         {tabList.map((item) => {
           return (
@@ -28,7 +28,7 @@ const Tab = ({ tabList, setTab, style, tab }: TabParam) => {
               <a
                 href="#"
                 className={clsx(
-                  'tab-item inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-900 hover:border-gray-300',
+                  'tab-item inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-300 hover:border-gray-300',
                   tab === item.id && 'active'
                 )}
               >
@@ -41,7 +41,7 @@ const Tab = ({ tabList, setTab, style, tab }: TabParam) => {
       <style jsx>
         {`
           .tab-item.active {
-            @apply text-gray-900 border-gray-300;
+            @apply text-gray-300 border-gray-300;
           }
         `}
       </style>
