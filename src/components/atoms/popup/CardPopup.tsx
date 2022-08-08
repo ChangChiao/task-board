@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 import { usePopupContext } from '../../../hooks/usePopupContext';
 import { getDaysFrom } from '../../../utils';
@@ -6,7 +7,7 @@ import { applyTask } from '../../../utils/http';
 import Avatar from '../Avatar';
 
 const CardPopup = ({
-  id,
+  _id,
   title,
   description,
   cover = '/assets/images/image-equilibrium.jpg',
@@ -19,7 +20,10 @@ const CardPopup = ({
   const router = useRouter();
   const { setPopup } = usePopupContext();
   const handleClick = async () => {
-    await applyTask(id);
+    const res = await applyTask(_id);
+    if (res.status === 'success') {
+      toast(res.message);
+    }
   };
   const closeTaskDetail = () => {
     setPopup('');

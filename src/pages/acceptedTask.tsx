@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import AcceptedTaskItem from '../components/applyTask/AcceptedTaskItem';
 import Tab from '../components/atoms/Tab';
+import { getUserApplyTaskList } from '../utils/http';
 
 const parma = {
-  id: '13232323231233',
+  _id: '13232323231233',
   title: 'heorkpeook reorepowkr',
   description: 'reowprkoperopwerfewrwe[rwe[]rl',
   cover: '/assets/images/image-equilibrium.jpg',
@@ -23,10 +24,23 @@ const tabList = [
 ];
 
 const AcceptedTask = () => {
+  const [taskList, setTaskList] = useState<Task.TaskWithContact[] | []>([]);
   const [tab, setTab] = useState<string>('inProgress');
+  const getList = async () => {
+    const res = await getUserApplyTaskList();
+    if (res.status === 'success' && res.data) {
+      setTaskList(res.data);
+    }
+  };
+  useEffect(() => {
+    getList();
+  }, []);
   return (
     <div className="wrapper">
       <Tab tab={tab} setTab={setTab} tabList={tabList} />
+      {taskList.map((item) => (
+        <AcceptedTaskItem key={item._id} {...item} />
+      ))}
       <AcceptedTaskItem {...parma} />
     </div>
   );

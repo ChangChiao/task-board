@@ -10,7 +10,7 @@ type CardProps = Task.TaskDetail & {
 };
 
 const Card = ({
-  id,
+  _id,
   title,
   description,
   cover = '/assets/images/image-equilibrium.jpg',
@@ -27,7 +27,7 @@ const Card = ({
   const handleClick = () => {
     setPopup('card');
     setDetail({
-      id,
+      _id,
       title,
       description,
       cover,

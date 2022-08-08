@@ -6,7 +6,7 @@ import { usePopupContext } from '../../hooks/usePopupContext';
 import { getDaysFrom } from '../../utils';
 
 const CreateTaskItem = ({
-  id,
+  _id,
   title,
   description,
   cover = '/assets/images/image-equilibrium.jpg',
@@ -16,9 +16,15 @@ const CreateTaskItem = ({
   expire,
 }: Task.TaskWithApplicant) => {
   const { setPopup } = usePopupContext();
+  const openDelete = async () => {
+    setPopup('confirm');
+  };
   return (
     <div className="relative rounded-lg flex text-white shadow-lg min-h-[160px] p-4 bg-slate-800">
-      <button className="absolute text-3xl top-5 right-10">
+      <button
+        className="absolute text-3xl top-5 right-10"
+        onClick={() => openDelete()}
+      >
         <BiTrash />
       </button>
       <span className="absolute right-10 bottom-5">{getDaysFrom(expire)}</span>
@@ -41,7 +47,7 @@ const CreateTaskItem = ({
           <button onClick={() => setPopup('applicant')} className="w-32 btn">
             查看所有申請人
           </button>
-          {id} {status}
+          {_id} {status}
           {/* TODO 帶入taskId */}
         </div>
       </div>

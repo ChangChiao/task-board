@@ -18,7 +18,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 const parma = {
-  id: '13232323231233',
+  _id: '13232323231233',
   title: 'heorkpeook reorepowkr',
   description: 'reowprkoperopwerfewrwe[rwe[]rl',
   cover: '/assets/images/image-equilibrium.jpg',

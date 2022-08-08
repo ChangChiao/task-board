@@ -10,6 +10,7 @@ declare namespace Task {
     reward: number;
     status: number;
     expire: string;
+    contactInfo?: string;
   }
 
   interface TaskAPIResponse<T> extends Api.ApiResponse {
@@ -33,7 +34,7 @@ declare namespace Task {
     applicant: Task.Applicant[] | [];
   }
 
-  interface ApplyResult {
+  interface TaskWithContact extends TaskDetail {
     contactInfo: string;
   }
 }

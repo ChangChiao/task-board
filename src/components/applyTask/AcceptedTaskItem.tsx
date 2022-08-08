@@ -3,8 +3,6 @@ import { MdOutlineAttachMoney } from 'react-icons/md';
 import { getDaysFrom } from '../../utils';
 import Avatar from '../atoms/Avatar';
 
-type ListItemProp = Task.TaskDetail & Task.ApplyResult;
-
 const AcceptedTaskItem = ({
   title,
   description,
@@ -15,7 +13,7 @@ const AcceptedTaskItem = ({
   status,
   contactInfo,
   expire,
-}: ListItemProp) => {
+}: Task.TaskWithContact) => {
   return (
     <div className="relative rounded-lg flex text-white shadow-lg min-h-[160px] p-4 bg-slate-800">
       {status === 1 && !contactInfo && <div className="card-mask">已結束</div>}

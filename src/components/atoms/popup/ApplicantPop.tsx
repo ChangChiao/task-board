@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import { usePopupContext } from '../../../hooks/usePopupContext';
 import { pickStaff } from '../../../utils/http/task';
 import Avatar from '../Avatar';
@@ -16,6 +18,7 @@ const ApplicantPop = ({ applicantList, taskId }: ApplicantProps) => {
     };
     const result = await pickStaff(params);
     if (result.status === 'success') {
+      toast(result.message);
       setPopup('');
     }
   };

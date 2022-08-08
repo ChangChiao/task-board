@@ -58,7 +58,7 @@ export const getUserCreateTaskList = () => {
 
 export const getUserApplyTaskList = () => {
   const headers = getAuthorizationHeader();
-  return service.post<{}, Task.TaskAPIResponse<Task.TaskDetail>>(
+  return service.post<{}, Task.TaskAPIResponse<Task.TaskWithContact>>(
     `${TASK_PATH}/applyTaskList`,
     {
       headers,
@@ -91,7 +91,11 @@ export const updateTask = async (param: Partial<TaskParam>) => {
 
 export const applyTask = (taskId: string) => {
   const headers = getAuthorizationHeader();
-  return service.post(`${TASK_PATH}/${taskId}/applicant`, {}, { headers });
+  return service.post<{}, Task.TaskAPIResponse<{}>>(
+    `${TASK_PATH}/${taskId}/applicant`,
+    {},
+    { headers }
+  );
 };
 
 export const cancelApplyTask = (taskId: string) => {
