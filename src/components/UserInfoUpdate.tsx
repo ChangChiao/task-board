@@ -7,6 +7,7 @@ import { useRecoilState } from 'recoil';
 import * as Yup from 'yup';
 
 import { userState } from '../store/user';
+import { patchUser } from '../utils/http/user';
 import Avatar from './atoms/Avatar';
 import UploadFile from './UploadFile';
 
@@ -33,17 +34,25 @@ const UserInfoUpdate = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
-    setUser({
-      name: '',
-    });
-    toast('');
+  const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('contact', data.contact);
+    const res = await patchUser(formData);
+    const {
+      data: { name, contact },
+      message,
+      status,
+    } = res;
+    if (status === 'success') {
+      setUser({
+        ...user,
+        name,
+        contact,
+      });
+    }
+    toast(message);
   };
-
-  // const createImgURL = (file) => {
-  //   return window.URL.createObjectURL(file)
-  // }
 
   useEffect(() => {
     setAvatar(user.avatar!);

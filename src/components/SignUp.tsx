@@ -29,7 +29,7 @@ const SignUp = () => {
   } = useForm<FormValues>({
     resolver: yupResolver(validationSchema),
   });
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
     console.log('data', data);
     await signUp(data);
   };
