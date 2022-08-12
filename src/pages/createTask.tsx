@@ -10,16 +10,6 @@ import CreateTaskItem from '../components/createTask/CreateTaskItem';
 import { usePopupContext } from '../hooks/usePopupContext';
 import { getUserCreateTaskList } from '../utils/http/task';
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const result = await getUserCreateTaskList();
-//   const cardList = result.data;
-//   return {
-//     props: {
-//       cardList,
-//     },
-//   };
-// };
-
 const parma = {
   _id: '13232323231233',
   title: 'heorkpeook reorepowkr',

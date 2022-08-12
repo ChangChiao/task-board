@@ -1,13 +1,13 @@
 import { useRef, useState, RefObject } from 'react';
 
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 import { usePopupContext } from '../hooks/usePopupContext';
 import { getAllTask } from '../utils/http';
 import Card from './atoms/Card';
 import CardPopup from './atoms/popup/CardPopup';
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const result = await getAllTask({});
   const cardList = result.data;
   return {
