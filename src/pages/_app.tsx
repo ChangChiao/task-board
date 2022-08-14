@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next';
+import { SessionProvider } from 'next-auth/react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ToastContainer } from 'react-toastify';
@@ -8,12 +9,17 @@ import { PopupContextProvider } from '../hooks/usePopupContext';
 import Layout from '../layout/Layout';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/global.css';
-import { getUser } from '../utils/http/user';
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { token } = context.query;
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  query,
+}) => {
+  const { token } = query;
+  console.log('req', req);
+  console.log('query', query);
+
   console.log('token', token);
-  const result = await getUser();
+  const result = {};
   return {
     props: {
       user: result,
@@ -21,19 +27,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-const MyApp = ({ Component, pageProps }: AppProps) => (
-  <PopupContextProvider>
+const MyApp = ({ Component, pageProps, session }: AppProps) => (
+  <SessionProvider session={session}>
     <RecoilRoot>
-      <Layout>
-        <Head>
-          <title>任務派發</title>
-          <link rel="shortcut icon" href="/tools_icon-icons.com.ico" />
-        </Head>
-        <Component {...pageProps} />
-        <ToastContainer />
-      </Layout>
+      <PopupContextProvider>
+        <Layout>
+          <Head>
+            <title>任務派發</title>
+            <link rel="shortcut icon" href="/tools_icon-icons.com.ico" />
+          </Head>
+          <Component {...pageProps} />
+          <ToastContainer />
+        </Layout>
+      </PopupContextProvider>
     </RecoilRoot>
-  </PopupContextProvider>
+  </SessionProvider>
 );
 
 export default MyApp;
