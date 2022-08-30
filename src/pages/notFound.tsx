@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 
 export const NotFound: NextPage = () => {
-  return <div></div>;
+  return <div>404</div>;
 };
 
 export default NotFound;

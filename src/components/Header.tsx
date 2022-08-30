@@ -1,6 +1,7 @@
 import { useMemo, useRef } from 'react';
 
 import clsx from 'clsx';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
@@ -15,6 +16,8 @@ type HeaderParam = {
 };
 
 const Header = ({ handleMenu }: HeaderParam) => {
+  const { data: session } = useSession();
+  console.log('session', session);
   const [user, setUser] = useRecoilState(userState);
   const isShowMenu = useRef(false);
   const router = useRouter();
