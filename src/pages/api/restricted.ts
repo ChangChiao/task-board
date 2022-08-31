@@ -1,7 +1,7 @@
 import { unstable_getServerSession } from 'next-auth/next';
 
 import { authOptions } from './auth/[...nextauth]';
-
+// @ts-ignore
 export default async (req, res) => {
   const session = await unstable_getServerSession(req, res, authOptions);
 

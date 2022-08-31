@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 
 import { usePopupContext } from '../../../hooks/usePopupContext';
-import { getDaysFrom } from '../../../utils';
+import { formateTime } from '../../../utils';
 import { applyTask } from '../../../utils/http';
 import Avatar from '../Avatar';
 
@@ -43,7 +43,7 @@ const CardPopup = ({
           </div>
           <div className="flex justify-between py-2 text-lg font-bold text-secondary">
             <span> $ {reward} </span>
-            <span className="tetx-primary">{getDaysFrom(expire)}</span>
+            <span className="tetx-primary">{formateTime(expire)}</span>
           </div>
           <div className="flex items-center justify-between">
             <div>

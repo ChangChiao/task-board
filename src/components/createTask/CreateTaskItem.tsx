@@ -3,7 +3,7 @@ import { BsPeopleFill } from 'react-icons/bs';
 import { MdOutlineAttachMoney } from 'react-icons/md';
 
 import { usePopupContext } from '../../hooks/usePopupContext';
-import { getDaysFrom } from '../../utils';
+import { formateTime } from '../../utils';
 
 const CreateTaskItem = ({
   _id,
@@ -27,7 +27,7 @@ const CreateTaskItem = ({
       >
         <BiTrash />
       </button>
-      <span className="absolute right-10 bottom-5">{getDaysFrom(expire)}</span>
+      <span className="absolute right-10 bottom-5">{formateTime(expire)}</span>
       <div className="w-32">
         <img src={cover} alt="" />
       </div>

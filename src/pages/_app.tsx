@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     },
   };
 };
-
+// @ts-ignore
 const MyApp = ({ Component, pageProps, session }: AppProps) => (
   <SessionProvider session={session}>
     <RecoilRoot>

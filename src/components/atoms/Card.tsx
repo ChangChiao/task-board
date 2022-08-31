@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { InView } from 'react-intersection-observer';
 
 import { usePopupContext } from '../../hooks/usePopupContext';
-import { getDaysFrom } from '../../utils';
+import { formateTime } from '../../utils';
 import Avatar from './Avatar';
 
 type CardProps = Task.TaskDetail & {
@@ -75,7 +75,7 @@ const Card = ({
         {/* <div className="leading-9 text-gray-400">{description}</div> */}
         <div className="py-2 font-bold text-secondary">
           <span> $ {reward} </span>
-          <span className="tetx-primary">{getDaysFrom(expire)}</span>
+          <span className="tetx-primary">{formateTime(expire)}</span>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
