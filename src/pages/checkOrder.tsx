@@ -1,9 +1,10 @@
 import { NextPage } from 'next';
 
-import Order from '../components/Order';
+import LinePay from '../components/LinePay';
+// import Order from '../components/Order';
 
 export const CheckOrder: NextPage = () => {
-  return <Order />;
+  return <LinePay />;
 };
 
 export default CheckOrder;
