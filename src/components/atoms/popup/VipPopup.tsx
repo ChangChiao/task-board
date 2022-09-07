@@ -1,17 +1,17 @@
-import { useRouter } from 'next/router';
-
 import { usePopupContext } from '../../../hooks/usePopupContext';
+import { createOrder } from '../../../utils/http/linePay';
 import PopupTemplate from './PopupTemplate';
 
 const VipPopup = () => {
   const { showPopupName, setPopup } = usePopupContext();
-  const router = useRouter();
+  // const router = useRouter();
   const closePopup = () => {
     setPopup('');
   };
   const handleOrder = async () => {
     closePopup();
-    router.push(`/checkOrder`);
+    await createOrder();
+    // router.push(`/checkOrder`);
   };
   return (
     <>

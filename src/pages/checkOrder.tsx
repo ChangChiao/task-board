@@ -1,10 +1,16 @@
 import { NextPage } from 'next';
-
-import LinePay from '../components/LinePay';
+import { useRouter } from 'next/router';
+// import LinePay from '../components/LinePay';
 // import Order from '../components/Order';
 
 export const CheckOrder: NextPage = () => {
-  return <LinePay />;
+  const router = useRouter();
+  const orderId = router.query.id;
+  return (
+    <div>
+      您的訂閱已完成! 訂單編號<span>{orderId}</span>
+    </div>
+  );
 };
 
 export default CheckOrder;
