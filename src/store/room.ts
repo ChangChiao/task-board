@@ -6,8 +6,8 @@ const { persistAtom } = recoilPersist({
   storage: localStorage,
 });
 
-export const chatState = atom({
-  key: 'chatState',
-  default: {},
+export const roomState = atom({
+  key: 'room',
+  default: [] as Chat.RoomInfo[],
   effects_UNSTABLE: [persistAtom],
 });
