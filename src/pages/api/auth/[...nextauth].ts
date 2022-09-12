@@ -1,39 +1,31 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
+import Auth0Provider from 'next-auth/providers/auth0';
+import FacebookProvider from 'next-auth/providers/facebook';
+import GoogleProvider from 'next-auth/providers/google';
 
 export const authOptions: NextAuthOptions = {
-  // https://next-auth.js.org/configuration/providers/oauth
   providers: [
-    CredentialsProvider({
-      name: 'Credentials',
-      credentials: {
-        email: { label: 'Email', type: 'email' },
-        password: { label: 'Password', type: 'password' },
-      },
-      async authorize(credentials) {
-        const res = await fetch('http://localhost:8000/auth/login', {
-          method: 'POST',
-          body: JSON.stringify(credentials),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-
-        const user = await res.json();
-
-        if (res.ok && user) {
-          return user;
-        }
-
-        return null;
-      },
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_ID!,
+      clientSecret: process.env.FACEBOOK_SECRET!,
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID!,
+      clientSecret: process.env.GOOGLE_SECRET!,
+    }),
+    Auth0Provider({
+      clientId: process.env.AUTH0_ID!,
+      clientSecret: process.env.AUTH0_SECRET!,
+      issuer: process.env.AUTH0_ISSUER!,
     }),
   ],
   theme: {
     colorScheme: 'light',
   },
   callbacks: {
-    async jwt(token) {
+    async jwt({ token }) {
+      // eslint-disable-next-line no-param-reassign
+      token.userRole = 'admin';
       return token;
     },
   },
