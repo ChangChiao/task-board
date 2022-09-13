@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://3aed-180-177-8-174.jp.ngrok.io/v1';
+export const BASE_URL =
+  'https://e8c7-2001-b400-e480-1054-bc8b-d34d-3800-dba7.jp.ngrok.io/v1';
 export const PAY_URL = 'https://ccore.spgateway.com/MPG/mpg_gateway';
 // export const BASE_URL = "http://localhost:3008/v1";
 export const MENU = [
