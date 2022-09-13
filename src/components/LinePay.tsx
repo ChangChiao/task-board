@@ -2,7 +2,9 @@ import { createOrder } from '../utils/http/linePay';
 
 const LinePay = () => {
   const genOrder = async () => {
-    await createOrder();
+    const res = await createOrder();
+    console.log('res.data.url', res.data.url);
+    window.location.replace(res.data.url);
   };
   return (
     <div>

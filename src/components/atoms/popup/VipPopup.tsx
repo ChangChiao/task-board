@@ -10,7 +10,9 @@ const VipPopup = () => {
   };
   const handleOrder = async () => {
     closePopup();
-    await createOrder();
+    const res = await createOrder();
+    console.log('res.data.url', res.data.url);
+    window.location.replace(res.data.url);
     // router.push(`/checkOrder`);
   };
   return (

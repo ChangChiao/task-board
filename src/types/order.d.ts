@@ -17,4 +17,10 @@ declare namespace Order {
   interface OrderAPIResponse extends Api.ApiResponse {
     data: OrderDetail;
   }
+
+  interface LinePayResponse extends Api.ApiResponse {
+    data: {
+      url: string;
+    };
+  }
 }
