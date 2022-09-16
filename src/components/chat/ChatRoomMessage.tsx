@@ -8,7 +8,7 @@ import { formateTime } from '../../utils';
 
 type ChatRoomMessageProps = {
   message: string;
-  content: string;
+  _id: string;
   sender: string;
   createdAt: string;
 };

@@ -7,7 +7,7 @@ const ChatRoomListItem = () => {
   const [room] = useRecoilState(roomState);
   return (
     <div className="fixed bottom-0 hidden w-4/5 pointer-events-none right-10 lg:flex lg:items-end lg:justify-end">
-      {room.map((item: Chat.RoomInfo) => (
+      {room.map((item: Chat.RoomState) => (
         <ChatRoom key={item.roomId} {...item} />
       ))}
     </div>

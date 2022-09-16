@@ -5,8 +5,13 @@ declare namespace Chat {
     message: Msg[];
     avatar: string;
   }
+  interface RoomState extends RoomInfo {
+    isOpen: Boolean;
+  }
   interface Msg {
+    _id: string;
     message: string;
     createdAt: string;
+    sender: string;
   }
 }

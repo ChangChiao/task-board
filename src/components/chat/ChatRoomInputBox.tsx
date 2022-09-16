@@ -3,7 +3,15 @@ import { RefObject, useEffect, useRef } from 'react';
 import { FiSend } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 
-const ChatRoomInputBox = () => {
+type ChatRoomInputBoxProps = {
+  sendMessage: (msg: string) => void;
+  userTyping: (key: string) => void;
+};
+
+const ChatRoomInputBox = ({
+  sendMessage: sendMessageParent,
+  userTyping,
+}: ChatRoomInputBoxProps) => {
   const inputBox = useRef() as RefObject<HTMLDivElement>;
   const sendMessage = () => {
     let value = inputBox.current!.innerText;
@@ -16,8 +24,7 @@ const ChatRoomInputBox = () => {
       toast.error('輸入內容長度超過上限');
       return;
     }
-    // TODO
-    // emit('sendMessage', value);
+    sendMessageParent(value);
     inputBox.current!.innerText = '';
     inputBox.current!.focus();
   };
@@ -28,8 +35,7 @@ const ChatRoomInputBox = () => {
 
     inputBox.current!.dispatchEvent(keyEvent);
     inputBox.current!.addEventListener('keypress', (e) => {
-      // TODO
-      // emit('userTyping', e.key);
+      userTyping(e.key);
       if (e.key === 'Enter') {
         sendMessage();
       }
