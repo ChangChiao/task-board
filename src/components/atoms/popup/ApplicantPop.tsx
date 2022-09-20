@@ -1,6 +1,10 @@
+import { useState } from 'react';
+
 import { toast } from 'react-toastify';
 
+import { useChat } from '../../../hooks/useChat';
 import { usePopupContext } from '../../../hooks/usePopupContext';
+import { getRoomId } from '../../../utils/http/chat';
 import { pickStaff } from '../../../utils/http/task';
 import Avatar from '../Avatar';
 import PopupTemplate from './PopupTemplate';
@@ -11,6 +15,8 @@ type ApplicantProps = {
 };
 const ApplicantPop = ({ applicantList, taskId }: ApplicantProps) => {
   const { showPopupName, setPopup } = usePopupContext();
+  const { handleRoom } = useChat();
+  const [pending, setPending] = useState<Boolean>(false);
   const handleClick = async (id: string) => {
     const params = {
       taskId,
@@ -22,6 +28,24 @@ const ApplicantPop = ({ applicantList, taskId }: ApplicantProps) => {
       setPopup('');
     }
   };
+
+  const sendMessage = async (id: string) => {
+    if (pending) return;
+    const sendData = {
+      receiver: id,
+    };
+    try {
+      setPending(true);
+      const res = await getRoomId(sendData);
+      const { roomId, name, avatar } = res.data;
+      handleRoom({ roomId, name, avatar });
+    } catch (error) {
+      console.log('error', error);
+    } finally {
+      setPending(false);
+    }
+  };
+
   return (
     <>
       {showPopupName === 'applicant' && (
@@ -33,6 +57,7 @@ const ApplicantPop = ({ applicantList, taskId }: ApplicantProps) => {
                 <Avatar image={item.avatar} />
                 <span>{item.name}</span>
                 <button onClick={() => handleClick(item._id)}>選擇</button>
+                <button onClick={() => sendMessage(item._id)}>私訊</button>
               </li>
             ))}
           </ul>
