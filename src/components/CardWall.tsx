@@ -5,6 +5,7 @@ import { GetServerSideProps } from 'next';
 import { usePopupContext } from '../hooks/usePopupContext';
 import { getAllTask } from '../utils/http';
 import Card from './atoms/Card';
+import CardSkeleton from './atoms/CardSkeleton';
 import CardPopup from './atoms/popup/CardPopup';
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -30,9 +31,10 @@ const parma = {
   // startTime: new Date(),
 };
 
-const CardWall = () => {
+const CardWall = (cardList: Task.TaskDetail[]) => {
   const cardWallRef = useRef() as RefObject<HTMLDivElement>;
   const [detail, setDetail] = useState({});
+  // const [cardList, setCardList] = useState<Task.TaskDetail[]>([]);
   const { showPopupName } = usePopupContext();
 
   const handleScroll = () => {
@@ -54,6 +56,12 @@ const CardWall = () => {
       <Card {...parma} setDetail={setDetail} />
       <Card {...parma} setDetail={setDetail} />
       <Card {...parma} setDetail={setDetail} />
+      {cardList?.length > 0
+        ? cardList.map((item: Task.TaskDetail) => (
+            <Card key={item._id} {...item} setDetail={setDetail} />
+          ))
+        : Array.from({ length: 6 }).map((item, i) => <CardSkeleton key={i} />)}
+      {}
       {showPopupName === 'card' && <CardPopup {...detail} {...parma} />}
       {/* {showPopupName && <TaskAddPop />} */}
     </div>
