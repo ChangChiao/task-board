@@ -1,6 +1,6 @@
 import { useRef, useState, RefObject } from 'react';
 
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 
 import { usePopupContext } from '../hooks/usePopupContext';
 import { getAllTask } from '../utils/http';
@@ -10,7 +10,10 @@ import CardPopup from './atoms/popup/CardPopup';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const result = await getAllTask({});
-  const cardList = result.data;
+  let cardList: Task.TaskDetail[] | [] = [];
+  if (result.status === 'success') {
+    cardList = result.data ?? [];
+  }
   return {
     props: {
       cardList,
@@ -31,7 +34,9 @@ const parma = {
   // startTime: new Date(),
 };
 
-const CardWall = (cardList: Task.TaskDetail[]) => {
+const CardWall = ({
+  cardList,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const cardWallRef = useRef() as RefObject<HTMLDivElement>;
   const [detail, setDetail] = useState({});
   // const [cardList, setCardList] = useState<Task.TaskDetail[]>([]);
@@ -60,7 +65,7 @@ const CardWall = (cardList: Task.TaskDetail[]) => {
         ? cardList.map((item: Task.TaskDetail) => (
             <Card key={item._id} {...item} setDetail={setDetail} />
           ))
-        : Array.from({ length: 6 }).map((item, i) => <CardSkeleton key={i} />)}
+        : Array.from({ length: 6 }).map((_, i) => <CardSkeleton key={i} />)}
       {}
       {showPopupName === 'card' && <CardPopup {...detail} {...parma} />}
       {/* {showPopupName && <TaskAddPop />} */}
