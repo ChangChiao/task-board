@@ -1,7 +1,6 @@
-import { BASE_URL } from '../../config';
 import service from './axiosConfig';
 
-const AUTH_PATH = `${BASE_URL}/auth`;
+const AUTH_PATH = `/auth`;
 
 interface SignInParam {
   email: string;

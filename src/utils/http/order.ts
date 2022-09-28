@@ -1,8 +1,7 @@
-import { BASE_URL } from '../../config';
 import service from './axiosConfig';
 import { getAuthorizationHeader } from './header';
 
-const PAY_PATH = `${BASE_URL}/order`;
+const PAY_PATH = `/order`;
 
 export const createOrder = async () => {
   const headers = getAuthorizationHeader();

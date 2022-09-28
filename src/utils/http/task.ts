@@ -1,8 +1,7 @@
-import { BASE_URL } from '../../config';
 import service from './axiosConfig';
 import { getAuthorizationImgHeader, getAuthorizationHeader } from './header';
 
-const TASK_PATH = `${BASE_URL}/task`;
+const TASK_PATH = `/task`;
 
 interface TaskParam {
   title: string;

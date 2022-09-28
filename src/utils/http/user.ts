@@ -1,14 +1,10 @@
-import { BASE_URL } from '../../config';
 import service from './axiosConfig';
-import { getAuthorizationHeader, getAuthorizationImgHeader } from './header';
+import { getAuthorizationImgHeader } from './header';
 
-const PAY_PATH = `${BASE_URL}/user`;
+const PAY_PATH = `/user`;
 
 export const getUser = () => {
-  const headers = getAuthorizationHeader();
-  return service.get<{}, User.UserInfoApiResponse>(`${PAY_PATH}`, {
-    headers,
-  });
+  return service.get<{}, User.UserInfoApiResponse>(`${PAY_PATH}`);
 };
 
 export const patchUser = (param: FormData) => {

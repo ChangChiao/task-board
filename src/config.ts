@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://task-board-backend.vercel.app/v1';
+// export const BASE_URL = 'https://task-board-backend.vercel.app/v1';
+export const BASE_URL = 'http://localhost:3008/v1';
 export const PAY_URL = 'https://ccore.spgateway.com/MPG/mpg_gateway';
 // export const BASE_URL = "http://localhost:3008/v1";
 export const MENU = [

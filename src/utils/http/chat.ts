@@ -1,8 +1,7 @@
-import { BASE_URL } from '../../config';
 import service from './axiosConfig';
 import { getAuthorizationHeader } from './header';
 
-const PAY_PATH = `${BASE_URL}/chat`;
+const PAY_PATH = `/chat`;
 
 interface GetRoomIdParam {
   receiver: string;
