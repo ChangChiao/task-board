@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import { InView } from 'react-intersection-observer';
 
 import { usePopupContext } from '../../hooks/usePopupContext';
@@ -58,7 +59,7 @@ const Card = ({
       as="div"
       triggerOnce={true}
       onClick={handleClick}
-      className="relative p-4 mb-10 mr-auto bg-blue-500 shadow-3xl w-80 rounded-xl"
+      className="relative p-4 mr-auto bg-blue-500 shadow-3xl w-80 min-h-[400px] rounded-xl"
       onChange={handleInView}
     >
       {status === 1 && <div className="card-mask">已結束</div>}
@@ -73,16 +74,19 @@ const Card = ({
       <div className="">
         <h3 className="pt-2 text-xl font-semibold text-white">{title}</h3>
         {/* <div className="leading-9 text-gray-400">{description}</div> */}
-        <div className="py-2 font-bold text-secondary">
+        <div className="flex justify-between py-2 text-sm font-bold text-secondary">
           <span> $ {reward} </span>
           <span className="tetx-primary">{formateTime(expire)}</span>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Avatar image={avatar} />
-            <span className="pl-2 text-gray-400"> {author}</span>
+            <span className="pl-2 text-gray-200"> {author}</span>
           </div>
-          <span className="text-white">{city}</span>
+          <span className="flex items-center text-white">
+            <FaMapMarkerAlt />
+            {city}
+          </span>
         </div>
       </div>
       <style jsx>
