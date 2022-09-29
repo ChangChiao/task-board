@@ -62,7 +62,9 @@ const TaskAddPop = () => {
       {showPopupName === 'taskAdd' && (
         <PopupTemplate titleName="新增任務">
           <form action="" onSubmit={handleSubmit(onSubmit)}>
+            <label htmlFor="title">標題</label>
             <input
+              id="title"
               className="field"
               placeholder="標題"
               {...register('title')}
@@ -72,7 +74,9 @@ const TaskAddPop = () => {
                 {errors.title?.message}
               </span>
             )}
+            <label htmlFor="reward">酬勞</label>
             <input
+              id="reward"
               className="field"
               placeholder="酬勞"
               {...register('reward')}
@@ -82,9 +86,11 @@ const TaskAddPop = () => {
                 {errors.reward?.message}
               </span>
             )}
+            <label htmlFor="description">工作內容描述</label>
             <textarea
+              id="description"
               placeholder="描述"
-              className="w-full"
+              className="w-full p-1"
               {...register('description')}
             />
             {errors.description?.message && (
@@ -92,16 +98,21 @@ const TaskAddPop = () => {
                 {errors.description?.message}
               </span>
             )}
-            <div className="flex">
-              <span className="block w-20 text-slate-700">截止日</span>
+            <div className="flex py-2">
+              <span className="block w-20 font-bold text-slate-700">
+                截止日
+              </span>
               <DatePicker
                 selected={endDate}
                 onChange={(date: Date) => setEndDate(date)}
               />
             </div>
-            <CitySelect city={city} handleCityChange={handleCityChange} />
+            <div className="mb-2">
+              <span className="pr-2 font-bold">地區</span>
+              <CitySelect city={city} handleCityChange={handleCityChange} />
+            </div>
             <UploadFile setUploadFile={setUploadFile} />
-            <input className="btn" type="submit" />
+            <input className="my-3 btn" type="submit" />
           </form>
         </PopupTemplate>
       )}

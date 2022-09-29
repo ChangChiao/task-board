@@ -69,7 +69,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
           </li>
         ))}
       </ul>
-      {user._id ? (
+      {user.id ? (
         <>
           <div className="flex items-center mr-2">
             <Avatar image={user?.avatar || '/assets/avatar/1.png'} />

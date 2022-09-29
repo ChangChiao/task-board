@@ -1,5 +1,6 @@
 import { FiSearch } from 'react-icons/fi';
 
+import { debounce } from '../utils/debounce';
 import CitySelect from './atoms/CitySelect';
 import SortSelect from './atoms/SortSelect';
 
@@ -25,10 +26,14 @@ const SearchBar = ({
   // const [searchText, setSearchText] = useState<string>('');
   // const [city, setCity] = useState<string>('');
   // const [sortType, setSortType] = useState<string>('');
+  const queryKeyword = debounce((newValue) => {
+    setSearchText(newValue);
+  }, 800);
+
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
     console.log('newValue', newValue);
-    setSearchText(newValue);
+    queryKeyword(newValue);
   };
 
   const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

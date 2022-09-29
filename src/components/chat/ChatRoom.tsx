@@ -59,7 +59,7 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
   const sendMessage = (msg: string) => {
     const sendMsg = {
       message: msg,
-      sender: user._id,
+      sender: user.id,
     };
     socket.emit('chatMessage', sendMsg);
   };
@@ -143,7 +143,7 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
         msgEl.current.scrollHeight - msgEl.current.scrollTop >
         msgEl.current.clientHeight
       ) {
-        if (user._id !== msg.sender) {
+        if (user.id !== msg.sender) {
           setNewMsgFlag(true);
         }
       } else {

@@ -34,7 +34,7 @@ const PopupTemplate = ({ children, titleName }: PopupType) => {
             <AiOutlineClose className="text-2xl tetx-white" />
           </button>
         </div>
-        <div className="px-10 pt-10">{children}</div>
+        <div className="px-10 pt-5">{children}</div>
       </div>
     </div>
   );

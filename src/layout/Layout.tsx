@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 
 import SignInPop from '../components/atoms/popup/SignInPop';
@@ -17,7 +17,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isShowMenu, setShowMenu] = useState<boolean>(false);
   const { showPopupName } = usePopupContext();
   const [, setUser] = useRecoilState(userState);
-  const router = useRouter();
+  // const router = useRouter();
   const handleMenu = () => {
     setShowMenu(!isShowMenu);
   };
@@ -31,14 +31,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }, [setUser]);
 
   useEffect(() => {
-    const { token } = router.query;
-    if (token) {
-      localStorage.setItem('token', token as string);
-      queryUser();
-      return;
-    }
+    // const { token } = router.query;
+    // if (token) {
+    //   localStorage.setItem('token', token as string);
+    //   queryUser();
+    //   return;
+    // }
     queryUser();
-  }, [router.query, queryUser]);
+  }, [queryUser]);
 
   const renderComp = () => {
     switch (showPopupName) {

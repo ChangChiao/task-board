@@ -19,6 +19,10 @@
     /* Personalize */
     @apply flex-1 p-2 text-white cursor-pointer bg-slate-500;
   }
+
+  label {
+    @apply font-bold;
+  }
 }
 
 

@@ -6,7 +6,7 @@ declare namespace User {
     collect: string;
     avatar: string;
     chatRecord: string;
-    // isVip: boolean;
+    isVip: boolean;
   }
 
   interface UserInfoApiResponse {

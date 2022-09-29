@@ -1,7 +1,9 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
+
+import { getUser } from '../utils/http/user';
 
 type User = {
-  _id: string;
+  id: string;
   name: string;
   avatar: string;
   contact: string;
@@ -11,4 +13,15 @@ type User = {
 export const userState = atom({
   key: 'user',
   default: {} as Partial<User>,
+});
+
+export const userInfoQuery = selector({
+  key: 'userInfo',
+  get: async () => {
+    const response = await getUser();
+    if (response.status === 'success') {
+      return response.data;
+    }
+    return {};
+  },
 });

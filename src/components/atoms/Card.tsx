@@ -76,12 +76,12 @@ const Card = ({
         {/* <div className="leading-9 text-gray-400">{description}</div> */}
         <div className="flex justify-between py-2 text-sm font-bold text-secondary">
           <span> $ {reward} </span>
-          <span className="tetx-primary">{formateTime(expire)}</span>
+          <span className="text-cyan-600">{formateTime(expire)}</span>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Avatar image={avatar} />
-            <span className="pl-2 text-gray-200"> {author}</span>
+            <span className="pl-2 font-bold text-gray-200"> {author}</span>
           </div>
           <span className="flex items-center text-white">
             <FaMapMarkerAlt />
