@@ -1,6 +1,8 @@
+import { useCallback } from 'react';
+
 import { FiSearch } from 'react-icons/fi';
 
-import { debounce } from '../utils/debounce';
+import { debounce } from '../utils';
 import CitySelect from './atoms/CitySelect';
 import SortSelect from './atoms/SortSelect';
 
@@ -26,14 +28,16 @@ const SearchBar = ({
   // const [searchText, setSearchText] = useState<string>('');
   // const [city, setCity] = useState<string>('');
   // const [sortType, setSortType] = useState<string>('');
-  const queryKeyword = debounce((newValue) => {
-    setSearchText(newValue);
-  }, 800);
+
+  const handleKeyword = useCallback(
+    debounce(() => queryCardList(), 800),
+    [queryCardList]
+  );
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
-    console.log('newValue', newValue);
-    queryKeyword(newValue);
+    setSearchText(newValue);
+    handleKeyword();
   };
 
   const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -45,6 +49,7 @@ const SearchBar = ({
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    console.log('????');
     e.preventDefault();
     queryCardList();
   };

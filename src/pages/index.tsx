@@ -17,7 +17,8 @@ const Index = () => {
       keyword: searchText,
     };
     await getAllTask(param);
-  }, [searchText, city, sortType]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [city, sortType]);
 
   useEffect(() => {
     queryCardList();
