@@ -48,7 +48,7 @@ const CardPopup = ({
           <div className="flex items-center justify-between">
             <div>
               <Avatar image={avatar} />
-              <span className="pl-2 text-gray-400"> {author}</span>
+              <span className="pl-2 text-gray-400"> {author?.name}</span>
             </div>
             <span>{city}</span>
           </div>

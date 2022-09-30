@@ -17,7 +17,13 @@ const parma = {
   description: 'reowprkoperopwerfewrwe[rwe[]rl',
   cover: '/assets/images/image-equilibrium.jpg',
   expire: '2022-07-31T11:14:00.880Z',
-  author: 'chang',
+  author: {
+    avatar:
+      'https://lh3.googleusercontent.com/a-/AFdZucoWzuj6qntm21vK6-E9cNgzLWXtnIIUrlP7HpLOaA=s96-c',
+    isVip: false,
+    name: 'Chiao Chang',
+    _id: '62efd4c4d2c16f425e2c7469',
+  },
   reward: 1000,
   status: 1,
   contactInfo: 'line Id 1232323',

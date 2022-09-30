@@ -1,10 +1,27 @@
 import { useCallback, useEffect, useState } from 'react';
 
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+
 import CardWall from '../components/CardWall';
 import SearchBar from '../components/SearchBar';
 import { getAllTask } from '../utils/http';
 
-const Index = () => {
+export const getServerSideProps: GetServerSideProps = async () => {
+  const result = await getAllTask({});
+  let cardList: Task.TaskDetail[] | [] = [];
+  if (result.status === 'success') {
+    cardList = result.data ?? [];
+  }
+  return {
+    props: {
+      cardList,
+    },
+  };
+};
+
+const Index = ({
+  cardList,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [searchText, setSearchText] = useState<string>('');
   const [city, setCity] = useState<string>('');
   const [sortType, setSortType] = useState<string>('');
@@ -37,7 +54,7 @@ const Index = () => {
         setSortType={setSortType}
         queryCardList={queryCardList}
       />
-      <CardWall />
+      <CardWall cardList={cardList} />
     </>
   );
 };

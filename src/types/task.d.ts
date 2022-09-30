@@ -4,13 +4,20 @@ declare namespace Task {
     title: string;
     description: string;
     cover?: string;
-    author: string;
+    author: Author;
     avatar?: string;
     city: string;
     reward: number;
     status: number;
     expire: string;
     contactInfo?: string;
+  }
+
+  interface Author {
+    _id: string;
+    name: string;
+    avatar: string;
+    isVip: Boolean;
   }
 
   interface TaskAPIResponse<T> extends Api.ApiResponse {

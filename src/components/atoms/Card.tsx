@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { InView } from 'react-intersection-observer';
 
@@ -23,7 +22,6 @@ const Card = ({
   expire,
   setDetail,
 }: CardProps) => {
-  const router = useRouter();
   const { setPopup } = usePopupContext();
   const handleClick = () => {
     setPopup('card');
@@ -65,11 +63,7 @@ const Card = ({
       {status === 1 && <div className="card-mask">已結束</div>}
       {status === 2 && <div className="card-mask">已過期</div>}
       <div className="w-full">
-        <img
-          className="cover"
-          data-src={`${router.basePath}${cover}`}
-          alt="cover"
-        />
+        <img className="cover" data-src={cover} alt="cover" />
       </div>
       <div className="">
         <h3 className="pt-2 text-xl font-semibold text-white">{title}</h3>
@@ -81,7 +75,10 @@ const Card = ({
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Avatar image={avatar} />
-            <span className="pl-2 font-bold text-gray-200"> {author}</span>
+            <span className="pl-2 font-bold text-gray-200">
+              {' '}
+              {author?.name}
+            </span>
           </div>
           <span className="flex items-center text-white">
             <FaMapMarkerAlt />
