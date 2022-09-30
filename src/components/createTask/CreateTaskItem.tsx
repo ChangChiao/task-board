@@ -22,18 +22,16 @@ const CreateTaskItem = ({
 }: CreateTaskProps) => {
   const { setPopup } = usePopupContext();
   const openDelete = async () => {
+    setTaskId(_id);
     setPopup('confirm');
   };
-  const handleApplicant = (id: string) => {
-    setTaskId(id);
+  const handleApplicant = () => {
+    setTaskId(_id);
     setPopup('applicant');
   };
   return (
     <div className="relative rounded-lg mb-3 flex text-white shadow-lg min-h-[160px] p-4 bg-slate-800">
-      <button
-        className="absolute text-3xl top-5 right-10"
-        onClick={() => openDelete()}
-      >
+      <button className="absolute text-3xl top-5 right-10" onClick={openDelete}>
         <BiTrash />
       </button>
       <span className="absolute text-cyan-300 right-10 bottom-5">
@@ -56,7 +54,7 @@ const CreateTaskItem = ({
             申請人數 {applicant?.length}
           </div>
           {applicant.length > 0 && (
-            <button onClick={() => handleApplicant(_id)} className="w-32 btn">
+            <button onClick={handleApplicant} className="w-32 btn">
               查看所有申請人
             </button>
           )}

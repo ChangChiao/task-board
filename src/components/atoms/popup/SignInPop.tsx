@@ -7,12 +7,12 @@ import Tab from '../Tab';
 import PopupTemplate from './PopupTemplate';
 
 const tabList = [
-  { id: 'signIn', name: '登入' },
-  { id: 'signUp', name: '註冊' },
+  { id: 0, name: '登入' },
+  { id: 1, name: '註冊' },
 ];
 
 const SignInPop = () => {
-  const [tab, setTab] = useState<string>('signIn');
+  const [tab, setTab] = useState<number>(0);
   const popTitle = useMemo(() => {
     return tabList.find((item) => item.id === tab)?.name as string;
   }, [tab]);
@@ -20,8 +20,8 @@ const SignInPop = () => {
   return (
     <>
       <PopupTemplate titleName={popTitle}>
-        {tab === 'signIn' && <SignIn />}
-        {tab === 'signUp' && <SignUp />}
+        {tab === 0 && <SignIn />}
+        {tab === 1 && <SignUp />}
         <div className="absolute left-0 right-0 bottom-5">
           <Tab
             style="justify-center"

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { NextPage } from 'next';
 
@@ -25,24 +25,24 @@ const parma = {
 };
 
 const tabList = [
-  { name: '進行中', id: 'inProgress' },
-  { name: '已結束', id: 'end' },
-  { name: '已過期', id: 'expired' },
+  { name: '進行中', id: 0 },
+  { name: '已結束', id: 1 },
+  { name: '已過期', id: 2 },
 ];
 
 const CreateTask: NextPage = () => {
-  const [tab, setTab] = useState<string>('inProgress');
+  const [tab, setTab] = useState<number>(0);
   const [taskId, setTaskId] = useState<string>('');
   const [taskList, setTaskList] = useState<Task.TaskWithApplicant[] | []>([]);
   const { showPopupName } = usePopupContext();
-  const getList = async () => {
+  const getList = useCallback(async () => {
     const res = await getUserCreateTaskList();
 
     if (res.status === 'success') {
       setTaskList(res.data as Task.TaskWithApplicant[]);
     }
     console.log('res', res);
-  };
+  }, []);
   useEffect(() => {
     getList();
   }, []);
@@ -50,6 +50,10 @@ const CreateTask: NextPage = () => {
   const applicantList = useMemo(() => {
     return taskList.find((item) => item._id === taskId)?.applicant;
   }, [taskList, taskId]);
+
+  // const filterTaskList = useMemo(() => {
+  //   return taskList.filter((item) => item.status === tab);
+  // }, [taskList, tab]);
 
   return (
     <div className="wrapper">
@@ -60,7 +64,9 @@ const CreateTask: NextPage = () => {
       <CreateTaskItem setTaskId={setTaskId} {...parma} />
       <AddButton />
       <ApplicantPop applicantList={applicantList} taskId={taskId} />
-      {showPopupName === 'confirm' && <ConfirmPop taskId="1233333" />}
+      {showPopupName === 'confirm' && (
+        <ConfirmPop getList={getList} taskId={taskId} />
+      )}
     </div>
   );
 };

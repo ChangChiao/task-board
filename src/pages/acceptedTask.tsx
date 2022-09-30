@@ -18,14 +18,14 @@ const parma = {
 };
 
 const tabList = [
-  { name: '進行中', id: 'inProgress' },
-  { name: '已結束', id: 'end' },
-  { name: '已過期', id: 'expired' },
+  { name: '進行中', id: 0 },
+  { name: '已結束', id: 1 },
+  { name: '已過期', id: 2 },
 ];
 
 const AcceptedTask = () => {
   const [taskList, setTaskList] = useState<Task.TaskWithContact[] | []>([]);
-  const [tab, setTab] = useState<string>('inProgress');
+  const [tab, setTab] = useState<number>(0);
   const getList = async () => {
     const res = await getUserApplyTaskList();
     if (res.status === 'success' && res.data) {
