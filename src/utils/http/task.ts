@@ -46,9 +46,8 @@ export const getAllTask = (param: QueryTaskParam) => {
 
 export const getUserCreateTaskList = () => {
   const headers = getAuthorizationHeader();
-  return service.post<{}, Task.TaskAPIResponse<Task.TaskDetail>>(
+  return service.get<{}, Task.TaskAPIResponse<Task.TaskDetail>>(
     `${TASK_PATH}/createTaskList`,
-    {},
     {
       headers,
     }
@@ -57,7 +56,7 @@ export const getUserCreateTaskList = () => {
 
 export const getUserApplyTaskList = () => {
   const headers = getAuthorizationHeader();
-  return service.post<{}, Task.TaskAPIResponse<Task.TaskWithContact>>(
+  return service.get<{}, Task.TaskAPIResponse<Task.TaskWithContact>>(
     `${TASK_PATH}/applyTaskList`,
     {
       headers,

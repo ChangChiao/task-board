@@ -13,7 +13,7 @@ type SearchBarProps = {
   setCity: (param: string) => void;
   sortType: string;
   setSortType: (param: string) => void;
-  queryCardList: () => void;
+  queryCardList: (param?: string) => void;
 };
 
 const SearchBar = ({
@@ -30,14 +30,15 @@ const SearchBar = ({
   // const [sortType, setSortType] = useState<string>('');
 
   const handleKeyword = useCallback(
-    debounce(() => queryCardList(), 800),
+    debounce((newValue) => queryCardList(newValue), 800),
     [queryCardList]
   );
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
     setSearchText(newValue);
-    handleKeyword();
+    if (newValue?.length === 0) return;
+    handleKeyword(newValue);
   };
 
   const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -49,7 +50,6 @@ const SearchBar = ({
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log('????');
     e.preventDefault();
     queryCardList();
   };

@@ -9,16 +9,19 @@ const Index = () => {
   const [city, setCity] = useState<string>('');
   const [sortType, setSortType] = useState<string>('');
 
-  const queryCardList = useCallback(async () => {
-    const param = {
-      order: sortType,
-      sortby: 'reward',
-      city,
-      keyword: searchText,
-    };
-    await getAllTask(param);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [city, sortType]);
+  const queryCardList = useCallback(
+    async (keyword?) => {
+      const param = {
+        order: sortType,
+        sortby: 'reward',
+        city,
+        keyword: keyword ?? searchText,
+      };
+      await getAllTask(param);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    [city, sortType]
+  );
 
   useEffect(() => {
     queryCardList();

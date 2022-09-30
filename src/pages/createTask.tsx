@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { NextPage } from 'next';
 
@@ -32,6 +32,7 @@ const tabList = [
 
 const CreateTask: NextPage = () => {
   const [tab, setTab] = useState<string>('inProgress');
+  const [taskId, setTaskId] = useState<string>('');
   const [taskList, setTaskList] = useState<Task.TaskWithApplicant[] | []>([]);
   const { showPopupName } = usePopupContext();
   const getList = async () => {
@@ -40,20 +41,25 @@ const CreateTask: NextPage = () => {
     if (res.status === 'success') {
       setTaskList(res.data as Task.TaskWithApplicant[]);
     }
+    console.log('res', res);
   };
   useEffect(() => {
     getList();
   }, []);
 
+  const applicantList = useMemo(() => {
+    return taskList.find((item) => item._id === taskId)?.applicant;
+  }, [taskList, taskId]);
+
   return (
     <div className="wrapper">
       <Tab tab={tab} setTab={setTab} tabList={tabList} />
-      {taskList.map((item) => (
-        <CreateTaskItem key={item._id} {...item} />
+      {taskList?.map((item) => (
+        <CreateTaskItem setTaskId={setTaskId} key={item._id} {...item} />
       ))}
-      <CreateTaskItem {...parma} />
+      <CreateTaskItem setTaskId={setTaskId} {...parma} />
       <AddButton />
-      <ApplicantPop applicantList={[]} taskId="1233333" />
+      <ApplicantPop applicantList={applicantList} taskId={taskId} />
       {showPopupName === 'confirm' && <ConfirmPop taskId="1233333" />}
     </div>
   );

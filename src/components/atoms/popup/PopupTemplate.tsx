@@ -22,7 +22,7 @@ const PopupTemplate = ({ children, titleName }: PopupType) => {
       className="fixed top-0 left-0 right-0 z-50 w-full h-full"
     >
       <div className="mask"></div>
-      <div className="absolute h-[500px] overflow-hidden top-0 right-0 left-0 bottom-0 m-auto bg-gray-200 rounded-xl w-1/3 max-w-[400px] shadow">
+      <div className="absolute  max-h-[500px] overflow-hidden top-0 right-0 left-0 bottom-0 m-auto bg-gray-200 rounded-xl w-1/3 max-w-[400px] shadow">
         <div className="flex items-center justify-center h-12 bg-cyan-900">
           <h3 className="text-xl text-center text-white">{titleName}</h3>
           <button

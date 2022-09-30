@@ -5,6 +5,10 @@ import { MdOutlineAttachMoney } from 'react-icons/md';
 import { usePopupContext } from '../../hooks/usePopupContext';
 import { formateTime } from '../../utils';
 
+type CreateTaskProps = Task.TaskWithApplicant & {
+  setTaskId: (param: string) => void;
+};
+
 const CreateTaskItem = ({
   _id,
   title,
@@ -14,20 +18,27 @@ const CreateTaskItem = ({
   status,
   applicant,
   expire,
-}: Task.TaskWithApplicant) => {
+  setTaskId,
+}: CreateTaskProps) => {
   const { setPopup } = usePopupContext();
   const openDelete = async () => {
     setPopup('confirm');
   };
+  const handleApplicant = (id: string) => {
+    setTaskId(id);
+    setPopup('applicant');
+  };
   return (
-    <div className="relative rounded-lg flex text-white shadow-lg min-h-[160px] p-4 bg-slate-800">
+    <div className="relative rounded-lg mb-3 flex text-white shadow-lg min-h-[160px] p-4 bg-slate-800">
       <button
         className="absolute text-3xl top-5 right-10"
         onClick={() => openDelete()}
       >
         <BiTrash />
       </button>
-      <span className="absolute right-10 bottom-5">{formateTime(expire)}</span>
+      <span className="absolute text-cyan-300 right-10 bottom-5">
+        {formateTime(expire)}
+      </span>
       <div className="w-32">
         <img src={cover} alt="" />
       </div>
@@ -44,11 +55,12 @@ const CreateTaskItem = ({
             <BsPeopleFill className="mr-1" />
             申請人數 {applicant?.length}
           </div>
-          <button onClick={() => setPopup('applicant')} className="w-32 btn">
-            查看所有申請人
-          </button>
-          {_id} {status}
-          {/* TODO 帶入taskId */}
+          {applicant.length > 0 && (
+            <button onClick={() => handleApplicant(_id)} className="w-32 btn">
+              查看所有申請人
+            </button>
+          )}
+          {status}
         </div>
       </div>
     </div>
