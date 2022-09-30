@@ -15,7 +15,6 @@ const Card = ({
   description,
   cover = '/assets/images/image-equilibrium.jpg',
   author,
-  avatar,
   reward,
   status,
   city,
@@ -31,7 +30,6 @@ const Card = ({
       description,
       cover,
       author,
-      avatar,
       reward,
       status,
       expire,
@@ -43,7 +41,7 @@ const Card = ({
     // console.log('Inview---:', inView);
     if (!inView) return;
     // TODO use card Id
-    const ele = document.querySelector('.cover') as HTMLImageElement;
+    const ele = document.getElementById(_id) as HTMLImageElement;
     const { src } = ele.dataset;
     ele.src = src!;
   };
@@ -63,22 +61,24 @@ const Card = ({
       {status === 1 && <div className="card-mask">已結束</div>}
       {status === 2 && <div className="card-mask">已過期</div>}
       <div className="w-full">
-        <img className="cover" data-src={cover} alt="cover" />
+        <img
+          id={_id}
+          className="h-[200px] mx-auto"
+          data-src={cover}
+          alt="cover"
+        />
       </div>
       <div className="">
         <h3 className="pt-2 text-xl font-semibold text-white">{title}</h3>
         {/* <div className="leading-9 text-gray-400">{description}</div> */}
-        <div className="flex justify-between py-2 text-sm font-bold text-secondary">
+        <div className="flex justify-between h-24 pt-2 text-sm font-bold text-secondary">
           <span> $ {reward} </span>
           <span className="text-cyan-600">{formateTime(expire)}</span>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <Avatar image={avatar} />
-            <span className="pl-2 font-bold text-gray-200">
-              {' '}
-              {author?.name}
-            </span>
+            <Avatar image={author?.avatar} />
+            <span className="pl-2 font-bold text-gray-200">{author?.name}</span>
           </div>
           <span className="flex items-center text-white">
             <FaMapMarkerAlt />

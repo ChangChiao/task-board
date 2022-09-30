@@ -8,7 +8,6 @@ const AcceptedTaskItem = ({
   description,
   cover = '/assets/images/image-equilibrium.jpg',
   reward,
-  avatar,
   author,
   status,
   contactInfo,
@@ -30,7 +29,8 @@ const AcceptedTaskItem = ({
         </span>
         <p className="py-2">{description}</p>
         <div className="flex items-center">
-          <Avatar image={avatar} /> <span className="pr-6"> {author} </span>
+          <Avatar image={author?.avatar} />{' '}
+          <span className="pr-6"> {author?.name} </span>
           <div>聯絡方式：{contactInfo}</div>
         </div>
       </div>

@@ -49,8 +49,7 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
     formData.append('reward', reward.toString());
     formData.append('description', description);
     formData.append('expire', endDate.toISOString());
-
-    console.log('sendData', file, formData);
+    formData.append('city', city);
     const res = await addTask(formData);
     if (res?.status === 'success') {
       getList();
@@ -60,6 +59,7 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
   };
 
   const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log('event.target.value', event.target.value);
     setCity(event.target.value);
   };
   return (
@@ -75,9 +75,7 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
               {...register('title')}
             />
             {errors.title?.message && (
-              <span className="text-sm text-red-500">
-                {errors.title?.message}
-              </span>
+              <p className="text-sm text-red-500">{errors.title?.message}</p>
             )}
             <label htmlFor="reward">酬勞</label>
             <input
@@ -87,9 +85,7 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
               {...register('reward')}
             />
             {errors.reward?.message && (
-              <span className="text-sm text-red-500">
-                {errors.reward?.message}
-              </span>
+              <p className="text-sm text-red-500">{errors.reward?.message}</p>
             )}
             <label htmlFor="description">工作內容描述</label>
             <textarea
@@ -99,9 +95,9 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
               {...register('description')}
             />
             {errors.description?.message && (
-              <span className="text-sm text-red-500">
+              <p className="text-sm text-red-500">
                 {errors.description?.message}
-              </span>
+              </p>
             )}
             <div className="flex py-2">
               <span className="block w-20 font-bold text-slate-700">
