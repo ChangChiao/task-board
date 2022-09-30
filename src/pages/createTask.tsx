@@ -5,6 +5,7 @@ import { NextPage } from 'next';
 import AddButton from '../components/atoms/button/AddButton';
 import ApplicantPop from '../components/atoms/popup/ApplicantPop';
 import ConfirmPop from '../components/atoms/popup/ConfirmPop';
+import TaskAddPop from '../components/atoms/popup/TaskAddPop';
 import Tab from '../components/atoms/Tab';
 import CreateTaskItem from '../components/createTask/CreateTaskItem';
 import { usePopupContext } from '../hooks/usePopupContext';
@@ -67,6 +68,7 @@ const CreateTask: NextPage = () => {
       {showPopupName === 'confirm' && (
         <ConfirmPop getList={getList} taskId={taskId} />
       )}
+      {showPopupName === 'taskAdd' && <TaskAddPop getList={getList} />}
     </div>
   );
 };

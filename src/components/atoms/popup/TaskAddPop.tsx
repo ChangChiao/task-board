@@ -20,7 +20,11 @@ const validationSchema = Yup.object().shape({
   description: Yup.string().required('內容為必填'),
 });
 
-const TaskAddPop = () => {
+type TaskAddPopProps = {
+  getList: () => void;
+};
+
+const TaskAddPop = ({ getList }: TaskAddPopProps) => {
   const { showPopupName, setPopup } = usePopupContext();
   const {
     register,
@@ -49,6 +53,7 @@ const TaskAddPop = () => {
     console.log('sendData', file, formData);
     const res = await addTask(formData);
     if (res?.status === 'success') {
+      getList();
       toast(res.message);
       setPopup('');
     }

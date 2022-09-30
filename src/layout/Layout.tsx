@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 
 import SignInPop from '../components/atoms/popup/SignInPop';
-import TaskAddPop from '../components/atoms/popup/TaskAddPop';
+// import TaskAddPop from '../components/atoms/popup/TaskAddPop';
 import VipPopup from '../components/atoms/popup/VipPopup';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -42,8 +42,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const renderComp = () => {
     switch (showPopupName) {
-      case 'taskAdd':
-        return <TaskAddPop />;
       case 'signIn':
         return <SignInPop />;
       case 'upgrade':

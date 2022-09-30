@@ -14,7 +14,7 @@ export const PopupContextProvider = ({
 }) => {
   const [showPopupName, setPopup] = useState<string>('');
   useEffect(() => {
-    console.log('8777', showPopupName);
+    console.log('showPopupName', showPopupName);
   }, [showPopupName]);
   return (
     <Context.Provider value={{ showPopupName, setPopup }}>
