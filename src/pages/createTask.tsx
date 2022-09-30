@@ -19,7 +19,7 @@ const parma = {
   expire: '2022-07-31T11:14:00.880Z',
   author: 'chang',
   reward: 1000,
-  status: 0,
+  status: 1,
   contactInfo: 'line Id 1232323',
   city: 'Taipei',
   applicant: [],
@@ -52,14 +52,14 @@ const CreateTask: NextPage = () => {
     return taskList.find((item) => item._id === taskId)?.applicant;
   }, [taskList, taskId]);
 
-  // const filterTaskList = useMemo(() => {
-  //   return taskList.filter((item) => item.status === tab);
-  // }, [taskList, tab]);
+  const filterTaskList = useMemo(() => {
+    return taskList.filter((item) => item.status === tab);
+  }, [taskList, tab]);
 
   return (
     <div className="wrapper">
       <Tab tab={tab} setTab={setTab} tabList={tabList} />
-      {taskList?.map((item) => (
+      {filterTaskList?.map((item) => (
         <CreateTaskItem setTaskId={setTaskId} key={item._id} {...item} />
       ))}
       <CreateTaskItem setTaskId={setTaskId} {...parma} />

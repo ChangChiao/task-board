@@ -12,7 +12,7 @@ const AddButton = () => {
   return (
     <button
       onClick={handleClick}
-      className="fixed flex items-center justify-center w-20 h-20 text-3xl text-white rounded-full bottom-5 right-5 bg-cyan-900"
+      className="fixed z-20 flex items-center justify-center w-20 h-20 text-3xl text-white rounded-full bottom-5 right-5 bg-cyan-900"
     >
       <AiOutlinePlus />
     </button>

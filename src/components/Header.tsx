@@ -49,7 +49,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
   };
 
   return (
-    <header className="flex items-center h-16 px-4 text-white bg-cyan-900">
+    <header className="items-center hidden h-16 px-4 text-white md:flex bg-cyan-900">
       <Link href="/">
         <img
           className="w-16 h-16"

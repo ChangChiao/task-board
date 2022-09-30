@@ -1,5 +1,6 @@
 import { BiTrash } from 'react-icons/bi';
 import { BsPeopleFill } from 'react-icons/bs';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import { MdOutlineAttachMoney } from 'react-icons/md';
 
 import { usePopupContext } from '../../hooks/usePopupContext';
@@ -16,6 +17,7 @@ const CreateTaskItem = ({
   cover = '/assets/images/image-equilibrium.jpg',
   reward,
   status,
+  city,
   applicant,
   expire,
   setTaskId,
@@ -31,9 +33,16 @@ const CreateTaskItem = ({
   };
   return (
     <div className="relative rounded-lg mb-3 flex text-white shadow-lg min-h-[160px] p-4 bg-slate-800">
+      {status !== 0 && (
+        <div className="absolute top-0 z-10 w-full h-full bg-black/40"></div>
+      )}
       <button className="absolute text-3xl top-5 right-10" onClick={openDelete}>
         <BiTrash />
       </button>
+      <span className="absolute flex items-center text-cyan-500 right-10 bottom-12">
+        <FaMapMarkerAlt className="mr-2" />
+        {city}
+      </span>
       <span className="absolute text-cyan-300 right-10 bottom-5">
         {formateTime(expire)}
       </span>
@@ -58,7 +67,6 @@ const CreateTaskItem = ({
               查看所有申請人
             </button>
           )}
-          {status}
         </div>
       </div>
     </div>
