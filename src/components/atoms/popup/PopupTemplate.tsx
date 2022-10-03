@@ -27,7 +27,7 @@ const PopupTemplate = ({ children, titleName, isSmall }: PopupType) => {
       <div
         className={clsx(
           isSmall && 'h-[200px]',
-          'absolute  max-h-[600px] overflow-hidden top-0 right-0 left-0 bottom-0 m-auto bg-gray-200 rounded-xl w-1/3 max-w-[400px] shadow'
+          'absolute  max-h-[600px] overflow-hidden top-0 right-0 left-0 bottom-0 m-auto bg-gray-200 rounded-xl w-1/3 w-[400px] shadow'
         )}
       >
         <div className="flex items-center justify-center h-12 bg-cyan-900">

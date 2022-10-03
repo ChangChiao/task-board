@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { ToastContainer } from 'react-toastify';
 import { RecoilRoot } from 'recoil';
 
+import { LoadingContextProvider } from '../hooks/useLoadingContext';
 import { PopupContextProvider } from '../hooks/usePopupContext';
 import Layout from '../layout/Layout';
 import 'react-toastify/dist/ReactToastify.css';
@@ -30,16 +31,18 @@ export const getServerSideProps: GetServerSideProps = async ({
 const MyApp = ({ Component, pageProps, session }: AppProps) => (
   <SessionProvider session={session}>
     <RecoilRoot>
-      <PopupContextProvider>
-        <Layout>
-          <Head>
-            <title>任務派發</title>
-            <link rel="shortcut icon" href="/tools_icon-icons.com.ico" />
-          </Head>
-          <Component {...pageProps} />
-          <ToastContainer />
-        </Layout>
-      </PopupContextProvider>
+      <LoadingContextProvider>
+        <PopupContextProvider>
+          <Layout>
+            <Head>
+              <title>任務派發</title>
+              <link rel="shortcut icon" href="/tools_icon-icons.com.ico" />
+            </Head>
+            <Component {...pageProps} />
+            <ToastContainer />
+          </Layout>
+        </PopupContextProvider>
+      </LoadingContextProvider>
     </RecoilRoot>
   </SessionProvider>
 );

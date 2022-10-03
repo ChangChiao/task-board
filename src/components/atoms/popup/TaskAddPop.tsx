@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { useLoadingContext } from '../../../hooks/useLoadingContext';
 import { usePopupContext } from '../../../hooks/usePopupContext';
 // eslint-disable-next-line import/no-cycle
 import { addTask } from '../../../utils/http';
@@ -16,7 +17,7 @@ import PopupTemplate from './PopupTemplate';
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required('標題為必填'),
-  reward: Yup.string().required('酬勞為必填'),
+  reward: Yup.number().min(170).required('酬勞為必填'),
   description: Yup.string().required('內容為必填'),
 });
 
@@ -26,6 +27,7 @@ type TaskAddPopProps = {
 
 const TaskAddPop = ({ getList }: TaskAddPopProps) => {
   const { showPopupName, setPopup } = usePopupContext();
+  const { setLoading } = useLoadingContext();
   const {
     register,
     handleSubmit,
@@ -50,7 +52,9 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
     formData.append('description', description);
     formData.append('expire', endDate.toISOString());
     formData.append('city', city);
+    setLoading(true);
     const res = await addTask(formData);
+    setLoading(false);
     if (res?.status === 'success') {
       getList();
       toast(res.message);

@@ -4,12 +4,14 @@ import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 
+import Loading from '../components/atoms/Loading';
 import SignInPop from '../components/atoms/popup/SignInPop';
 // import TaskAddPop from '../components/atoms/popup/TaskAddPop';
 import VipPopup from '../components/atoms/popup/VipPopup';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Menu from '../components/Menu';
+import { useLoadingContext } from '../hooks/useLoadingContext';
 import { usePopupContext } from '../hooks/usePopupContext';
 import { userState } from '../store/user';
 import { getUser } from '../utils/http/user';
@@ -17,6 +19,7 @@ import { getUser } from '../utils/http/user';
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isShowMenu, setShowMenu] = useState<boolean>(false);
   const { showPopupName } = usePopupContext();
+  const { isShowLoading } = useLoadingContext();
   const router = useRouter();
   const [, setUser] = useRecoilState(userState);
   // const router = useRouter();
@@ -40,12 +43,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }, [setUser]);
 
   useEffect(() => {
-    // const { token } = router.query;
-    // if (token) {
-    //   localStorage.setItem('token', token as string);
-    //   queryUser();
-    //   return;
-    // }
     queryUser();
   }, [queryUser]);
 
@@ -66,6 +63,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <main className="">{children}</main>
       <Footer />
       {renderComp()}
+      {isShowLoading && <Loading />}
     </div>
   );
 };
