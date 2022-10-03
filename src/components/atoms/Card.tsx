@@ -40,7 +40,6 @@ const Card = ({
   const handleInView = (inView: boolean) => {
     // console.log('Inview---:', inView);
     if (!inView) return;
-    // TODO use card Id
     const ele = document.getElementById(_id) as HTMLImageElement;
     const { src } = ele.dataset;
     ele.src = src!;

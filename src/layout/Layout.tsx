@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-// import { useRouter } from 'next/router';
+import { AxiosError } from 'axios';
+import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 
 import SignInPop from '../components/atoms/popup/SignInPop';
@@ -16,6 +17,7 @@ import { getUser } from '../utils/http/user';
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isShowMenu, setShowMenu] = useState<boolean>(false);
   const { showPopupName } = usePopupContext();
+  const router = useRouter();
   const [, setUser] = useRecoilState(userState);
   // const router = useRouter();
   const handleMenu = () => {
@@ -23,10 +25,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   };
 
   const queryUser = useCallback(async () => {
-    const result = await getUser();
-    const { status, data } = result;
-    if (status === 'success') {
-      setUser(data);
+    try {
+      const result = await getUser();
+      const { status, data } = result;
+      if (status === 'success') {
+        setUser(data);
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      if (err?.response?.status === 401) {
+        router.push('/');
+      }
     }
   }, [setUser]);
 

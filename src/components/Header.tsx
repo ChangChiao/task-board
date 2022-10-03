@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 
 import { MENU } from '../config';
@@ -33,6 +34,10 @@ const Header = ({ handleMenu }: HeaderParam) => {
     isShowMenu.current = !isShowMenu.current;
   };
   const handleClickMenu = ({ link, id }: Menu.MenuItem) => {
+    if (!user?.id) {
+      toast('請先登入!');
+      return;
+    }
     if (id === 'vip') {
       setPopup('upgrade');
       return;

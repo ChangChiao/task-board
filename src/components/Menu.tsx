@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
-import Link from 'next/link';
+import router from 'next/router';
+import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 
 import { MENU } from '../config';
@@ -13,6 +14,17 @@ const Menu = () => {
   const [user, setUser] = useRecoilState(userState);
   const signIn = () => {
     setPopup('signIn');
+  };
+
+  const handleClick = ({ link, id }: Menu.MenuItem) => {
+    if (!user?.id) {
+      toast('請先登入!');
+    }
+    if (id === 'vip') {
+      setPopup('upgrade');
+      return;
+    }
+    router.push(link);
   };
 
   const signOut = () => {
@@ -39,8 +51,8 @@ const Menu = () => {
       </div>
       <ul>
         {menuList.map((item) => (
-          <li className="py-2" key={item.text}>
-            <Link href={item.link}>{item.text}</Link>
+          <li onClick={() => handleClick(item)} className="py-2" key={item.id}>
+            {item.text}
           </li>
         ))}
         <li className="py-2">
@@ -51,15 +63,6 @@ const Menu = () => {
           )}
         </li>
       </ul>
-      {/* <div className="pt-10">
-        <ul>
-          {userList.map((item) => (
-            <li key={item.text}>
-              <Link href={item.link}>{item.text}</Link>
-            </li>
-          ))}
-        </ul>
-      </div> */}
     </div>
   );
 };
