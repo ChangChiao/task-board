@@ -89,7 +89,7 @@ export const updateTask = async (param: Partial<TaskParam>) => {
 
 export const applyTask = (taskId: string) => {
   const headers = getAuthorizationHeader();
-  return service.post<{}, Task.TaskAPIResponse<{}>>(
+  return service.patch<{}, Task.TaskAPIResponse<{}>>(
     `${TASK_PATH}/${taskId}/applicant`,
     {},
     { headers }

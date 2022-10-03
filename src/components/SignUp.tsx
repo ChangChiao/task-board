@@ -36,7 +36,9 @@ const SignUp = () => {
   return (
     <div className="pt-2">
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="email">信箱</label>
         <input
+          id="email"
           className="field"
           placeholder="email"
           type="text"
@@ -45,7 +47,9 @@ const SignUp = () => {
         {errors.email?.message && (
           <span className="text-sm text-red-500">{errors.email?.message}</span>
         )}
+        <label htmlFor="password">密碼</label>
         <input
+          id="password"
           className="field"
           placeholder="password"
           type="password"
@@ -56,7 +60,9 @@ const SignUp = () => {
             {errors.password?.message}
           </span>
         )}
+        <label htmlFor="confirmPassword">確認密碼</label>
         <input
+          id="confirmPassword"
           className="field"
           placeholder="confirmPassword"
           type="password"

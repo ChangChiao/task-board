@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import { usePopupContext } from '../../../hooks/usePopupContext';
@@ -12,14 +12,13 @@ const CardPopup = ({
   description,
   cover = '/assets/images/image-equilibrium.jpg',
   author,
-  avatar = '/assets/images/image-avatar.png',
   reward,
   city,
   expire,
 }: Task.TaskDetail) => {
-  const router = useRouter();
   const { setPopup } = usePopupContext();
   const handleClick = async () => {
+    if (!_id) return;
     const res = await applyTask(_id);
     if (res.status === 'success') {
       toast(res.message);
@@ -32,32 +31,33 @@ const CardPopup = ({
   return (
     <div className="fixed top-0 left-0 w-full h-full transition-all duration-300 ease-in-out">
       <div className="mask" onClick={closeTaskDetail}></div>
-      <div className="absolute h-[700px] top-0 bottom-0 left-0 right-0 m-auto p-4 bg-blue-500 shadow-3xl w-96 rounded-xl">
-        <div className="w-full">
-          <img src={`${router.basePath}${cover}`} alt="cover" />
-        </div>
+      <div className="absolute h-[800px] top-0 bottom-0 left-0 right-0 m-auto p-4 bg-blue-500 shadow-3xl w-96 rounded-xl">
+        <img className="w-full" src={cover} alt="cover" />
+        <h3 className="py-2 text-xl font-semibold text-white">{title}</h3>
         <div className="">
-          <h3 className="pt-2 text-xl font-semibold text-white">{title}</h3>
           <div className="leading-9 text-gray-400  h-[150px] overflow-y-scroll">
             {description}
           </div>
-          <div className="flex justify-between py-2 text-lg font-bold text-secondary">
+          <div className="flex justify-between py-2 text-sm font-bold text-secondary">
             <span> $ {reward} </span>
             <span className="tetx-primary">{formateTime(expire)}</span>
           </div>
           <div className="flex items-center justify-between">
-            <div>
-              <Avatar image={avatar} />
+            <div className="flex items-center">
+              <Avatar image={author.avatar} />
               <span className="pl-2 text-gray-400"> {author?.name}</span>
             </div>
-            <span>{city}</span>
+            <span className="flex items-center text-gray-400">
+              <FaMapMarkerAlt />
+              {city}
+            </span>
           </div>
           <div className="flex items-center justify-center pt-4">
-            <button onClick={handleClick} className="btn">
-              我要接任務
-            </button>
-            <button className="ml-2 btn" onClick={closeTaskDetail}>
+            <button className="bg-gray-500 btn" onClick={closeTaskDetail}>
               取消
+            </button>
+            <button onClick={handleClick} className="ml-2 btn">
+              我要接任務
             </button>
           </div>
         </div>

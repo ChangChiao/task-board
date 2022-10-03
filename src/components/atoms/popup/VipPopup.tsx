@@ -24,7 +24,7 @@ const VipPopup = () => {
           <p>即可成為vip，享有三個月的任務優先曝光!</p>
           <img className="my-6" src="/assets/images/vip.jpg" alt="" />
           <div className="flex justify-between">
-            <button className="bg-gray-400 w-36 btn" onClick={closePopup}>
+            <button className="bg-gray-500 w-36 btn" onClick={closePopup}>
               取消
             </button>
             <button className="w-36 btn" onClick={handleOrder}>

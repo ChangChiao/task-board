@@ -21,24 +21,24 @@ import CardPopup from './atoms/popup/CardPopup';
 //   };
 // };
 
-const parma = {
-  _id: '13232323231233',
-  title: 'heorkpeook reorepowkr',
-  description: 'reowprkoperopwerfewrwe[rwe[]rl',
-  cover: '/assets/images/image-equilibrium.jpg',
-  author: {
-    avatar:
-      'https://lh3.googleusercontent.com/a-/AFdZucoWzuj6qntm21vK6-E9cNgzLWXtnIIUrlP7HpLOaA=s96-c',
-    isVip: false,
-    name: 'Chiao Chang',
-    _id: '62efd4c4d2c16f425e2c7469',
-  },
-  reward: 1000,
-  status: 0,
-  city: 'Taipei',
-  expire: '2022-07-31T12:13:46.960Z',
-  // startTime: new Date(),
-};
+// const parma = {
+//   _id: '13232323231233',
+//   title: 'heorkpeook reorepowkr',
+//   description: 'reowprkoperopwerfewrwe[rwe[]rl',
+//   cover: '/assets/images/image-equilibrium.jpg',
+//   author: {
+//     avatar:
+//       'https://lh3.googleusercontent.com/a-/AFdZucoWzuj6qntm21vK6-E9cNgzLWXtnIIUrlP7HpLOaA=s96-c',
+//     isVip: false,
+//     name: 'Chiao Chang',
+//     _id: '62efd4c4d2c16f425e2c7469',
+//   },
+//   reward: 1000,
+//   status: 0,
+//   city: 'Taipei',
+//   expire: '2022-07-31T12:13:46.960Z',
+//   // startTime: new Date(),
+// };
 
 type CardWallProps = {
   cardList: Task.TaskDetail[];
@@ -46,7 +46,7 @@ type CardWallProps = {
 
 const CardWall = ({ cardList }: CardWallProps) => {
   const cardWallRef = useRef() as RefObject<HTMLDivElement>;
-  const [detail, setDetail] = useState({});
+  const [detail, setDetail] = useState<Task.TaskDetail | undefined>(undefined);
   // const [cardList, setCardList] = useState<Task.TaskDetail[]>([]);
   const { showPopupName } = usePopupContext();
 
@@ -70,7 +70,7 @@ const CardWall = ({ cardList }: CardWallProps) => {
             <Card key={item._id} {...item} setDetail={setDetail} />
           ))
         : Array.from({ length: 6 }).map((_, i) => <CardSkeleton key={i} />)}
-      {showPopupName === 'card' && <CardPopup {...detail} {...parma} />}
+      {showPopupName === 'card' && detail && <CardPopup {...detail} />}
       {/* {showPopupName && <TaskAddPop />} */}
     </div>
   );

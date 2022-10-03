@@ -28,7 +28,7 @@ const ConfirmPop = ({ taskId, getList }: ConfirmProps) => {
           <div className="text-center">
             <p className="py-4">您確定要刪除任務?</p>
             <div className="flex">
-              <button className="bg-gray-400 w-36 btn" onClick={closePopup}>
+              <button className="bg-gray-500 w-36 btn" onClick={closePopup}>
                 取消
               </button>
               <button className="ml-2 w-36 btn" onClick={handleClick}>

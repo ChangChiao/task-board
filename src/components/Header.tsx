@@ -57,7 +57,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
     <header className="flex items-center h-16 px-4 text-white bg-cyan-900">
       <Link href="/">
         <img
-          className="w-16 h-16"
+          className="w-16 h-16 cursor-pointer"
           src="/assets/logo/logo_size_invert.jpg"
           alt=""
         />

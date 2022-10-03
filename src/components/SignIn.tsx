@@ -74,7 +74,7 @@ const SignIn = () => {
         </div>
         <input className="mt-2 btn" value="送出" type="submit" />
       </form>
-      <div className="flex flex-col items-center justify-center pt-5">
+      <div className="flex flex-col items-center justify-center pt-36">
         <button className="pt-2">
           <a
             className="flex items-center text-gray-800 hover:text-gray-500"
