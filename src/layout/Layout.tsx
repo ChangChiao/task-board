@@ -62,7 +62,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="h-screen">
       <Header handleMenu={handleMenu} />
-      <Menu />
+      {isShowMenu && <Menu />}
       <main className="">{children}</main>
       <Footer />
       {renderComp()}

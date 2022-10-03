@@ -54,7 +54,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
   };
 
   return (
-    <header className="items-center hidden h-16 px-4 text-white md:flex bg-cyan-900">
+    <header className="flex items-center h-16 px-4 text-white bg-cyan-900">
       <Link href="/">
         <img
           className="w-16 h-16"
@@ -63,7 +63,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
         />
       </Link>
 
-      <ul className="flex flex-1 pl-10">
+      <ul className="flex-1 hidden pl-10 md:flex">
         {menuList.map((item) => (
           <li
             onClick={() => handleClickMenu(item)}
@@ -74,29 +74,41 @@ const Header = ({ handleMenu }: HeaderParam) => {
           </li>
         ))}
       </ul>
-      {user.id ? (
-        <>
-          <div className="flex items-center mr-2">
-            <Avatar image={user?.avatar || '/assets/avatar/1.png'} />
-            <span className="pl-3">{user?.name ?? 'userName'}</span>
-          </div>
-          <button onClick={signOut}>登出</button>
-        </>
-      ) : (
-        <button onClick={signIn}>登入</button>
-      )}
+
+      <div className="items-center hidden md:flex">
+        {user.id ? (
+          <>
+            <div className="flex items-center mr-2">
+              <Avatar image={user?.avatar || '/assets/avatar/1.png'} />
+              <span className="pl-3">{user?.name ?? 'userName'}</span>
+            </div>
+            <button onClick={signOut}>登出</button>
+          </>
+        ) : (
+          <button onClick={signIn}>登入</button>
+        )}
+      </div>
       <input type="checkbox" className="hidden peer" />
       <div
         onClick={handClick}
         className={clsx(
           isShowMenu.current && 'active',
-          'mobile w-[60px] h-[60px] absolute top-0 right-[10px] cursor-pointer hidden items-center justify-center'
+          'mobile w-[40px] h-[40px] absolute top-0 right-[10px] cursor-pointer block md:hidden items-center justify-center'
         )}
       >
         <span className="hamburg"></span>
       </div>
       <style jsx>
         {`
+          .mobile .hamburg {
+            @apply bg-white w-full h-[3px] absolute top-[30px];
+          }
+          .hamburg::before {
+            @apply -top-[12px];
+          }
+          .hamburg::after {
+            @apply -bottom-[12px];
+          }
           .mobile.active .hamburg {
             @apply rotate-45;
           }
@@ -108,13 +120,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
           }
           .hamburg::before,
           .hamburg::after {
-            @apply bg-white content-[''] absolute w-full h-full ease-in-out duration-[30];
-          }
-          .hamburg::before {
-            @apply -top-[10px];
-          }
-          .hamburg::after {
-            @apply -bottom-[10px];
+            @apply bg-white content-[''] absolute w-full h-[3px] ease-in-out duration-[50];
           }
         `}
       </style>
