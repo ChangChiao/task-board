@@ -17,15 +17,16 @@ const CardPopup = ({
   expire,
 }: Task.TaskDetail) => {
   const { setPopup } = usePopupContext();
+  const closeTaskDetail = () => {
+    setPopup('');
+  };
   const handleClick = async () => {
     if (!_id) return;
     const res = await applyTask(_id);
     if (res.status === 'success') {
       toast(res.message);
+      closeTaskDetail();
     }
-  };
-  const closeTaskDetail = () => {
-    setPopup('');
   };
 
   return (

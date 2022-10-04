@@ -49,7 +49,7 @@ const ApplicantPop = ({ applicantList, taskId }: ApplicantProps) => {
   return (
     <>
       {showPopupName === 'applicant' && (
-        <PopupTemplate titleName="成為VIP">
+        <PopupTemplate titleName="所有申請者">
           <ul>
             {applicantList.map((item: any) => (
               <li key={item._id}>

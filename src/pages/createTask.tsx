@@ -2,10 +2,8 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { NextPage } from 'next';
 
-import AddButton from '../components/atoms/button/AddButton';
 import ApplicantPop from '../components/atoms/popup/ApplicantPop';
 import ConfirmPop from '../components/atoms/popup/ConfirmPop';
-import TaskAddPop from '../components/atoms/popup/TaskAddPop';
 import Tab from '../components/atoms/Tab';
 import CreateTaskItem from '../components/createTask/CreateTaskItem';
 import { usePopupContext } from '../hooks/usePopupContext';
@@ -69,12 +67,10 @@ const CreateTask: NextPage = () => {
         <CreateTaskItem setTaskId={setTaskId} key={item._id} {...item} />
       ))}
       <CreateTaskItem setTaskId={setTaskId} {...parma} />
-      <AddButton />
       <ApplicantPop applicantList={applicantList} taskId={taskId} />
       {showPopupName === 'confirm' && (
         <ConfirmPop getList={getList} taskId={taskId} />
       )}
-      {showPopupName === 'taskAdd' && <TaskAddPop getList={getList} />}
     </div>
   );
 };

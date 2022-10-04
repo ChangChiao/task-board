@@ -28,6 +28,7 @@ type TaskAddPopProps = {
 const TaskAddPop = ({ getList }: TaskAddPopProps) => {
   const { showPopupName, setPopup } = usePopupContext();
   const { setLoading } = useLoadingContext();
+
   const {
     register,
     handleSubmit,
