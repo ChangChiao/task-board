@@ -43,6 +43,11 @@ const CreateTask: NextPage = () => {
   return (
     <div className="wrapper">
       <Tab tab={tab} setTab={setTab} tabList={tabList} />
+      {filterTaskList.length === 0 && (
+        <div className="py-2 mx-auto text-center text-slate-400">
+          <span>暫無紀錄</span>
+        </div>
+      )}
       {filterTaskList?.map((item) => (
         <CreateTaskItem setTaskId={setTaskId} key={item._id} {...item} />
       ))}
