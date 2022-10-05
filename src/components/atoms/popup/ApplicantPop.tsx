@@ -8,7 +8,7 @@ import { getRoomId } from '../../../utils/http/chat';
 import { pickStaff } from '../../../utils/http/task';
 import Avatar from '../Avatar';
 import PopupTemplate from './PopupTemplate';
-// TODOTask.TaskWithApplicant
+
 type ApplicantProps = {
   applicantList: Task.Applicant[];
   taskId: string;
@@ -20,7 +20,7 @@ const ApplicantPop = ({ applicantList, taskId }: ApplicantProps) => {
   const handleClick = async (id: string) => {
     const params = {
       taskId,
-      userId: id,
+      staff: id,
     };
     const result = await pickStaff(params);
     if (result.status === 'success') {
@@ -52,10 +52,13 @@ const ApplicantPop = ({ applicantList, taskId }: ApplicantProps) => {
         <PopupTemplate titleName="所有申請者">
           <ul>
             {applicantList.map((item: Task.Applicant) => (
-              <li className="flex items-center justify-between" key={item._id}>
+              <li
+                className="flex items-center justify-between py-2"
+                key={item._id}
+              >
                 <div className="flex items-center">
                   <Avatar image={item.avatar} />
-                  <span>{item.name}</span>
+                  <span className="pl-2">{item.name}</span>
                 </div>
                 <div className="flex">
                   <button

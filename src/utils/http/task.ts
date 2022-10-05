@@ -22,7 +22,7 @@ interface QueryTaskParam {
 
 interface PickStaffParam {
   taskId: string;
-  userId: string;
+  staff: string;
 }
 
 const genQueryStr = (obj: QueryTaskParam) => {
@@ -101,10 +101,10 @@ export const cancelApplyTask = (taskId: string) => {
   return service.delete(`${TASK_PATH}/${taskId}/applicant`, { headers });
 };
 
-export const pickStaff = ({ taskId, userId }: PickStaffParam) => {
+export const pickStaff = ({ taskId, staff }: PickStaffParam) => {
   const headers = getAuthorizationHeader();
-  return service.patch<
+  return service.post<
     PickStaffParam,
     Task.TaskAPIResponse<Task.TaskWithApplicant>
-  >(`${TASK_PATH}/${taskId}/staff`, { userId }, { headers });
+  >(`${TASK_PATH}/${taskId}/staff`, { staff }, { headers });
 };

@@ -10,6 +10,7 @@ declare namespace Task {
     reward: number;
     status: number;
     expire: string;
+    staff: User.UserInfo[];
     contactInfo?: string;
   }
 

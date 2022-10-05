@@ -14,7 +14,7 @@ type TabParam = {
 
 const Tab = ({ tabList, setTab, style, tab }: TabParam) => {
   return (
-    <div className="mb-6 text-sm font-medium text-center text-gray-500 border-b border-gray-500">
+    <div className="mb-6 font-medium text-center text-gray-500 border-b border-gray-500">
       <ul className={clsx('flex flex-wrap -mb-px', style)}>
         {tabList.map((item) => {
           return (

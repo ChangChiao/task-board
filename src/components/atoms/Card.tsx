@@ -17,6 +17,7 @@ const Card = ({
   author,
   reward,
   status,
+  staff,
   city,
   expire,
   setDetail,
@@ -32,6 +33,7 @@ const Card = ({
       author,
       reward,
       status,
+      staff,
       expire,
       city,
     });

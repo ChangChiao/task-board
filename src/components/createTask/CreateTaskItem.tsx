@@ -5,6 +5,7 @@ import { MdOutlineAttachMoney } from 'react-icons/md';
 
 import { usePopupContext } from '../../hooks/usePopupContext';
 import { formateTime } from '../../utils';
+import Avatar from '../atoms/Avatar';
 
 type CreateTaskProps = Task.TaskWithApplicant & {
   setTaskId: (param: string) => void;
@@ -17,6 +18,7 @@ const CreateTaskItem = ({
   cover = '/assets/images/image-equilibrium.jpg',
   reward,
   status,
+  staff,
   city,
   applicant,
   expire,
@@ -33,12 +35,17 @@ const CreateTaskItem = ({
   };
   return (
     <div className="relative rounded-lg mb-3 flex text-white shadow-lg min-h-[160px] p-4 bg-slate-800">
-      {status !== 0 && (
+      {status === 2 && (
         <div className="absolute top-0 z-10 w-full h-full bg-black/40"></div>
       )}
-      <button className="absolute text-3xl top-5 right-10" onClick={openDelete}>
-        <BiTrash />
-      </button>
+      {status === 0 && (
+        <button
+          className="absolute text-3xl top-5 right-10"
+          onClick={openDelete}
+        >
+          <BiTrash />
+        </button>
+      )}
       <span className="absolute flex items-center text-cyan-500 right-10 bottom-12">
         <FaMapMarkerAlt className="mr-2" />
         {city}
@@ -57,17 +64,30 @@ const CreateTaskItem = ({
           {reward}
         </span>
         <p className="py-2">{description}</p>
-        <div className="flex">
-          <div className="flex items-center pr-2">
-            <BsPeopleFill className="mr-1" />
-            申請人數 {applicant?.length}
+        {status === 0 && (
+          <div className="flex">
+            <div className="flex items-center pr-2">
+              <BsPeopleFill className="mr-1" />
+              申請人數 {applicant?.length}
+            </div>
+            {applicant.length > 0 && (
+              <button onClick={handleApplicant} className="w-32 btn">
+                查看所有申請人
+              </button>
+            )}
           </div>
-          {applicant.length > 0 && (
-            <button onClick={handleApplicant} className="w-32 btn">
-              查看所有申請人
-            </button>
-          )}
-        </div>
+        )}
+        {status === 1 && (
+          <div className="flex items-center">
+            <span>合作夥伴</span>
+            {staff[0] && (
+              <div className="flex items-center pl-2">
+                <Avatar image={staff[0].avatar} />
+                <span className="pl-2">{staff[0].name}</span>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

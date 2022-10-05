@@ -82,10 +82,14 @@ const Header = ({ handleMenu }: HeaderParam) => {
               <Avatar image={user?.avatar || '/assets/avatar/1.png'} />
               <span className="pl-3">{user?.name ?? 'userName'}</span>
             </div>
-            <button onClick={signOut}>登出</button>
+            <button className="cursor-pointer" onClick={signOut}>
+              登出
+            </button>
           </>
         ) : (
-          <button onClick={signIn}>登入</button>
+          <button className="cursor-pointer" onClick={signIn}>
+            登入
+          </button>
         )}
       </div>
       <input type="checkbox" className="hidden peer" />
