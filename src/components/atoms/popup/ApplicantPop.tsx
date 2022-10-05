@@ -10,7 +10,7 @@ import Avatar from '../Avatar';
 import PopupTemplate from './PopupTemplate';
 // TODOTask.TaskWithApplicant
 type ApplicantProps = {
-  applicantList: any;
+  applicantList: Task.Applicant[];
   taskId: string;
 };
 const ApplicantPop = ({ applicantList, taskId }: ApplicantProps) => {
@@ -51,13 +51,26 @@ const ApplicantPop = ({ applicantList, taskId }: ApplicantProps) => {
       {showPopupName === 'applicant' && (
         <PopupTemplate titleName="所有申請者">
           <ul>
-            {applicantList.map((item: any) => (
-              <li key={item._id}>
-                {item}
-                <Avatar image={item.avatar} />
-                <span>{item.name}</span>
-                <button onClick={() => handleClick(item._id)}>選擇</button>
-                <button onClick={() => sendMessage(item._id)}>私訊</button>
+            {applicantList.map((item: Task.Applicant) => (
+              <li className="flex items-center justify-between" key={item._id}>
+                <div className="flex items-center">
+                  <Avatar image={item.avatar} />
+                  <span>{item.name}</span>
+                </div>
+                <div className="flex">
+                  <button
+                    className="w-16 mr-2 btn"
+                    onClick={() => handleClick(item._id)}
+                  >
+                    選擇
+                  </button>
+                  <button
+                    className="w-16 btn bg-cyan-700"
+                    onClick={() => sendMessage(item._id)}
+                  >
+                    私訊
+                  </button>
+                </div>
               </li>
             ))}
           </ul>

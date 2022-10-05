@@ -67,7 +67,10 @@ const CreateTask: NextPage = () => {
         <CreateTaskItem setTaskId={setTaskId} key={item._id} {...item} />
       ))}
       <CreateTaskItem setTaskId={setTaskId} {...parma} />
-      <ApplicantPop applicantList={applicantList} taskId={taskId} />
+      {applicantList && (
+        <ApplicantPop applicantList={applicantList} taskId={taskId} />
+      )}
+
       {showPopupName === 'confirm' && (
         <ConfirmPop getList={getList} taskId={taskId} />
       )}

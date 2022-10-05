@@ -54,11 +54,15 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
     formData.append('expire', endDate.toISOString());
     formData.append('city', city);
     setLoading(true);
-    const res = await addTask(formData);
-    setLoading(false);
-    if (res?.status === 'success') {
-      getList();
-      toast(res.message);
+    try {
+      const res = await addTask(formData);
+      setLoading(false);
+      if (res?.status === 'success') {
+        getList();
+        toast(res.message);
+        setPopup('');
+      }
+    } catch (error) {
       setPopup('');
     }
   };
@@ -118,7 +122,7 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
               <CitySelect city={city} handleCityChange={handleCityChange} />
             </div>
             <UploadFile setUploadFile={setUploadFile} />
-            <input className="my-3 btn" type="submit" />
+            <input className="my-3 cursor-pointer btn" type="submit" />
           </form>
         </PopupTemplate>
       )}
