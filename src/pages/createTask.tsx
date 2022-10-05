@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { NextPage } from 'next';
 
+import ListItemSkeleton from '../components/atoms/ListItemSkeleton';
 import ApplicantPop from '../components/atoms/popup/ApplicantPop';
 import ConfirmPop from '../components/atoms/popup/ConfirmPop';
 import Tab from '../components/atoms/Tab';
@@ -17,12 +18,14 @@ const tabList = [
 
 const CreateTask: NextPage = () => {
   const [tab, setTab] = useState<number>(0);
+  const [pending, setPending] = useState<boolean>(false);
   const [taskId, setTaskId] = useState<string>('');
   const [taskList, setTaskList] = useState<Task.TaskWithApplicant[] | []>([]);
   const { showPopupName } = usePopupContext();
   const getList = useCallback(async () => {
+    setPending(true);
     const res = await getUserCreateTaskList();
-
+    setPending(false);
     if (res.status === 'success') {
       setTaskList(res.data as Task.TaskWithApplicant[]);
     }
@@ -43,7 +46,9 @@ const CreateTask: NextPage = () => {
   return (
     <div className="wrapper">
       <Tab tab={tab} setTab={setTab} tabList={tabList} />
-      {filterTaskList.length === 0 && (
+      {pending &&
+        Array.from({ length: 4 }).map((_, i) => <ListItemSkeleton key={i} />)}
+      {filterTaskList.length === 0 && !pending && (
         <div className="py-2 mx-auto text-center text-slate-400">
           <span>暫無紀錄</span>
         </div>
