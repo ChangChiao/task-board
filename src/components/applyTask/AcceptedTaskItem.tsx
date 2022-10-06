@@ -1,8 +1,11 @@
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { MdOutlineAttachMoney } from 'react-icons/md';
+import { useRecoilState } from 'recoil';
 
+import { userState } from '../../store/user';
 import { formateTime } from '../../utils';
 import Avatar from '../atoms/Avatar';
+import Watermark from '../atoms/Watermark';
 
 const AcceptedTaskItem = ({
   title,
@@ -11,13 +14,13 @@ const AcceptedTaskItem = ({
   reward,
   author,
   status,
+  staff,
   city,
   expire,
 }: Task.TaskWithContact) => {
+  const [user] = useRecoilState(userState);
   return (
-    <div className="relative rounded-lg flex text-white shadow-lg min-h-[160px] p-4 bg-slate-800">
-      {status === 1 && <div className="card-mask">已結束</div>}
-      {status === 2 && <div className="card-mask">已過期</div>}
+    <div className="relative overflow-hidden rounded-lg flex text-white shadow-lg min-h-[160px] p-4 mb-3 bg-slate-800">
       <span className="absolute flex items-center text-cyan-500 right-10 bottom-12">
         <FaMapMarkerAlt className="mr-2" />
         {city}
@@ -43,6 +46,7 @@ const AcceptedTaskItem = ({
           </div>
         )}
       </div>
+      <Watermark status={status} isPick={staff[0]?._id === user.id} />
     </div>
   );
 };
