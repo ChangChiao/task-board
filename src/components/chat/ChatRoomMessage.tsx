@@ -20,7 +20,7 @@ const ChatRoomMessage = ({
 }: ChatRoomMessageProps) => {
   const [user] = useRecoilState(userState);
   const isSelf = useMemo(() => {
-    return user.id === sender;
+    return user._id === sender;
   }, [sender, user]);
   return (
     <div className="m-4 lg:mx-2">

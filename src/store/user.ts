@@ -2,17 +2,9 @@ import { atom, selector } from 'recoil';
 
 import { getUser } from '../utils/http/user';
 
-type User = {
-  id: string;
-  name: string;
-  avatar: string;
-  contact: string;
-  isVip: boolean;
-};
-
 export const userState = atom({
   key: 'user',
-  default: {} as Partial<User>,
+  default: {} as Partial<User.UserInfo>,
 });
 
 export const userInfoQuery = selector({

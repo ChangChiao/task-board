@@ -17,7 +17,7 @@ const Menu = () => {
   };
 
   const handleClick = ({ link, id }: Menu.MenuItem) => {
-    if (!user?.id) {
+    if (!user?._id) {
       toast('請先登入!');
     }
     if (id === 'vip') {
@@ -51,7 +51,7 @@ const Menu = () => {
           </li>
         ))}
         <li className="py-2">
-          {user.id ? (
+          {user._id ? (
             <button onClick={signOut}>登出</button>
           ) : (
             <button onClick={signIn}>登入</button>

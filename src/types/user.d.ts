@@ -3,7 +3,7 @@ declare namespace User {
     _id: string;
     name: string;
     contact: string;
-    collect: string;
+    collect: Task.TaskDetail[] | [];
     avatar: string;
     chatRecord: string;
     isVip: boolean;

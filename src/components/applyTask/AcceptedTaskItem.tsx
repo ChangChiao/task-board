@@ -46,7 +46,7 @@ const AcceptedTaskItem = ({
           </div>
         )}
       </div>
-      <Watermark status={status} isPick={staff[0]?._id === user.id} />
+      <Watermark status={status} isPick={staff[0]?._id === user._id} />
     </div>
   );
 };

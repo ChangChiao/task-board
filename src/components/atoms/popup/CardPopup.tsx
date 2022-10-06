@@ -1,9 +1,16 @@
+import { useMemo } from 'react';
+
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import { useRecoilState } from 'recoil';
 
 import { usePopupContext } from '../../../hooks/usePopupContext';
+import { userState } from '../../../store/user';
 import { formateTime } from '../../../utils';
 import { applyTask } from '../../../utils/http';
+import { removeFavorite, addFavorite } from '../../../utils/http/collect';
+import { getUser } from '../../../utils/http/user';
 import Avatar from '../Avatar';
 
 const CardPopup = ({
@@ -16,6 +23,7 @@ const CardPopup = ({
   city,
   expire,
 }: Task.TaskDetail) => {
+  const [user, setUser] = useRecoilState(userState);
   const { setPopup } = usePopupContext();
   const closeTaskDetail = () => {
     setPopup('');
@@ -26,6 +34,30 @@ const CardPopup = ({
     if (res.status === 'success') {
       toast(res.message);
       closeTaskDetail();
+    }
+  };
+
+  const isFavorite = useMemo(() => {
+    const idList = user.collect && user.collect.map((item) => item._id);
+    console.log('idList', idList);
+
+    return idList && idList.includes(_id);
+  }, [user, _id]);
+
+  const handleFavorite = async () => {
+    let result = null;
+    if (isFavorite) {
+      result = await removeFavorite(_id);
+    } else {
+      result = await addFavorite(_id);
+    }
+    if (result) {
+      const res = await getUser();
+      const { status, data } = res;
+      if (status === 'success') {
+        setUser(data);
+      }
+      toast(result.message);
     }
   };
 
@@ -52,6 +84,19 @@ const CardPopup = ({
               <FaMapMarkerAlt />
               {city}
             </span>
+          </div>
+          <div className="flex justify-end text-2xl text-red-500">
+            {isFavorite ? (
+              <AiFillHeart
+                className="cursor-pointer"
+                onClick={handleFavorite}
+              />
+            ) : (
+              <AiOutlineHeart
+                className="cursor-pointer"
+                onClick={handleFavorite}
+              />
+            )}
           </div>
           <div className="flex items-center justify-center pt-4">
             <button className="bg-gray-500 btn" onClick={closeTaskDetail}>

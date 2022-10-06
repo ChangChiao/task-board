@@ -34,7 +34,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
     isShowMenu.current = !isShowMenu.current;
   };
   const handleClickMenu = ({ link, id }: Menu.MenuItem) => {
-    if (!user?.id) {
+    if (!user?._id) {
       toast('請先登入!');
       return;
     }
@@ -76,7 +76,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
       </ul>
 
       <div className="items-center hidden md:flex">
-        {user.id ? (
+        {user._id ? (
           <>
             <div className="flex items-center mr-2">
               <Avatar image={user?.avatar || '/assets/avatar/1.png'} />
