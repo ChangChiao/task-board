@@ -36,7 +36,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       }
     } catch (error) {
       const err = error as AxiosError;
-      if (err?.response?.status === 401) {
+      if (err?.response?.status === 401 && router.asPath !== '/') {
         router.push('/');
       }
     }
@@ -44,6 +44,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     queryUser();
+    console.log('router.asPath', router.asPath);
   }, [queryUser]);
 
   const renderComp = () => {
