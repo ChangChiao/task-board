@@ -6,6 +6,7 @@ import { MdOutlineAttachMoney } from 'react-icons/md';
 import { usePopupContext } from '../../hooks/usePopupContext';
 import { formateTime } from '../../utils';
 import Avatar from '../atoms/Avatar';
+import Watermark from '../atoms/Watermark';
 
 type CreateTaskProps = Task.TaskWithApplicant & {
   setTaskId: (param: string) => void;
@@ -34,7 +35,7 @@ const CreateTaskItem = ({
     setPopup('applicant');
   };
   return (
-    <div className="relative rounded-lg mb-3 flex text-white shadow-lg min-h-[160px] p-4 bg-slate-800">
+    <div className="overflow-hidden relative rounded-lg mb-3 flex text-white shadow-lg min-h-[160px] p-4 bg-slate-800">
       {status === 2 && (
         <div className="absolute top-0 z-10 w-full h-full bg-black/40"></div>
       )}
@@ -88,6 +89,7 @@ const CreateTaskItem = ({
           </div>
         )}
       </div>
+      <Watermark status={status} />
     </div>
   );
 };
