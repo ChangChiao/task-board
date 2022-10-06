@@ -57,7 +57,6 @@ const CreateTaskItem = ({
         <img src={cover} alt="" />
       </div>
       <div className="w-3/4 pl-4 info">
-        <div className="flex"></div>
         <h3 className="text-xl font-bold">{title}</h3>
         <span className="flex items-center text-secondary">
           <MdOutlineAttachMoney />

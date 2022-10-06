@@ -43,6 +43,6 @@ declare namespace Task {
   }
 
   interface TaskWithContact extends TaskDetail {
-    contactInfo: string;
+    author: User.UserInfo[];
   }
 }

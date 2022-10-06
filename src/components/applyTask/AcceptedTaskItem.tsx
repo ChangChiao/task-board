@@ -1,3 +1,4 @@
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import { MdOutlineAttachMoney } from 'react-icons/md';
 
 import { formateTime } from '../../utils';
@@ -10,14 +11,20 @@ const AcceptedTaskItem = ({
   reward,
   author,
   status,
-  contactInfo,
+  city,
   expire,
 }: Task.TaskWithContact) => {
   return (
     <div className="relative rounded-lg flex text-white shadow-lg min-h-[160px] p-4 bg-slate-800">
-      {status === 1 && !contactInfo && <div className="card-mask">已結束</div>}
+      {status === 1 && <div className="card-mask">已結束</div>}
       {status === 2 && <div className="card-mask">已過期</div>}
-      <span className="absolute right-10 top-5">{formateTime(expire)}</span>
+      <span className="absolute flex items-center text-cyan-500 right-10 bottom-12">
+        <FaMapMarkerAlt className="mr-2" />
+        {city}
+      </span>
+      <span className="absolute text-cyan-300 right-10 bottom-5">
+        {formateTime(expire)}
+      </span>
       <div className="w-32">
         <img src={cover} alt="" />
       </div>
@@ -28,11 +35,13 @@ const AcceptedTaskItem = ({
           {reward}
         </span>
         <p className="py-2">{description}</p>
-        <div className="flex items-center">
-          <Avatar image={author?.avatar} />{' '}
-          <span className="pr-6"> {author?.name} </span>
-          <div>聯絡方式：{contactInfo}</div>
-        </div>
+        {author[0] && (
+          <div className="flex items-center">
+            <Avatar image={author[0]?.avatar} />
+            <span className="px-2"> {author[0]?.name} </span>
+            <div>聯絡方式：{author[0]?.contact}</div>
+          </div>
+        )}
       </div>
     </div>
   );
