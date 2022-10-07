@@ -6,3 +6,8 @@ export const formateTime = (date: string) => {
   const time = DateTime.fromISO(date);
   return time.toLocaleString(DateTime.DATETIME_MED);
 };
+
+export const formateTimeHours = (date: string) => {
+  const time = DateTime.fromISO(date);
+  return `${time.hour}:${time.minute}`;
+};

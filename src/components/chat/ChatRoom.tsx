@@ -2,16 +2,16 @@ import { useState, useRef, useEffect } from 'react';
 
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-import { GrClose } from 'react-icons/gr';
+import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { MdArrowBackIosNew } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 import io, { Socket } from 'socket.io-client';
 
-import { BASE_URL } from '../../config';
+import { BACKEND_URL } from '../../config';
 import { roomState } from '../../store/room';
 import { userState } from '../../store/user';
+import { getCookie } from '../../utils/cookie';
 import Avatar from '../atoms/Avatar';
 import ChatLoading from './ChatLoading';
 import ChatRoomInputBox from './ChatRoomInputBox';
@@ -21,7 +21,7 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
   const router = useRouter();
   const [room, setRoom] = useRecoilState(roomState);
   let timer: ReturnType<typeof setTimeout>;
-  let socket: Socket;
+  const socket = useRef<Socket>();
   const [user] = useRecoilState(userState);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [typingFlag, setTypingFlag] = useState<boolean>(false);
@@ -37,12 +37,12 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
       lastTime: messageList[0]?.createdAt,
     };
     setIsLoading(true);
-    console.warn('getHistory---', socket.connected);
-    socket.emit('history', info);
+    console.warn('getHistory---', socket.current!.connected);
+    socket.current!.emit('history', info);
   };
 
   const endTyping = () => {
-    socket.emit('typing', false);
+    socket.current!.emit('typing', false);
   };
 
   const userTyping = (key: string) => {
@@ -50,7 +50,7 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
       endTyping();
       return;
     }
-    socket.emit('typing', true);
+    socket.current!.emit('typing', true);
     clearTimeout(timer);
     timer = setTimeout(() => {
       endTyping();
@@ -58,11 +58,13 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
   };
 
   const sendMessage = (msg: string) => {
+    console.log('8777', socket);
+
     const sendMsg = {
       message: msg,
       sender: user._id,
     };
-    socket.emit('chatMessage', sendMsg);
+    socket.current!.emit('chatMessage', sendMsg);
   };
 
   const scrollBottom = async () => {
@@ -78,10 +80,21 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
   };
 
   const handleOpen = () => {
-    const updatedRoom = room.find(
-      (item: Chat.RoomState) => item.roomId === roomId
-    );
-    updatedRoom.isOpen = !updatedRoom.isOpen;
+    // const updatedRoom = room.find(
+    //   (item: Chat.RoomState) => item.roomId === roomId
+    // );
+
+    const updatedRoom = room.map((item: Chat.RoomState) => {
+      if (item.roomId === roomId) {
+        return {
+          ...item,
+          isOpen: !item.isOpen,
+        };
+      }
+      return item;
+    });
+    setRoom(updatedRoom);
+    // updatedRoom.isOpen = !updatedRoom.isOpen;
   };
 
   const detectTop = () => {
@@ -108,28 +121,30 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
   };
 
   const socketInit = () => {
-    const token = localStorage.getItem('token');
+    const token = getCookie('token');
     if (!token) {
       toast.error('請先登入喔！');
       router.push('/');
     }
     // socket初始化
-    socket = io(`${BASE_URL}/chat`, {
+    socket.current = io(`${BACKEND_URL}/chat`, {
       query: {
-        token: localStorage.getItem('token'),
+        token,
         room: roomId,
       },
       auth: {
         token,
       },
     });
+    console.log('socket', socket);
+
     // 建立連線
-    socket.on('connect', () => {
+    socket.current!.on('connect', () => {
       getHistory();
     });
 
     // 接收到別人傳的訊息
-    socket.on('chatMessage', (msg) => {
+    socket.current!.on('chatMessage', (msg) => {
       console.log('接收到別人傳的訊息', msg);
       messageList.push(msg);
       // eventBus.emit('updateChatRecord', { roomId: roomId.value, msg });
@@ -147,7 +162,7 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
     });
 
     // 接收歷史訊息
-    socket.on('history', (msgList) => {
+    socket.current!.on('history', (msgList) => {
       setIsLoading(false);
       // isLoading.value = false;
       console.log('接收到歷史訊息', msgList);
@@ -165,12 +180,12 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
       }
       // 滾輪調整
     });
-    socket.on('typing', (boolean) => {
+    socket.current!.on('typing', (boolean) => {
       setTypingFlag(boolean);
     });
 
     // 接收錯誤
-    socket.on('error', (error) => {
+    socket.current!.on('error', (error) => {
       toast.error(error);
       router.push('/');
     });
@@ -179,24 +194,24 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
     socketInit();
     detectTop();
     return () => {
-      socket.emit('leaveRoom', roomId);
-      socket.off();
-      socket.disconnect();
+      socket.current!.emit('leaveRoom', roomId);
+      socket.current!.off();
+      socket.current!.disconnect();
       clearTimeout(timer);
     };
   }, []);
   return (
     <div
       className={clsx(
-        'pointer-events-auto lg:border-2 lg:ml-4 lg:w-[338px] overflow-hidden h-screen lg:h-[455px] rounded-tl-lg rounded-tr-lg relative',
+        'pointer-events-auto lg:ml-4 lg:w-[338px] overflow-hidden h-screen lg:h-[455px] rounded-tl-lg rounded-tr-lg relative',
         { 'lg:h-14': !isOpen }
       )}
     >
-      <div className="flex items-center justify-between px-2 py-2 bg-white border-b-2 h-14 lg:px-4">
+      <div className="flex items-center justify-between px-2 py-2 overflow-hidden text-white bg-cyan-800 h-14 lg:px-4">
         <div className="flex items-center">
           <MdArrowBackIosNew
             onClick={toPrevPage}
-            className="block w-8 h-8 mr-2 lg:hidden"
+            className="block w-8 h-8 mr-2 text-white lg:hidden"
           />
           <Avatar image={avatar} />
           <span className="pl-4 font-bold">{name}</span>
@@ -218,8 +233,8 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
               onClick={handleOpen}
             />
           )}
-          <GrClose
-            className="w-6 h-6 cursor-pointer hover:opacity-50"
+          <AiOutlineClose
+            className="w-6 h-6 text-white cursor-pointer hover:opacity-50"
             onClick={closeRoom}
           />
         </div>
