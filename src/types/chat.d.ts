@@ -1,4 +1,7 @@
 declare namespace Chat {
+  interface ChatAPIResponse<T> extends Api.ApiResponse {
+    data: T;
+  }
   interface RoomInfo {
     roomId: string;
     name: string;

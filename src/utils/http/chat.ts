@@ -7,15 +7,21 @@ interface GetRoomIdParam {
   receiver: string;
 }
 
-interface GetRoomIdResponse extends Api.ApiResponse {
-  data: Chat.RoomInfo;
-}
-
 export const getRoomId = async (sendData: GetRoomIdParam) => {
   const headers = getAuthorizationHeader();
-  return service.post<GetRoomIdParam, GetRoomIdResponse>(
+  return service.post<GetRoomIdParam, Chat.ChatAPIResponse<Chat.RoomInfo>>(
     `${PAY_PATH}/room-info`,
     sendData,
     { headers }
+  );
+};
+
+export const getChatRecord = async () => {
+  const headers = getAuthorizationHeader();
+  return service.post<{}, Chat.ChatAPIResponse<Chat.RoomInfo[]>>(
+    `${PAY_PATH}/chat-record`,
+    {
+      headers,
+    }
   );
 };
