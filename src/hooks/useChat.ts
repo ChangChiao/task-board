@@ -20,11 +20,11 @@ export const useChat = () => {
         return;
       }
 
-      if (room.value.length === 3) {
+      if (room.length === 3) {
         toast.error('您最多只能跟三個人聊天呦！');
         return;
       }
-      updateRoom([...room.value, roomObj]);
+      updateRoom([...room, roomObj]);
       return;
     }
     updateRoom([roomObj]);

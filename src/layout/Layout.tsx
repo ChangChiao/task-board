@@ -8,6 +8,7 @@ import Loading from '../components/atoms/Loading';
 import SignInPop from '../components/atoms/popup/SignInPop';
 // import TaskAddPop from '../components/atoms/popup/TaskAddPop';
 import VipPopup from '../components/atoms/popup/VipPopup';
+import ChatContainer from '../components/chat/ChatContainer';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Menu from '../components/Menu';
@@ -64,6 +65,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <main className="min-h-[calc(100%-150px)]">{children}</main>
       <Footer />
       {renderComp()}
+      <ChatContainer />
       {isShowLoading && <Loading />}
     </div>
   );

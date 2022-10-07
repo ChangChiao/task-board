@@ -12,6 +12,7 @@ import io, { Socket } from 'socket.io-client';
 import { BASE_URL } from '../../config';
 import { roomState } from '../../store/room';
 import { userState } from '../../store/user';
+import Avatar from '../atoms/Avatar';
 import ChatLoading from './ChatLoading';
 import ChatRoomInputBox from './ChatRoomInputBox';
 import ChatRoomMessage from './ChatRoomMessage';
@@ -70,7 +71,7 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
   };
 
   const closeRoom = () => {
-    const keepRoom = room.value.filter(
+    const keepRoom = room.filter(
       (item: Chat.RoomState) => item.roomId !== roomId
     );
     setRoom(keepRoom);
@@ -104,12 +105,6 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
   const toPrevPage = () => {
     router.back();
     setRoom([]);
-  };
-
-  const provideDefault = () => {
-    return (
-      avatar ?? new URL('../assets/images/user_default.png', import.meta.url)
-    );
   };
 
   const socketInit = () => {
@@ -203,7 +198,7 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
             onClick={toPrevPage}
             className="block w-8 h-8 mr-2 lg:hidden"
           />
-          <img className="w-10 h-10 avatar" src={provideDefault()} alt="" />
+          <Avatar image={avatar} />
           <span className="pl-4 font-bold">{name}</span>
           {typingFlag && (
             <span className="text-xs text-gray">對方正在輸入中...</span>
