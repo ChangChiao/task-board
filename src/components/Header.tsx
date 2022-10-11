@@ -67,7 +67,10 @@ const Header = ({ handleMenu }: HeaderParam) => {
         {menuList.map((item) => (
           <li
             onClick={() => handleClickMenu(item)}
-            className="pr-4 cursor-pointer hover:text-slate-200"
+            className={clsx(
+              'mr-4 cursor-pointer pb-1 hover:text-slate-200',
+              router.pathname === item.link && 'border-b border-white'
+            )}
             key={item.text}
           >
             {item.text}
