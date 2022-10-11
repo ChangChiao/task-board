@@ -11,3 +11,9 @@ export const roomState = atom({
   default: [] as Chat.RoomInfo[],
   effects_UNSTABLE: [persistAtom],
 });
+
+export const roomListState = atom({
+  key: 'roomList',
+  default: [] as Chat.RoomInfo[],
+  effects_UNSTABLE: [persistAtom],
+});
