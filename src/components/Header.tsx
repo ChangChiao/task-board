@@ -82,7 +82,10 @@ const Header = ({ handleMenu }: HeaderParam) => {
         {user._id ? (
           <>
             <div className="flex items-center mr-2">
-              <Avatar image={user?.avatar || '/assets/avatar/1.png'} />
+              <Avatar
+                isVip={user?.isVip}
+                image={user?.avatar || '/assets/avatar/1.png'}
+              />
               <span className="pl-3">{user?.name ?? 'userName'}</span>
             </div>
             <button className="cursor-pointer" onClick={signOut}>

@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+import clsx from 'clsx';
+import { useRouter } from 'next/router';
+
 const errorList = {
   large: '圖片檔案過大，僅限 1mb 以下檔案',
   fileName: '圖片格式錯誤，僅限 JPG、PNG 圖片',
@@ -12,6 +15,7 @@ type UploadFileProp = {
 
 const UploadFile = ({ setUploadFile }: UploadFileProp) => {
   const [showError, setShowError] = useState<String>('');
+  const router = useRouter();
   const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputRef = event.target as HTMLInputElement;
     const file = inputRef.files?.[0];
@@ -31,7 +35,10 @@ const UploadFile = ({ setUploadFile }: UploadFileProp) => {
   return (
     <div>
       <label
-        className="block mb-2 text-sm font-medium text-gray-900"
+        className={clsx(
+          'block mb-2 text-sm font-medium',
+          router.pathname === '/userInfo' ? 'text-white' : 'text-gray-900'
+        )}
         htmlFor="file_input"
       >
         上傳圖片

@@ -38,6 +38,8 @@ const UserInfoUpdate = () => {
     const formData = new FormData();
     formData.append('name', data.name);
     formData.append('contact', data.contact);
+    console.log('data.name', data.name);
+    console.log('data.contact', data.contact);
     const res = await patchUser(formData);
     const {
       data: { name, contact },
@@ -63,19 +65,34 @@ const UserInfoUpdate = () => {
   }, [user]);
 
   useEffect(() => {
-    const url = window.URL.createObjectURL(file as Blob);
-    setAvatar(url);
+    if (file) {
+      const binaryData = [];
+      binaryData.push(file as Blob);
+      const url = window.URL.createObjectURL(new Blob(binaryData));
+      setAvatar(url);
+    }
   }, [file]);
 
   useEffect(() => {}, [file]);
   return (
-    <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-      <Avatar image={avatar} />
+    <form
+      className="flex flex-col w-4/5 mx-auto"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className="flex items-center justify-center pt-10">
+        <Avatar size={80} image={avatar} />
+      </div>
       <UploadFile setUploadFile={setUploadFile} />
-      <input className="field" {...register('name')} />
+      <label className="py-4 text-white" htmlFor="name">
+        名稱
+      </label>
+      <input id="name" className="field" {...register('name')} />
       {errors.name?.message && (
         <span className="text-sm text-red-500">{errors.name?.message}</span>
       )}
+      <label className="py-4 text-white" htmlFor="name">
+        聯絡方式
+      </label>
       <textarea {...register('contact')} cols={30} rows={10}></textarea>
       {errors.contact?.message && (
         <span className="text-sm text-red-500">{errors.contact?.message}</span>

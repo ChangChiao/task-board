@@ -10,7 +10,7 @@ import Avatar from '../Avatar';
 import PopupTemplate from './PopupTemplate';
 
 type ApplicantProps = {
-  applicantList: Task.Applicant[];
+  applicantList: User.UserInfo[];
   taskId: string;
 };
 const ApplicantPop = ({ applicantList, taskId }: ApplicantProps) => {
@@ -51,13 +51,13 @@ const ApplicantPop = ({ applicantList, taskId }: ApplicantProps) => {
       {showPopupName === 'applicant' && (
         <PopupTemplate titleName="所有申請者">
           <ul>
-            {applicantList.map((item: Task.Applicant) => (
+            {applicantList.map((item: User.UserInfo) => (
               <li
                 className="flex items-center justify-between py-2"
                 key={item._id}
               >
                 <div className="flex items-center">
-                  <Avatar image={item.avatar} />
+                  <Avatar isVip={item.isVip} image={item.avatar} />
                   <span className="pl-2">{item.name}</span>
                 </div>
                 <div className="flex">

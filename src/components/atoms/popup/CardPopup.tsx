@@ -77,7 +77,7 @@ const CardPopup = ({
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Avatar image={author.avatar} />
+              <Avatar image={author.avatar} isVip={author.isVip} />
               <span className="pl-2 text-gray-400"> {author?.name}</span>
             </div>
             <span className="flex items-center text-gray-400">

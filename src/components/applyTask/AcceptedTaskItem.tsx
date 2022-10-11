@@ -40,7 +40,7 @@ const AcceptedTaskItem = ({
         <p className="py-2">{description}</p>
         {author[0] && (
           <div className="flex items-center">
-            <Avatar image={author[0]?.avatar} />
+            <Avatar isVip={author[0]?.isVip} image={author[0]?.avatar} />
             <span className="px-2"> {author[0]?.name} </span>
             <div>聯絡方式：{author[0]?.contact}</div>
           </div>

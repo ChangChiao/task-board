@@ -41,7 +41,10 @@ const Menu = () => {
   return (
     <div className="w-full h-screen p-4 text-white bg-cyan-900 md:hidden">
       <div className="flex items-center py-8">
-        <Avatar image={user?.avatar || '/assets/avatar/1.png'} />
+        <Avatar
+          isVip={user?.isVip}
+          image={user?.avatar || '/assets/avatar/1.png'}
+        />
         <span className="pl-3">{user?.name ?? 'userName'}</span>
       </div>
       <ul>

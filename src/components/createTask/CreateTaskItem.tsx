@@ -82,7 +82,7 @@ const CreateTaskItem = ({
             <span>合作夥伴</span>
             {staff[0] && (
               <div className="flex items-center pl-2">
-                <Avatar image={staff[0].avatar} />
+                <Avatar isVip={staff[0].isVip} image={staff[0].avatar} />
                 <span className="pl-2">{staff[0].name}</span>
               </div>
             )}

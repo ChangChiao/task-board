@@ -4,21 +4,13 @@ declare namespace Task {
     title: string;
     description: string;
     cover?: string;
-    author: Author;
-    avatar?: string;
+    author: User.UserInfo;
     city: string;
     reward: number;
     status: number;
     expire: string;
     staff: User.UserInfo[];
     contactInfo?: string;
-  }
-
-  interface Author {
-    _id: string;
-    name: string;
-    avatar: string;
-    isVip: Boolean;
   }
 
   interface TaskAPIResponse<T> extends Api.ApiResponse {
@@ -32,14 +24,8 @@ declare namespace Task {
     expire: string;
   }
 
-  interface Applicant {
-    _id: string;
-    name: string;
-    avatar: string;
-  }
-
   interface TaskWithApplicant extends TaskDetail {
-    applicant: Task.Applicant[] | [];
+    applicant: User.UserInfo[] | [];
   }
 
   interface TaskWithContact extends TaskDetail {

@@ -78,7 +78,7 @@ const Card = ({
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <Avatar image={author?.avatar} />
+            <Avatar isVip={author?.isVip} image={author?.avatar} />
             <span className="pl-2 font-bold text-gray-200">{author?.name}</span>
           </div>
           <span className="flex items-center text-white">
