@@ -1,5 +1,6 @@
 import { useChat } from '../../hooks/useChat';
 import { formateTime } from '../../utils/time';
+import Avatar from '../atoms/Avatar';
 
 const ChatRoomListItem = (room: Chat.RoomInfo) => {
   const { name, message: msg, avatar } = room;
@@ -13,13 +14,13 @@ const ChatRoomListItem = (room: Chat.RoomInfo) => {
   return (
     <li
       onClick={goChatRoom}
-      className="box-rounded flex items-baseline p-4 h-[77px] mb-4 justify-between cursor-pointer"
+      className="rounded-lg bg-cyan-200/20 flex items-baseline p-4 h-[77px] mb-4 justify-between cursor-pointer"
     >
       <div className="flex">
-        <img className="w-10 h-10 avatar" src={provideDefault()} alt="avatar" />
+        <Avatar image={provideDefault()} />
         <div className="flex-1 pl-2">
           <p className="font-bold">{name}</p>
-          <p className="w-[200px] lg:w-80 h-10 whitespace-nowrap overflow-hidden overflow-ellipsis text-sm text-slate-700">
+          <p className="w-[200px] lg:w-80 h-10 whitespace-nowrap overflow-hidden overflow-ellipsis text-sm text-slate-300 ">
             {msg?.[0]?.message}
           </p>
         </div>

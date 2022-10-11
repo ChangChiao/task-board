@@ -35,7 +35,7 @@ const ChatRoomList = () => {
   return (
     <section>
       <h1 className="title" />
-      <ul className="pt-4">
+      <ul className="w-4/5 pt-10 mx-auto">
         {roomList.map((room: Chat.RoomInfo) => (
           <ChatRoomListItem key={room.roomId} {...room} />
         ))}

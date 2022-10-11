@@ -7,6 +7,7 @@ export const MENU = [
   { id: 'create', text: '我發的任務', link: '/createTask' },
   { id: 'accept', text: '我接的任務', link: '/acceptedTask' },
   { id: 'favorite', text: '收藏清單', link: '/favoritelist' },
+  { id: 'chat', text: '聊天紀錄', link: '/chatRecord' },
   { id: 'info', text: '個人資訊', link: '/userinfo' },
   { id: 'vip', text: '成為vip', link: '/' },
   // { id: 'signIn', text: '登入', link: '/' },

@@ -18,7 +18,7 @@ export const getRoomId = async (sendData: GetRoomIdParam) => {
 
 export const getChatRecord = async () => {
   const headers = getAuthorizationHeader();
-  return service.post<{}, Chat.ChatAPIResponse<Chat.RoomInfo[]>>(
+  return service.get<{}, Chat.ChatAPIResponse<Chat.RoomInfo[]>>(
     `${PAY_PATH}/chat-record`,
     {
       headers,
