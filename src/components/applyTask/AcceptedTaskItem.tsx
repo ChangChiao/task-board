@@ -38,15 +38,13 @@ const AcceptedTaskItem = ({
           {reward}
         </span>
         <p className="py-2">{description}</p>
-        {author[0] && (
-          <div className="flex items-center">
-            <Avatar isVip={author[0]?.isVip} image={author[0]?.avatar} />
-            <span className="px-2"> {author[0]?.name} </span>
-            <div>聯絡方式：{author[0]?.contact}</div>
-          </div>
-        )}
+        <div className="flex items-center">
+          <Avatar isVip={author?.isVip} image={author?.avatar} />
+          <span className="px-2"> {author?.name} </span>
+          <div>聯絡方式：{author?.contact}</div>
+        </div>
       </div>
-      <Watermark status={status} isPick={staff[0]?._id === user._id} />
+      <Watermark status={status} isPick={staff?._id === user._id} />
     </div>
   );
 };

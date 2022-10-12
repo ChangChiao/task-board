@@ -9,7 +9,7 @@ declare namespace Task {
     reward: number;
     status: number;
     expire: string;
-    staff: User.UserInfo[];
+    staff: User.UserInfo;
     contactInfo?: string;
   }
 
@@ -29,6 +29,6 @@ declare namespace Task {
   }
 
   interface TaskWithContact extends TaskDetail {
-    author: User.UserInfo[];
+    author: User.UserInfo;
   }
 }
