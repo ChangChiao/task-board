@@ -1,5 +1,5 @@
 import service from './axiosConfig';
-import { getAuthorizationImgHeader } from './header';
+import { getAuthorizationImgHeader, getAuthorizationHeader } from './header';
 
 const PAY_PATH = `/user`;
 // interface FormDataValue {
@@ -21,4 +21,14 @@ export const patchUser = (param: FormData) => {
   return service.patch<{}, User.UserInfoApiResponse>(`${PAY_PATH}`, param, {
     headers,
   });
+};
+
+export const getUserFavorite = () => {
+  const headers = getAuthorizationHeader();
+  return service.get<{}, Task.TaskAPIResponse<Task.TaskDetail>>(
+    `${PAY_PATH}/favorite`,
+    {
+      headers,
+    }
+  );
 };

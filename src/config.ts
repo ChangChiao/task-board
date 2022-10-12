@@ -6,7 +6,7 @@ export const PAY_URL = 'https://ccore.spgateway.com/MPG/mpg_gateway';
 export const MENU = [
   { id: 'create', text: '我發的任務', link: '/createTask' },
   { id: 'accept', text: '我接的任務', link: '/acceptedTask' },
-  { id: 'favorite', text: '收藏清單', link: '/favoritelist' },
+  { id: 'favorite', text: '收藏清單', link: '/favorite' },
   { id: 'chat', text: '聊天紀錄', link: '/chatRecord' },
   { id: 'info', text: '個人資訊', link: '/userInfo' },
   { id: 'vip', text: '成為vip', link: '/' },
