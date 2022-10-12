@@ -62,7 +62,7 @@ const CardPopup = ({
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full transition-all duration-300 ease-in-out">
+    <div className="fixed top-0 left-0 z-50 w-full h-full transition-all duration-300 ease-in-out">
       <div className="mask" onClick={closeTaskDetail}></div>
       <div className="absolute h-[800px] top-0 bottom-0 left-0 right-0 m-auto p-4 bg-blue-500 shadow-3xl w-96 rounded-xl">
         <img className="w-full" src={cover} alt="cover" />

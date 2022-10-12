@@ -4,6 +4,7 @@ import { InView } from 'react-intersection-observer';
 import { usePopupContext } from '../../hooks/usePopupContext';
 import { formateTime } from '../../utils';
 import Avatar from './Avatar';
+import Watermark from './Watermark';
 
 type CardProps = Task.TaskDetail & {
   setDetail: (value: Task.TaskDetail) => void;
@@ -24,6 +25,7 @@ const Card = ({
 }: CardProps) => {
   const { setPopup } = usePopupContext();
   const handleClick = () => {
+    if (status !== 0) return;
     setPopup('card');
     setDetail({
       _id,
@@ -59,8 +61,6 @@ const Card = ({
       className="relative p-4 mr-auto bg-blue-500 shadow-3xl w-80 min-h-[400px] rounded-xl"
       onChange={handleInView}
     >
-      {status === 1 && <div className="card-mask">已結束</div>}
-      {status === 2 && <div className="card-mask">已過期</div>}
       <div className="w-full">
         <img
           id={_id}
@@ -87,6 +87,7 @@ const Card = ({
           </span>
         </div>
       </div>
+      <Watermark status={status} />
       <style jsx>
         {`
           .card-mask {

@@ -13,7 +13,7 @@ const Watermark = ({ status, isPick }: WatermarkProps) => {
         ? 'border-green-500 text-green-500'
         : 'border-red-500 text-red-500';
     }
-    return 'border-white';
+    return 'border-white text-white';
   }, [status, isPick]);
 
   const text = useMemo(() => {
@@ -25,14 +25,14 @@ const Watermark = ({ status, isPick }: WatermarkProps) => {
   return (
     <div
       className={clsx(
-        'absolute top-0 left-0 z-30 w-full h-full',
+        'absolute top-0 left-0 z-20 w-full h-full',
         status !== 0 ? 'bg-black/50' : 'pointer-events-none'
       )}
     >
       {status !== 0 && (
         <div
           className={clsx(
-            'absolute right-0 flex items-center justify-center w-56 h-56 text-4xl border-4 rounded-full opacity-30 -top-4 rotate-12',
+            'absolute right-0 flex items-center justify-center w-56 h-56 text-4xl border-4 rounded-full opacity-30 bottom-0 rotate-12',
             color
           )}
         >
