@@ -1,11 +1,11 @@
 import { BiTrash } from 'react-icons/bi';
 import { BsPeopleFill } from 'react-icons/bs';
-import { FaMapMarkerAlt } from 'react-icons/fa';
 import { MdOutlineAttachMoney } from 'react-icons/md';
 
 import { usePopupContext } from '../../hooks/usePopupContext';
 import { formateTime } from '../../utils';
 import Avatar from '../atoms/Avatar';
+import City from '../atoms/City';
 import Watermark from '../atoms/Watermark';
 
 type CreateTaskProps = Task.TaskWithApplicant & {
@@ -48,8 +48,7 @@ const CreateTaskItem = ({
         </button>
       )}
       <span className="absolute flex items-center text-cyan-500 right-10 bottom-12">
-        <FaMapMarkerAlt className="mr-2" />
-        {city}
+        <City city={city} />
       </span>
       <span className="absolute text-cyan-300 right-10 bottom-5">
         {formateTime(expire)}

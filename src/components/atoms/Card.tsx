@@ -1,9 +1,9 @@
-import { FaMapMarkerAlt } from 'react-icons/fa';
 import { InView } from 'react-intersection-observer';
 
 import { usePopupContext } from '../../hooks/usePopupContext';
 import { formateTime } from '../../utils';
 import Avatar from './Avatar';
+import City from './City';
 import Watermark from './Watermark';
 
 type CardProps = Task.TaskDetail & {
@@ -70,7 +70,9 @@ const Card = ({
         />
       </div>
       <div className="">
-        <h3 className="pt-2 text-xl font-semibold text-white">{title}</h3>
+        <h3 className="pt-2 overflow-hidden text-xl font-semibold text-white text-ellipsis">
+          {title}
+        </h3>
         {/* <div className="leading-9 text-gray-400">{description}</div> */}
         <div className="flex justify-between h-24 pt-2 text-sm font-bold text-secondary">
           <span> $ {reward} </span>
@@ -82,8 +84,9 @@ const Card = ({
             <span className="pl-2 font-bold text-gray-200">{author?.name}</span>
           </div>
           <span className="flex items-center text-white">
-            <FaMapMarkerAlt />
-            {city}
+            {/* <FaMapMarkerAlt />
+            {city} */}
+            <City city={city} />
           </span>
         </div>
       </div>

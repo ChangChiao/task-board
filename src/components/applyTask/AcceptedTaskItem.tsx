@@ -1,10 +1,10 @@
-import { FaMapMarkerAlt } from 'react-icons/fa';
 import { MdOutlineAttachMoney } from 'react-icons/md';
 import { useRecoilState } from 'recoil';
 
 import { userState } from '../../store/user';
 import { formateTime } from '../../utils';
 import Avatar from '../atoms/Avatar';
+import City from '../atoms/City';
 import Watermark from '../atoms/Watermark';
 
 const AcceptedTaskItem = ({
@@ -22,8 +22,7 @@ const AcceptedTaskItem = ({
   return (
     <div className="relative overflow-hidden rounded-lg flex text-white shadow-lg min-h-[160px] p-4 mb-3 bg-slate-800">
       <span className="absolute flex items-center text-cyan-500 right-10 bottom-12">
-        <FaMapMarkerAlt className="mr-2" />
-        {city}
+        <City city={city} />
       </span>
       <span className="absolute text-cyan-300 right-10 bottom-5">
         {formateTime(expire)}

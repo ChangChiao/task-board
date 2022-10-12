@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import { FaMapMarkerAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 
@@ -12,6 +11,7 @@ import { applyTask } from '../../../utils/http';
 import { removeFavorite, addFavorite } from '../../../utils/http/collect';
 import { getUser } from '../../../utils/http/user';
 import Avatar from '../Avatar';
+import City from '../City';
 
 const CardPopup = ({
   _id,
@@ -66,9 +66,11 @@ const CardPopup = ({
       <div className="mask" onClick={closeTaskDetail}></div>
       <div className="absolute h-[800px] top-0 bottom-0 left-0 right-0 m-auto p-4 bg-blue-500 shadow-3xl w-96 rounded-xl">
         <img className="w-full" src={cover} alt="cover" />
-        <h3 className="py-2 text-xl font-semibold text-white">{title}</h3>
+        <h3 className="py-2 text-xl font-semibold text-white break-words">
+          {title}
+        </h3>
         <div className="">
-          <div className="leading-9 text-gray-400  h-[150px] overflow-y-scroll">
+          <div className="leading-9 text-gray-400  h-[150px] overflow-y-scroll break-words">
             {description}
           </div>
           <div className="flex justify-between py-2 text-sm font-bold text-secondary">
@@ -81,8 +83,7 @@ const CardPopup = ({
               <span className="pl-2 text-gray-400"> {author?.name}</span>
             </div>
             <span className="flex items-center text-gray-400">
-              <FaMapMarkerAlt />
-              {city}
+              <City city={city} />
             </span>
           </div>
           <div className="flex justify-end text-2xl text-red-500">
