@@ -58,8 +58,6 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
   };
 
   const sendMessage = (msg: string) => {
-    console.log('8777', socket);
-
     const sendMsg = {
       message: msg,
       sender: user._id,
@@ -101,7 +99,7 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
     msgEl.current!.addEventListener(
       'scroll',
       () => {
-        if (msgEl.current!.scrollTop === 0) {
+        if (msgEl.current?.scrollTop === 0) {
           scrollRecord.current = msgEl.current!.scrollHeight;
           getHistory();
         }
@@ -146,7 +144,8 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
     // 接收到別人傳的訊息
     socket.current!.on('chatMessage', (msg) => {
       console.log('接收到別人傳的訊息', msg);
-      messageList.push(msg);
+      const newArray = [msg, ...messageList];
+      setMessageList(newArray);
       // eventBus.emit('updateChatRecord', { roomId: roomId.value, msg });
       if (!msgEl.current) return;
       if (
@@ -222,13 +221,11 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
         <div className="hidden lg:flex">
           {isOpen ? (
             <AiOutlineMinus
-              v-show="isOpen"
               className="w-6 h-6 cursor-pointer hover:opacity-50"
               onClick={handleOpen}
             />
           ) : (
             <AiOutlinePlus
-              v-show="!isOpen"
               className="w-6 h-6 cursor-pointer hover:opacity-50"
               onClick={handleOpen}
             />
@@ -239,34 +236,28 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
           />
         </div>
       </div>
-      <div
-        v-show="isOpen"
-        id="messageContainer"
-        ref={msgEl}
-        className="h-[calc(100vh-56px-48px)] lg:h-[350px] relative bg-slate-100 overflow-y-auto"
-      >
+      {isOpen && (
         <div
-          className="py-2 text-sm text-center"
-          v-if="messageList.length === 0"
+          id="messageContainer"
+          ref={msgEl}
+          className="h-[calc(100vh-56px-48px)] lg:h-[350px] relative bg-slate-100 overflow-y-auto"
         >
-          開始聊天吧！
+          {messageList.length === 0 && (
+            <div className="py-2 text-sm text-center">開始聊天吧！</div>
+          )}
+          {isLoading && (
+            <div className="flex items-center justify-center pt-2 text-slate-700">
+              載入中
+              <ChatLoading />
+            </div>
+          )}
+          {messageList.map((message) => (
+            <ChatRoomMessage key={message._id} {...message} />
+          ))}
         </div>
-        {isLoading && (
-          <div className="flex items-center justify-center pt-2 text-slate-700">
-            載入中
-            <ChatLoading />
-          </div>
-        )}
-        {messageList.map((message) => (
-          <ChatRoomMessage key={message._id} {...message} />
-        ))}
-        {/* <template v-for="message in messageList" :key="message._id">
-      <ChatRoomMessage :message="message" />
-    </template> */}
-      </div>
+      )}
       {newMsgFlag && (
         <div
-          v-if="newMsgFlag"
           onClick={scrollBottom}
           className="absolute left-0 w-full h-12 p-2 text-white bg-black bottom-10 bg-opacity-40"
         >
