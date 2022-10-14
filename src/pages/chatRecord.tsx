@@ -4,9 +4,9 @@ import ChatRoomList from '../components/chat/ChatRoomList';
 
 export const ChatRecord: NextPage = () => {
   return (
-    <div className="text-white">
+    <ul className="text-white">
       <ChatRoomList />
-    </div>
+    </ul>
   );
 };
 
