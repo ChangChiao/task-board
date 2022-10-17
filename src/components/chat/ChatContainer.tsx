@@ -11,11 +11,11 @@ const ChatRoomListItem = () => {
     console.log('room', room);
   }, [room]);
   return (
-    <div className="fixed bottom-0 z-50 hidden w-4/5 pointer-events-none right-10 lg:flex lg:items-end lg:justify-end">
+    <li className="fixed bottom-0 z-50 hidden w-4/5 pointer-events-none right-10 lg:flex lg:items-end lg:justify-end">
       {room.map((item: Chat.RoomState) => (
         <ChatRoom key={item.roomId} {...item} />
       ))}
-    </div>
+    </li>
   );
 };
 

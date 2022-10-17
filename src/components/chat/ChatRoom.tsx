@@ -42,12 +42,15 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
     latestUser.current = user;
   }, [user]);
 
+  useEffect(() => {
+    console.warn('messageList', messageList);
+  }, [messageList]);
+
   const getHistory = () => {
     if (fetchAllFlag.current) return;
     const info = {
-      lastTime: messageList[0]?.createdAt,
+      lastTime: messageRef.current?.[0]?.createdAt,
     };
-    console.warn('getHistory', info.lastTime);
     setIsLoading(true);
     socket!.emit('history', info);
   };
@@ -155,13 +158,7 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
     socket!.on('chatMessage', (msg) => {
       console.warn('接收到別人傳的訊息', msg);
       messageRef.current = [...messageRef.current, msg];
-      // console.log('messageRef.current', messageRef.current);
       setMessageList(messageRef.current);
-      // console.warn('msgEl.current', msgEl.current);
-      // // console.warn('user._id', latestUser.current!._id);
-      // console.warn('user', latestUser);
-      // console.warn('user111', latestUser.current);
-      // console.warn('user222', user);
 
       if (!msgEl.current) return;
       if (
@@ -169,7 +166,6 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
         msgEl.current.clientHeight
       ) {
         if (latestUser.current?._id !== msg.sender) {
-          console.warn('msg.sender', msg.sender);
           setNewMsgFlag(true);
         }
       } else {
@@ -183,7 +179,6 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
       console.warn('接收到歷史訊息', msgList);
       messageRef.current = [...msgList, ...messageRef.current];
       setMessageList(messageRef.current);
-      // console.log('messageList', messageList);
       if (msgList.length < 30) {
         fetchAllFlag.current = true;
       }
@@ -218,9 +213,6 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
     };
   }, []);
 
-  useEffect(() => {
-    console.warn('8888', user);
-  }, [user]);
   return (
     <div
       className={clsx(
