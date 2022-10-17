@@ -17,32 +17,43 @@ import ChatLoading from './ChatLoading';
 import ChatRoomInputBox from './ChatRoomInputBox';
 import ChatRoomMessage from './ChatRoomMessage';
 
+let socket: Socket | null = null;
+
 const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
   const router = useRouter();
   const [room, setRoom] = useRecoilState(roomState);
   let timer: ReturnType<typeof setTimeout>;
-  const socket = useRef<Socket>();
+  const msgEl = useRef<HTMLDivElement>(null);
+  // const socket = useRef<Socket>();
   const [user] = useRecoilState(userState);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [typingFlag, setTypingFlag] = useState<boolean>(false);
-  const msgEl = useRef<HTMLDivElement>(null);
-  const [fetchAllFlag, setFetchAllFlag] = useState<boolean>(false);
-  const [newMsgFlag, setNewMsgFlag] = useState<boolean>(false);
-  const [flagHistory, setFlagHistory] = useState<boolean>(false);
-  const scrollRecord = useRef<number>(0);
+  // const [flagHistory, setFlagHistory] = useState<boolean>(false);
   const [messageList, setMessageList] = useState<Chat.Msg[]>([]);
+  const messageRef = useRef(messageList);
+  // const latestFlagHistory = useRef(flagHistory);
+  const [newMsgFlag, setNewMsgFlag] = useState<boolean>(false);
+  const fetchAllFlag = useRef<boolean>(false);
+  const scrollRecord = useRef<number>(0);
+  const latestFlagHistory = useRef<boolean>(false);
+  const latestUser = useRef<Partial<User.UserInfo>>(user);
+
+  useEffect(() => {
+    latestUser.current = user;
+  }, [user]);
+
   const getHistory = () => {
-    if (fetchAllFlag) return;
+    if (fetchAllFlag.current) return;
     const info = {
       lastTime: messageList[0]?.createdAt,
     };
+    console.warn('getHistory', info.lastTime);
     setIsLoading(true);
-    console.warn('getHistory---', socket.current!.connected);
-    socket.current!.emit('history', info);
+    socket!.emit('history', info);
   };
 
   const endTyping = () => {
-    socket.current!.emit('typing', false);
+    socket!.emit('typing', false);
   };
 
   const userTyping = (key: string) => {
@@ -50,7 +61,7 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
       endTyping();
       return;
     }
-    socket.current!.emit('typing', true);
+    socket!.emit('typing', true);
     clearTimeout(timer);
     timer = setTimeout(() => {
       endTyping();
@@ -62,7 +73,7 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
       message: msg,
       sender: user._id,
     };
-    socket.current!.emit('chatMessage', sendMsg);
+    socket!.emit('chatMessage', sendMsg);
   };
 
   const scrollBottom = async () => {
@@ -78,10 +89,6 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
   };
 
   const handleOpen = () => {
-    // const updatedRoom = room.find(
-    //   (item: Chat.RoomState) => item.roomId === roomId
-    // );
-
     const updatedRoom = room.map((item: Chat.RoomState) => {
       if (item.roomId === roomId) {
         return {
@@ -92,7 +99,6 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
       return item;
     });
     setRoom(updatedRoom);
-    // updatedRoom.isOpen = !updatedRoom.isOpen;
   };
 
   const detectTop = () => {
@@ -101,6 +107,7 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
       () => {
         if (msgEl.current?.scrollTop === 0) {
           scrollRecord.current = msgEl.current!.scrollHeight;
+          console.log('getHistory');
           getHistory();
         }
       },
@@ -118,14 +125,16 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
     setRoom([]);
   };
 
-  const socketInit = () => {
+  useEffect(() => {
+    console.warn('useEffect========');
+
     const token = getCookie('token');
     if (!token) {
       toast.error('請先登入喔！');
       router.push('/');
     }
     // socket初始化
-    socket.current = io(`${BACKEND_URL}/chat`, {
+    socket = io(`${BACKEND_URL}/chat`, {
       query: {
         token,
         room: roomId,
@@ -134,25 +143,33 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
         token,
       },
     });
-    console.log('socket', socket);
+    console.warn('socket', socket);
 
     // 建立連線
-    socket.current!.on('connect', () => {
-      getHistory();
+    socket!.on('connect', () => {
+      console.warn(' 建立連線');
+      // getHistory();
     });
 
     // 接收到別人傳的訊息
-    socket.current!.on('chatMessage', (msg) => {
-      console.log('接收到別人傳的訊息', msg);
-      const newArray = [msg, ...messageList];
-      setMessageList(newArray);
-      // eventBus.emit('updateChatRecord', { roomId: roomId.value, msg });
+    socket!.on('chatMessage', (msg) => {
+      console.warn('接收到別人傳的訊息', msg);
+      messageRef.current = [...messageRef.current, msg];
+      // console.log('messageRef.current', messageRef.current);
+      setMessageList(messageRef.current);
+      // console.warn('msgEl.current', msgEl.current);
+      // // console.warn('user._id', latestUser.current!._id);
+      // console.warn('user', latestUser);
+      // console.warn('user111', latestUser.current);
+      // console.warn('user222', user);
+
       if (!msgEl.current) return;
       if (
         msgEl.current.scrollHeight - msgEl.current.scrollTop >
         msgEl.current.clientHeight
       ) {
-        if (user._id !== msg.sender) {
+        if (latestUser.current?._id !== msg.sender) {
+          console.warn('msg.sender', msg.sender);
           setNewMsgFlag(true);
         }
       } else {
@@ -161,44 +178,49 @@ const ChatRoom = ({ roomId, name, avatar, isOpen }: Chat.RoomState) => {
     });
 
     // 接收歷史訊息
-    socket.current!.on('history', (msgList) => {
+    socket!.on('history', (msgList) => {
       setIsLoading(false);
-      // isLoading.value = false;
-      console.log('接收到歷史訊息', msgList);
-      const newArray = [...msgList, ...messageList];
-      setMessageList(newArray);
-      console.log('messageList', messageList);
-      if (msgList.length) {
-        setFetchAllFlag(true);
+      console.warn('接收到歷史訊息', msgList);
+      messageRef.current = [...msgList, ...messageRef.current];
+      setMessageList(messageRef.current);
+      // console.log('messageList', messageList);
+      if (msgList.length < 30) {
+        fetchAllFlag.current = true;
       }
-      if (!flagHistory) {
+      if (!latestFlagHistory.current) {
         scrollBottom();
-        setFlagHistory(true);
+        latestFlagHistory.current = true;
+        console.log('toptoptoptop');
       } else {
+        console.log('scrollToCorrect');
+
         scrollToCorrect();
       }
       // 滾輪調整
     });
-    socket.current!.on('typing', (boolean) => {
+    socket!.on('typing', (boolean) => {
       setTypingFlag(boolean);
     });
 
     // 接收錯誤
-    socket.current!.on('error', (error) => {
+    socket!.on('error', (error) => {
       toast.error(error);
       router.push('/');
     });
-  };
-  useEffect(() => {
-    socketInit();
+
     detectTop();
+
     return () => {
-      socket.current!.emit('leaveRoom', roomId);
-      socket.current!.off();
-      socket.current!.disconnect();
+      socket!.emit('leaveRoom', roomId);
+      socket!.off();
+      socket!.disconnect();
       clearTimeout(timer);
     };
   }, []);
+
+  useEffect(() => {
+    console.warn('8888', user);
+  }, [user]);
   return (
     <div
       className={clsx(
