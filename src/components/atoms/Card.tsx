@@ -1,9 +1,11 @@
+import clsx from 'clsx';
 import { InView } from 'react-intersection-observer';
 
 import { usePopupContext } from '../../hooks/usePopupContext';
 import { formateTime } from '../../utils';
 import Avatar from './Avatar';
 import City from './City';
+import Reward from './Reward';
 import Watermark from './Watermark';
 
 type CardProps = Task.TaskDetail & {
@@ -58,7 +60,10 @@ const Card = ({
       as="div"
       triggerOnce={true}
       onClick={handleClick}
-      className="relative p-4 mr-auto bg-blue-500 shadow-3xl w-80 min-h-[400px] rounded-xl"
+      className={clsx([
+        'relative p-4 mr-auto bg-blue-500 shadow-3xl w-80 min-h-[400px] rounded-xl',
+        status === 0 ? 'cursor-pointer' : 'cursor-default',
+      ])}
       onChange={handleInView}
     >
       <div className="w-full">
@@ -70,13 +75,16 @@ const Card = ({
         />
       </div>
       <div className="">
-        <h3 className="pt-2 overflow-hidden text-xl font-semibold text-white text-ellipsis">
+        <h3 className="pt-4 overflow-hidden text-xl font-semibold text-white text-ellipsis">
           {title}
         </h3>
         {/* <div className="leading-9 text-gray-400">{description}</div> */}
-        <div className="flex justify-between h-24 pt-2 text-sm font-bold text-secondary">
-          <span> $ {reward} </span>
-          <span className="text-cyan-600">{formateTime(expire)}</span>
+        <div className="flex justify-between h-12 text-sm font-bold text-secondary">
+          {/* <span> $ {reward} </span> */}
+          <Reward reward={reward} />
+          <div className="flex items-center text-cyan-600">
+            {formateTime(expire)}
+          </div>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center">

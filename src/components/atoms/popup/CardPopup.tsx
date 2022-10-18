@@ -12,6 +12,7 @@ import { removeFavorite, addFavorite } from '../../../utils/http/collect';
 import { getUser } from '../../../utils/http/user';
 import Avatar from '../Avatar';
 import City from '../City';
+import Reward from '../Reward';
 
 const CardPopup = ({
   _id,
@@ -74,8 +75,8 @@ const CardPopup = ({
             {description}
           </div>
           <div className="flex justify-between py-2 text-sm font-bold text-secondary">
-            <span> $ {reward} </span>
-            <span className="tetx-primary">{formateTime(expire)}</span>
+            <Reward reward={reward} />
+            <span className="text-primary">{formateTime(expire)}</span>
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center">

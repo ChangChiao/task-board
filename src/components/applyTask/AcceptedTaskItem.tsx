@@ -1,10 +1,10 @@
-import { MdOutlineAttachMoney } from 'react-icons/md';
 import { useRecoilState } from 'recoil';
 
 import { userState } from '../../store/user';
 import { formateTime } from '../../utils';
 import Avatar from '../atoms/Avatar';
 import City from '../atoms/City';
+import Reward from '../atoms/Reward';
 import Watermark from '../atoms/Watermark';
 
 const AcceptedTaskItem = ({
@@ -32,10 +32,7 @@ const AcceptedTaskItem = ({
       </div>
       <div className="w-3/4 pl-4 info">
         <h3 className="text-xl font-bold">{title}</h3>
-        <span className="flex items-center text-secondary">
-          <MdOutlineAttachMoney />
-          {reward}
-        </span>
+        <Reward reward={reward} />
         <p className="py-2">{description}</p>
         <div className="flex items-center">
           <Avatar isVip={author?.isVip} image={author?.avatar} />

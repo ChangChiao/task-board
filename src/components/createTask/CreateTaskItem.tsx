@@ -1,11 +1,11 @@
 import { BiTrash } from 'react-icons/bi';
 import { BsPeopleFill } from 'react-icons/bs';
-import { MdOutlineAttachMoney } from 'react-icons/md';
 
 import { usePopupContext } from '../../hooks/usePopupContext';
 import { formateTime } from '../../utils';
 import Avatar from '../atoms/Avatar';
 import City from '../atoms/City';
+import Reward from '../atoms/Reward';
 import Watermark from '../atoms/Watermark';
 
 type CreateTaskProps = Task.TaskWithApplicant & {
@@ -58,10 +58,9 @@ const CreateTaskItem = ({
       </div>
       <div className="w-3/4 pl-4 info">
         <h3 className="text-xl font-bold">{title}</h3>
-        <span className="flex items-center text-secondary">
-          <MdOutlineAttachMoney />
-          {reward}
-        </span>
+        {/* <div className="flex items-center text-secondary"> */}
+        <Reward reward={reward} />
+        {/* </div> */}
         <p className="py-2">{description}</p>
         {status === 0 && (
           <div className="flex">
