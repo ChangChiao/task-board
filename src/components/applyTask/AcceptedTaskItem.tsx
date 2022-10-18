@@ -1,9 +1,9 @@
 import { useRecoilState } from 'recoil';
 
 import { userState } from '../../store/user';
-import { formateTime } from '../../utils';
 import Avatar from '../atoms/Avatar';
 import City from '../atoms/City';
+import Expire from '../atoms/Expire';
 import Reward from '../atoms/Reward';
 import Watermark from '../atoms/Watermark';
 
@@ -24,9 +24,9 @@ const AcceptedTaskItem = ({
       <span className="absolute flex items-center text-cyan-500 right-10 bottom-12">
         <City city={city} />
       </span>
-      <span className="absolute text-cyan-300 right-10 bottom-5">
-        {formateTime(expire)}
-      </span>
+      <div className="absolute right-10 bottom-5">
+        <Expire expire={expire} />
+      </div>
       <div className="w-32">
         <img src={cover} alt="" />
       </div>

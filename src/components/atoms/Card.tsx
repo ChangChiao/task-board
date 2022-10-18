@@ -2,9 +2,9 @@ import clsx from 'clsx';
 import { InView } from 'react-intersection-observer';
 
 import { usePopupContext } from '../../hooks/usePopupContext';
-import { formateTime } from '../../utils';
 import Avatar from './Avatar';
 import City from './City';
+import Expire from './Expire';
 import Reward from './Reward';
 import Watermark from './Watermark';
 
@@ -80,11 +80,8 @@ const Card = ({
         </h3>
         {/* <div className="leading-9 text-gray-400">{description}</div> */}
         <div className="flex justify-between h-12 text-sm font-bold text-secondary">
-          {/* <span> $ {reward} </span> */}
           <Reward reward={reward} />
-          <div className="flex items-center text-cyan-600">
-            {formateTime(expire)}
-          </div>
+          <Expire expire={expire} />
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center">

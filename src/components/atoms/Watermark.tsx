@@ -32,7 +32,7 @@ const Watermark = ({ status, isPick }: WatermarkProps) => {
       {status !== 0 && (
         <div
           className={clsx(
-            'absolute right-0 flex items-center justify-center w-56 h-56 text-4xl border-4 rounded-full opacity-30 bottom-0 rotate-12',
+            'absolute right-0 flex items-center justify-center w-56 h-56 text-4xl border-4 rounded-full opacity-30 top-0 rotate-12',
             color
           )}
         >
