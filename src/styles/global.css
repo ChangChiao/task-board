@@ -37,7 +37,7 @@
     @apply w-full h-full bg-black/50;
   }
   .wrapper{
-    @apply max-w-[1600px] p-10;
+    @apply max-w-[1600px] p-10 mx-auto;
   }
   .select {
     @apply relative flex w-20 h-4 rounded overflow-hidden after:content-['\25BC']

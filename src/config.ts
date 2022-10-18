@@ -1,6 +1,9 @@
-// export const BASE_URL = 'https://task-board-backend.vercel.app/v1';
-export const BACKEND_URL = 'http://localhost:3008';
-export const BASE_URL = `${BACKEND_URL}/v1`;
+export const PRD_URL = 'https://task-board-backend.vercel.app';
+export const DEV_URL = 'http://localhost:3008';
+export const BACKEND_URL =
+  process.env.NODE_ENV === 'development' ? `${DEV_URL}` : `${PRD_URL}`;
+export const BASE_URL =
+  process.env.NODE_ENV === 'development' ? `${DEV_URL}/v1` : `${PRD_URL}/v1`;
 export const PAY_URL = 'https://ccore.spgateway.com/MPG/mpg_gateway';
 // export const BASE_URL = "http://localhost:3008/v1";
 export const MENU = [
