@@ -28,7 +28,7 @@ export const useChat = () => {
       return;
     }
     updateRoom([roomObj]);
-    router.push('/chat-room');
+    router.push('/chatRoomPage');
   };
   return {
     handleRoom,
