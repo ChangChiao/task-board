@@ -7,6 +7,7 @@ declare namespace Task {
     author: User.UserInfo;
     city: string;
     reward: number;
+    unit: number;
     status: number;
     expire: string;
     staff: User.UserInfo;

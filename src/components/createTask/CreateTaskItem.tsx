@@ -23,6 +23,7 @@ const CreateTaskItem = ({
   city,
   applicant,
   expire,
+  unit,
   setTaskId,
 }: CreateTaskProps) => {
   const { setPopup } = usePopupContext();
@@ -59,7 +60,7 @@ const CreateTaskItem = ({
       <div className="w-3/4 pl-4 info">
         <h3 className="text-xl font-bold">{title}</h3>
         {/* <div className="flex items-center text-secondary"> */}
-        <Reward reward={reward} />
+        <Reward reward={reward} unit={unit} />
         {/* </div> */}
         <p className="py-2">{description}</p>
         {status === 0 && (

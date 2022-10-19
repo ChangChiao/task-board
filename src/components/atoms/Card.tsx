@@ -23,6 +23,7 @@ const Card = ({
   staff,
   city,
   expire,
+  unit,
   setDetail,
 }: CardProps) => {
   const { setPopup } = usePopupContext();
@@ -40,6 +41,7 @@ const Card = ({
       staff,
       expire,
       city,
+      unit,
     });
   };
 
@@ -79,9 +81,8 @@ const Card = ({
           {title}
         </h3>
         {/* <div className="leading-9 text-gray-400">{description}</div> */}
-        <div className="flex justify-between h-12 text-sm font-bold text-secondary">
-          <Reward reward={reward} />
-          <Expire expire={expire} />
+        <div className="flex justify-end h-12 text-sm font-bold text-secondary">
+          <Reward reward={reward} unit={unit} />
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
@@ -93,6 +94,9 @@ const Card = ({
             {city} */}
             <City city={city} />
           </span>
+        </div>
+        <div className="flex justify-end pt-2 text-sm">
+          <Expire expire={expire} />
         </div>
       </div>
       <Watermark status={status} />

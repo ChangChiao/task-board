@@ -23,6 +23,7 @@ const CardPopup = ({
   reward,
   city,
   expire,
+  unit,
 }: Task.TaskDetail) => {
   const [user, setUser] = useRecoilState(userState);
   const { setPopup } = usePopupContext();
@@ -66,28 +67,12 @@ const CardPopup = ({
     <div className="fixed top-0 left-0 z-50 w-full h-full transition-all duration-300 ease-in-out">
       <div className="mask" onClick={closeTaskDetail}></div>
       <div className="absolute h-[800px] top-0 bottom-0 left-0 right-0 m-auto p-4 bg-blue-500 shadow-3xl w-96 rounded-xl">
-        <img className="w-full" src={cover} alt="cover" />
-        <h3 className="py-2 text-xl font-semibold text-white break-words">
-          {title}
-        </h3>
-        <div className="">
-          <div className="leading-9 text-gray-400  h-[150px] overflow-y-scroll break-words">
-            {description}
-          </div>
-          <div className="flex justify-between py-2 text-sm font-bold text-secondary">
-            <Reward reward={reward} />
-            <span className="text-primary">{formateTime(expire)}</span>
-          </div>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <Avatar image={author.avatar} isVip={author.isVip} />
-              <span className="pl-2 text-gray-400"> {author?.name}</span>
-            </div>
-            <span className="flex items-center text-gray-400">
-              <City city={city} />
-            </span>
-          </div>
-          <div className="flex justify-end text-2xl text-red-500">
+        <img className="w-full max-h-[350px]" src={cover} alt="cover" />
+        <div className="flex items-center justify-between">
+          <h3 className="py-2 text-xl font-semibold text-white break-words">
+            {title}
+          </h3>
+          <div className="flex justify-end pt-2 text-3xl text-red-500">
             {isFavorite ? (
               <AiFillHeart
                 className="cursor-pointer"
@@ -99,6 +84,24 @@ const CardPopup = ({
                 onClick={handleFavorite}
               />
             )}
+          </div>
+        </div>
+        <div className="">
+          <div className="leading-9 text-gray-400  h-[150px] overflow-y-scroll break-words">
+            {description}
+          </div>
+          <div className="flex justify-between py-2 text-sm font-bold text-secondary">
+            <Reward reward={reward} unit={unit} />
+            <span className="text-primary">{formateTime(expire)}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <Avatar image={author.avatar} isVip={author.isVip} />
+              <span className="pl-2 text-gray-400"> {author?.name}</span>
+            </div>
+            <span className="flex items-center text-gray-400">
+              <City city={city} />
+            </span>
           </div>
           <div className="flex items-center justify-center pt-4">
             <button className="bg-gray-500 btn" onClick={closeTaskDetail}>

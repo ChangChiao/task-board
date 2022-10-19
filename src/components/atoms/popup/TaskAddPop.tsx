@@ -40,6 +40,7 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
   const [file, setUploadFile] = useState<File | null>(null);
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [city, setCity] = useState<string>('Taipei');
+  const [unit, setUnit] = useState<string>('0');
   const onSubmit: SubmitHandler<Task.TaskCreate> = async (data) => {
     const { title, reward, description } = data;
     const formData = new FormData();
@@ -53,6 +54,7 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
     formData.append('description', description);
     formData.append('expire', endDate.toISOString());
     formData.append('city', city);
+    formData.append('unit', unit.toString());
     setLoading(true);
     try {
       const res = await addTask(formData);
@@ -71,6 +73,11 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
     console.log('event.target.value', event.target.value);
     setCity(event.target.value);
   };
+
+  const handleUnitChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log('event.target.value', event.target.value);
+    setUnit(event.target.value);
+  };
   return (
     <>
       {showPopupName === 'taskAdd' && (
@@ -86,13 +93,26 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
             {errors.title?.message && (
               <p className="text-sm text-red-500">{errors.title?.message}</p>
             )}
-            <label htmlFor="reward">酬勞</label>
-            <input
-              id="reward"
-              className="field"
-              placeholder="酬勞"
-              {...register('reward')}
-            />
+            <label htmlFor="unit">計費方式</label>
+            <select
+              onChange={handleUnitChange}
+              value={unit}
+              className="ml-2"
+              name=""
+              id="unit"
+            >
+              <option value="0">一次</option>
+              <option value="1">一小時</option>
+            </select>
+            <div>
+              <label htmlFor="reward">酬勞</label>
+              <input
+                id="reward"
+                className="field"
+                placeholder="酬勞"
+                {...register('reward')}
+              />
+            </div>
             {errors.reward?.message && (
               <p className="text-sm text-red-500">{errors.reward?.message}</p>
             )}

@@ -1,10 +1,18 @@
 import { AiOutlinePlus } from 'react-icons/ai';
+import { toast } from 'react-toastify';
+import { useRecoilState } from 'recoil';
 
 import { usePopupContext } from '../../../hooks/usePopupContext';
+import { userState } from '../../../store/user';
 
 const AddButton = () => {
+  const [user] = useRecoilState(userState);
   const { setPopup } = usePopupContext();
   const handleClick = () => {
+    if (!user?._id) {
+      toast('請先登入!');
+      return;
+    }
     setPopup('taskAdd');
   };
   return (

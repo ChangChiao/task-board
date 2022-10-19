@@ -16,6 +16,7 @@ const AcceptedTaskItem = ({
   status,
   staff,
   city,
+  unit,
   expire,
 }: Task.TaskWithContact) => {
   const [user] = useRecoilState(userState);
@@ -32,7 +33,7 @@ const AcceptedTaskItem = ({
       </div>
       <div className="w-3/4 pl-4 info">
         <h3 className="text-xl font-bold">{title}</h3>
-        <Reward reward={reward} />
+        <Reward reward={reward} unit={unit} />
         <p className="py-2">{description}</p>
         <div className="flex items-center">
           <Avatar isVip={author?.isVip} image={author?.avatar} />
