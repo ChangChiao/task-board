@@ -27,13 +27,15 @@ const ChatRoomMessage = ({
       <div className={clsx('flex items-end', isSelf && 'flex-row-reverse')}>
         <div
           className={clsx(
-            'm-h-[20px] inline-flex max-w-[300px] rounded-2xl border-2 border-slate-300 p-2',
+            'm-h-[20px] inline-flex max-w-[300px] text-slate-600 rounded-2xl border-2 border-slate-300 p-2',
             isSelf ? 'bg-slate-300' : 'bg-slate-200'
           )}
         >
           {message}
         </div>
-        <span className="px-2 text-xs">{formateTimeHours(createdAt)}</span>
+        <span className="px-2 text-xs text-gray-400">
+          {formateTimeHours(createdAt)}
+        </span>
       </div>
     </div>
   );

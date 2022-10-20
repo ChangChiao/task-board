@@ -12,6 +12,10 @@
 <!-- ![image](https://user-images.githubusercontent.com/24662856/161200768-2c7afd24-5f3d-4d7c-98c6-d55bbca61437.png) -->
 
 
+## 實作功能
+與使用者一對一聊天
+[image](./readme/chat.PNG)
+
 ## UI 參考
 
 👏 [frontendmentor](https://www.frontendmentor.io/challenges/nft-preview-card-component-SbdUL_w0U)
