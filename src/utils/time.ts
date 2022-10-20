@@ -7,7 +7,12 @@ export const formateTime = (date: string) => {
   return time.toLocaleString(DateTime.DATETIME_MED);
 };
 
+export const addZero = (num: number) => {
+  if (num >= 10) return num;
+  return `0${num}`;
+};
+
 export const formateTimeHours = (date: string) => {
   const time = DateTime.fromISO(date);
-  return `${time.hour}:${time.minute}`;
+  return `${addZero(time.hour)}:${addZero(time.minute)}`;
 };
