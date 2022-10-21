@@ -51,6 +51,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
   const signOut = () => {
     localStorage.removeItem('token');
     setUser({});
+    toast('登出成功');
   };
 
   return (

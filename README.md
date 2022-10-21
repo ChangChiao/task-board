@@ -13,12 +13,11 @@
 
 
 ## 實作功能
-與使用者一對一聊天
-[image](./readme/chat.PNG)
+- 與使用者一對一聊天
+![image](./readme/chat.PNG)
 
-## UI 參考
-
-👏 [frontendmentor](https://www.frontendmentor.io/challenges/nft-preview-card-component-SbdUL_w0U)
+- 使用LinePay購買VIP服務
+![image](./readme/vip.PNG)
 
 
 
@@ -27,8 +26,8 @@
 
 `Node版本: v14.18.1`
 
-- 安裝： `npm`
-- 執行： `npm dev`
+- 安裝： `npm install`
+- 執行： `npm run dev`
 
 
 ## 使用技術
@@ -36,5 +35,9 @@
 - next
 - recoil
 - axios
+- socket-io
 - tailwindcss
 
+## UI 參考
+
+👏 [frontendmentor](https://www.frontendmentor.io/challenges/nft-preview-card-component-SbdUL_w0U)
