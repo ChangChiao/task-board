@@ -3,9 +3,10 @@ type CitySelectParam = {
   handleSortChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 const sortList = [
-  { label: '排序方式', value: '' },
-  { label: '報酬由高至低', value: 'desc' },
-  { label: '報酬由低至高', value: 'asc' },
+  { label: '時間新到舊', value: 'expire_desc' },
+  { label: '時間舊到新', value: 'expire_asc' },
+  { label: '報酬由高至低', value: 'reward_desc' },
+  { label: '報酬由低至高', value: 'reward_asc' },
 ];
 const SortSelect = ({ sortType, handleSortChange }: CitySelectParam) => {
   return (

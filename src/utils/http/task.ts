@@ -1,3 +1,4 @@
+import { genQueryStr } from '../url';
 import service from './axiosConfig';
 import { getAuthorizationImgHeader, getAuthorizationHeader } from './header';
 
@@ -12,12 +13,7 @@ interface TaskParam {
 }
 
 interface QueryTaskParam {
-  [key: string]: string | number;
-  // order: string;
-  // sortby: string;
-  // city: string;
-  // keyword: string;
-  // page: number;
+  [key: string]: string | string[] | undefined;
 }
 
 interface PickStaffParam {
@@ -25,23 +21,13 @@ interface PickStaffParam {
   staff: string;
 }
 
-const genQueryStr = (obj: QueryTaskParam) => {
-  const queryKey = Object.keys(obj);
-  if (queryKey?.length === 0) return undefined;
-  return Object.keys(obj).reduce((a, b) => {
-    return typeof b === 'string' ? `${a}&${b}=${obj[b]}` : b;
-  }, '');
-};
-
 export const getAllTask = (param: QueryTaskParam) => {
   const queryStr = genQueryStr(param);
   let path = `${TASK_PATH}`;
   if (queryStr) {
     path += `?${queryStr.substring(1, queryStr.length)}`;
   }
-  return service.get<QueryTaskParam, Task.TaskAPIResponse<Task.TaskDetail>>(
-    path
-  );
+  return service.get<{}, Task.TaskAPIResponse<Task.TaskDetail>>(path);
 };
 
 export const getUserCreateTaskList = () => {

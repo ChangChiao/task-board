@@ -8,10 +8,13 @@ import TaskAddPop from '../components/atoms/popup/TaskAddPop';
 import CardWall from '../components/CardWall';
 import SearchBar from '../components/SearchBar';
 import { usePopupContext } from '../hooks/usePopupContext';
+import { genQueryStr } from '../utils';
 import { getAllTask } from '../utils/http';
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const result = await getAllTask({});
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  console.log('context.query', context.query);
+  const queryObj = context.query ?? {};
+  const result = await getAllTask(queryObj);
   let cardList: Task.TaskDetail[] | [] = [];
   if (result.status === 'success') {
     cardList = result.data ?? [];
@@ -32,19 +35,25 @@ const Index = ({
   const { showPopupName } = usePopupContext();
   const router = useRouter();
 
-  const refreshData = () => {
-    router.replace(router.asPath);
+  const refreshData = (query: string = '') => {
+    console.log('router', router);
+    router.replace(router.pathname + query);
   };
 
   const queryCardList = useCallback(
     async (keyword?) => {
+      console.log('sortType', sortType);
+
+      const sortBy = sortType.split('_')[0]!;
+      const sortOrder = sortType.split('_')[1]!;
       const param = {
-        order: sortType,
-        sortby: 'reward',
+        sortBy,
+        sortOrder,
         city,
         keyword: keyword ?? searchText,
       };
-      await getAllTask(param);
+      const query = `?${genQueryStr(param)}`;
+      refreshData(query);
       // eslint-disable-next-line react-hooks/exhaustive-deps
     },
     [city, sortType]
