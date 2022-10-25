@@ -36,14 +36,11 @@ const Index = ({
   const router = useRouter();
 
   const refreshData = (query: string = '') => {
-    console.log('router', router);
     router.replace(router.pathname + query);
   };
 
   const queryCardList = useCallback(
     async (keyword?) => {
-      console.log('sortType', sortType);
-
       const sortBy = sortType.split('_')[0]!;
       const sortOrder = sortType.split('_')[1]!;
       const param = {
