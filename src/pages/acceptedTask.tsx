@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import AcceptedTaskItem from '../components/applyTask/AcceptedTaskItem';
-import ListItemSkeleton from '../components/atoms/ListItemSkeleton';
-import Tab from '../components/atoms/Tab';
-import { getUserApplyTaskList } from '../utils/http';
+import AcceptedTaskItem from '@/components/applyTask/AcceptedTaskItem';
+import ListItemSkeleton from '@/components/atoms/ListItemSkeleton';
+import Tab from '@/components/atoms/Tab';
+import { getUserApplyTaskList } from '@/utils/http';
 
 // const parma = {
 //   _id: '13232323231233',

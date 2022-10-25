@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import { InView } from 'react-intersection-observer';
 
-import { usePopupContext } from '../../hooks/usePopupContext';
+import { usePopupContext } from '@/hooks/usePopupContext';
+
 import Avatar from './Avatar';
 import City from './City';
 import Expire from './Expire';

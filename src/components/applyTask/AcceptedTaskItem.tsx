@@ -1,6 +1,7 @@
 import { useRecoilState } from 'recoil';
 
-import { userState } from '../../store/user';
+import { userState } from '@/store/user';
+
 import Avatar from '../atoms/Avatar';
 import City from '../atoms/City';
 import Expire from '../atoms/Expire';

@@ -1,4 +1,4 @@
-import { createOrder } from '../utils/http/linePay';
+import { createOrder } from '@/utils/http/linePay';
 
 const LinePay = () => {
   const genOrder = async () => {

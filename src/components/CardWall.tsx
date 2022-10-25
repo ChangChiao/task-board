@@ -3,9 +3,10 @@ import { useRef, useState, RefObject } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
-import { usePopupContext } from '../hooks/usePopupContext';
-import { getAllTask } from '../utils/http';
-import { getUserFavorite } from '../utils/http/user';
+import { usePopupContext } from '@/hooks/usePopupContext';
+import { getAllTask } from '@/utils/http';
+import { getUserFavorite } from '@/utils/http/user';
+
 import Card from './atoms/Card';
 import CardSkeleton from './atoms/CardSkeleton';
 import CardPopup from './atoms/popup/CardPopup';

@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 
-import { signUp } from '../utils/http/auth';
+import { signUp } from '@/utils/http/auth';
 
 type FormValues = {
   email: string;

@@ -4,18 +4,18 @@ import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 
-import Loading from '../components/atoms/Loading';
-import SignInPop from '../components/atoms/popup/SignInPop';
-// import TaskAddPop from '../components/atoms/popup/TaskAddPop';
-import VipPopup from '../components/atoms/popup/VipPopup';
-import ChatContainer from '../components/chat/ChatContainer';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import Menu from '../components/Menu';
-import { useLoadingContext } from '../hooks/useLoadingContext';
-import { usePopupContext } from '../hooks/usePopupContext';
-import { userState } from '../store/user';
-import { getUser } from '../utils/http/user';
+import Loading from '@/components/atoms/Loading';
+import SignInPop from '@/components/atoms/popup/SignInPop';
+// import TaskAddPop from '@/components/atoms/popup/TaskAddPop';
+import VipPopup from '@/components/atoms/popup/VipPopup';
+import ChatContainer from '@/components/chat/ChatContainer';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import Menu from '@/components/Menu';
+import { useLoadingContext } from '@/hooks/useLoadingContext';
+import { usePopupContext } from '@/hooks/usePopupContext';
+import { userState } from '@/store/user';
+import { getUser } from '@/utils/http/user';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isShowMenu, setShowMenu] = useState<boolean>(false);

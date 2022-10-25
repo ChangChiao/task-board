@@ -1,5 +1,6 @@
-import { useChat } from '../../hooks/useChat';
-import { formateTime } from '../../utils/time';
+import { useChat } from '@/hooks/useChat';
+import { formateTime } from '@/utils/time';
+
 import Avatar from '../atoms/Avatar';
 
 const ChatRoomListItem = (room: Chat.RoomInfo) => {

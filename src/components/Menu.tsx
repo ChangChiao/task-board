@@ -4,9 +4,10 @@ import router from 'next/router';
 import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 
-import { MENU } from '../config';
-import { usePopupContext } from '../hooks/usePopupContext';
-import { userState } from '../store/user';
+import { MENU } from '@/config';
+import { usePopupContext } from '@/hooks/usePopupContext';
+import { userState } from '@/store/user';
+
 import Avatar from './atoms/Avatar';
 
 const Menu = () => {

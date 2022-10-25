@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { useRecoilState } from 'recoil';
 
-import { userState } from '../store/user';
+import { userState } from '@/store/user';
+
 import Avatar from './atoms/Avatar';
 import UploadFile from './UploadFile';
 

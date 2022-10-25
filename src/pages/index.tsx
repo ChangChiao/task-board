@@ -3,13 +3,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 
-import AddButton from '../components/atoms/button/AddButton';
-import TaskAddPop from '../components/atoms/popup/TaskAddPop';
-import CardWall from '../components/CardWall';
-import SearchBar from '../components/SearchBar';
-import { usePopupContext } from '../hooks/usePopupContext';
-import { genQueryStr } from '../utils';
-import { getAllTask } from '../utils/http';
+import AddButton from '@/components/atoms/button/AddButton';
+import TaskAddPop from '@/components/atoms/popup/TaskAddPop';
+import CardWall from '@/components/CardWall';
+import SearchBar from '@/components/SearchBar';
+import { usePopupContext } from '@/hooks/usePopupContext';
+import { genQueryStr } from '@/utils';
+import { getAllTask } from '@/utils/http';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const queryObj = context.query ?? {};

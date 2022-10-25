@@ -3,8 +3,8 @@ import { useMemo } from 'react';
 import clsx from 'clsx';
 import { useRecoilState } from 'recoil';
 
-import { userState } from '../../store/user';
-import { formateTimeHours } from '../../utils/time';
+import { userState } from '@/store/user';
+import { formateTimeHours } from '@/utils/time';
 
 type ChatRoomMessageProps = {
   message: string;

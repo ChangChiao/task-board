@@ -1,7 +1,8 @@
 import { BiTrash } from 'react-icons/bi';
 import { BsPeopleFill } from 'react-icons/bs';
 
-import { usePopupContext } from '../../hooks/usePopupContext';
+import { usePopupContext } from '@/hooks/usePopupContext';
+
 import Avatar from '../atoms/Avatar';
 import City from '../atoms/City';
 import Expire from '../atoms/Expire';

@@ -2,7 +2,8 @@ import { useCallback } from 'react';
 
 import { FiSearch } from 'react-icons/fi';
 
-import { debounce } from '../utils';
+import { debounce } from '@/utils';
+
 import CitySelect from './atoms/CitySelect';
 import SortSelect from './atoms/SortSelect';
 

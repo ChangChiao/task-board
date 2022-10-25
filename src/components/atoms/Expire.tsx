@@ -2,7 +2,7 @@ import React from 'react';
 
 import { AiOutlineCalendar } from 'react-icons/ai';
 
-import { formateTime } from '../../utils';
+import { formateTime } from '@/utils';
 
 const Expire = ({ expire }: { expire: string }) => {
   return (

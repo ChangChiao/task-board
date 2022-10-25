@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
-import { CITY_LIST } from '../../config';
+import { CITY_LIST } from '@/config';
 
 const City = ({ city }: { city: string }) => {
   const cityName = useMemo(() => {

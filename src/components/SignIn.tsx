@@ -7,8 +7,8 @@ import { GrFacebook } from 'react-icons/gr';
 import { useRecoilState } from 'recoil';
 import * as Yup from 'yup';
 
-import { BASE_URL } from '../config';
-import { userState } from '../store/user';
+import { BASE_URL } from '@/config';
+import { userState } from '@/store/user';
 
 const oauthGoogle = `${BASE_URL}/auth/google`;
 const oauthFB = `${BASE_URL}/auth/facebook`;

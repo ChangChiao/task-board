@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 
-import { roomState } from '../store/room';
-import { getDeviceType } from '../utils/device';
+import { roomState } from '@/store/room';
+import { getDeviceType } from '@/utils/device';
 
 export const useChat = () => {
   const router = useRouter();

@@ -2,8 +2,8 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 
-import { usePopupContext } from '../../../hooks/usePopupContext';
-import { userState } from '../../../store/user';
+import { usePopupContext } from '@/hooks/usePopupContext';
+import { userState } from '@/store/user';
 
 const AddButton = () => {
   const [user] = useRecoilState(userState);

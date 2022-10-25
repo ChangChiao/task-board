@@ -5,8 +5,8 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 
-import { userState } from '../store/user';
-import { getUser } from '../utils/http/user';
+import { userState } from '@/store/user';
+import { getUser } from '@/utils/http/user';
 // import LinePay from '../components/LinePay';
 // import Order from '../components/Order';
 

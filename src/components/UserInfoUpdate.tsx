@@ -6,8 +6,9 @@ import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 import * as Yup from 'yup';
 
-import { userState } from '../store/user';
-import { patchUser } from '../utils/http/user';
+import { userState } from '@/store/user';
+import { patchUser } from '@/utils/http/user';
+
 import Avatar from './atoms/Avatar';
 import UploadFile from './UploadFile';
 

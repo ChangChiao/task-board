@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 
-import ChatRoomList from '../components/chat/ChatRoomList';
+import ChatRoomList from '@/components/chat/ChatRoomList';
 
 export const ChatRecord: NextPage = () => {
   return (

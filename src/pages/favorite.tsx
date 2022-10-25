@@ -1,4 +1,4 @@
-import CardWall from '../components/CardWall';
+import CardWall from '@/components/CardWall';
 
 const Favorite = () => {
   return (

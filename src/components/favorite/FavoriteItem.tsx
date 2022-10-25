@@ -1,7 +1,7 @@
 import { BsFillSuitHeartFill } from 'react-icons/bs';
 import { MdOutlineAttachMoney } from 'react-icons/md';
 
-import { formateTime } from '../../utils';
+import { formateTime } from '@/utils';
 
 const FavoriteItem = ({
   title,

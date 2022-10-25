@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 
 import { useRecoilState } from 'recoil';
 
-import { roomState } from '../../store/room';
+import { roomState } from '@/store/room';
+
 import ChatRoom from './ChatRoom';
 
 const ChatRoomListItem = () => {

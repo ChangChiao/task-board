@@ -2,13 +2,13 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { NextPage } from 'next';
 
-import ListItemSkeleton from '../components/atoms/ListItemSkeleton';
-import ApplicantPop from '../components/atoms/popup/ApplicantPop';
-import ConfirmPop from '../components/atoms/popup/ConfirmPop';
-import Tab from '../components/atoms/Tab';
-import CreateTaskItem from '../components/createTask/CreateTaskItem';
-import { usePopupContext } from '../hooks/usePopupContext';
-import { getUserCreateTaskList } from '../utils/http/task';
+import ListItemSkeleton from '@/components/atoms/ListItemSkeleton';
+import ApplicantPop from '@/components/atoms/popup/ApplicantPop';
+import ConfirmPop from '@/components/atoms/popup/ConfirmPop';
+import Tab from '@/components/atoms/Tab';
+import CreateTaskItem from '@/components/createTask/CreateTaskItem';
+import { usePopupContext } from '@/hooks/usePopupContext';
+import { getUserCreateTaskList } from '@/utils/http/task';
 
 const tabList = [
   { name: '進行中', id: 0 },

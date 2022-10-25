@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CITY_LIST } from '../../config';
+import { CITY_LIST } from '@/config';
 
 type CitySelectParam = {
   city: string;

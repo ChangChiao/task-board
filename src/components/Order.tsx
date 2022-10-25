@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 
-import { PAY_URL } from '../config';
-import { createOrder } from '../utils/http';
+import { PAY_URL } from '@/config';
+import { createOrder } from '@/utils/http';
 
 const Order = () => {
   const [orderInfo, setOrder] = useState<Partial<Order.OrderDetail>>({});

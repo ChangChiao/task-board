@@ -8,10 +8,11 @@ import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 import io, { Socket } from 'socket.io-client';
 
-import { BACKEND_URL } from '../../config';
-import { roomState } from '../../store/room';
-import { userState } from '../../store/user';
-import { getCookie } from '../../utils/cookie';
+import { BACKEND_URL } from '@/config';
+import { roomState } from '@/store/room';
+import { userState } from '@/store/user';
+import { getCookie } from '@/utils/cookie';
+
 import Avatar from '../atoms/Avatar';
 import ChatLoading from './ChatLoading';
 import ChatRoomInputBox from './ChatRoomInputBox';

@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { useRecoilState } from 'recoil';
 
-import { roomListState } from '../../store/room';
-import { getChatRecord } from '../../utils/http/chat';
+import { roomListState } from '@/store/room';
+import { getChatRecord } from '@/utils/http/chat';
+
 import Loading from '../atoms/Loading';
 import ChatRoomListItem from './ChatRoomListItem';
 
