@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 
 import AddButton from '../components/atoms/button/AddButton';
@@ -12,28 +12,30 @@ import { genQueryStr } from '../utils';
 import { getAllTask } from '../utils/http';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  console.log('context.query', context.query);
   const queryObj = context.query ?? {};
   const result = await getAllTask(queryObj);
-  let cardList: Task.TaskDetail[] | [] = [];
-  if (result.status === 'success') {
-    cardList = result.data ?? [];
-  }
+  // let cardList: Task.TaskDetail[] | [] = [];
+  console.log('result---', result);
   return {
     props: {
-      cardList,
+      fallbackData: result,
     },
   };
 };
 
-const Index = ({
-  cardList,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Index = () => {
+  const router = useRouter();
+  // const queryTask = () => {
+  //   const { query } = router;
+  //   return getAllTask(query);
+  // };
+  // const { data } = useSWR(['/task/all', router.query], queryTask, {
+  //   fallbackData,
+  // });
   const [searchText, setSearchText] = useState<string>('');
   const [city, setCity] = useState<string>('');
   const [sortType, setSortType] = useState<string>('');
   const { showPopupName } = usePopupContext();
-  const router = useRouter();
 
   const refreshData = (query: string = '') => {
     router.replace(router.pathname + query);
@@ -70,7 +72,7 @@ const Index = ({
         setSortType={setSortType}
         queryCardList={queryCardList}
       />
-      <CardWall cardList={cardList} />
+      <CardWall />
       <AddButton />
       {showPopupName === 'taskAdd' && <TaskAddPop getList={refreshData} />}
     </>
