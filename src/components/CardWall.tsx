@@ -25,6 +25,7 @@ const CardWall = () => {
           router.query.sortBy,
           router.query.sortOrder,
           router.query.city,
+          router.query.keyword,
         ]
       : '/task/favorite',
     router.pathname === '/' ? queryTask : getUserFavorite
