@@ -13,12 +13,20 @@ import CardPopup from './atoms/popup/CardPopup';
 
 const CardWall = () => {
   const router = useRouter();
+
   const queryTask = () => {
     const { query } = router;
     return getAllTask(query);
   };
   const { data } = useSWR<Task.TaskAPIResponse<Task.TaskDetail>>(
-    router.pathname === '/' ? ['/task/all', router.query] : '/task/favorite',
+    router.pathname === '/'
+      ? [
+          '/task/all',
+          router.query.sortBy,
+          router.query.sortOrder,
+          router.query.city,
+        ]
+      : '/task/favorite',
     router.pathname === '/' ? queryTask : getUserFavorite
   );
   const cardWallRef = useRef() as RefObject<HTMLDivElement>;
