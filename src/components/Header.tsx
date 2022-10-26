@@ -33,6 +33,11 @@ const Header = ({ handleMenu }: HeaderParam) => {
   const handClick = () => {
     handleMenu();
     isShowMenu.current = !isShowMenu.current;
+    if (isShowMenu.current) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   };
   const handleClickMenu = ({ link, id }: Menu.MenuItem) => {
     if (!user?._id) {
@@ -56,7 +61,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
   };
 
   return (
-    <header className="flex items-center h-16 px-4 text-white bg-cyan-900">
+    <header className="fixed top-0 z-50 flex items-center w-full h-16 px-4 text-white md:static bg-cyan-900">
       <Link href="/">
         <img
           className="w-16 h-16 cursor-pointer"

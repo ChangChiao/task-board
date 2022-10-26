@@ -51,7 +51,7 @@ const AcceptedTask = () => {
   }, []);
   return (
     <div className="wrapper">
-      <Tab tab={tab} setTab={setTab} tabList={tabList} />
+      <Tab tab={tab} setTab={setTab} tabList={tabList} isDark={true} />
       {pending &&
         Array.from({ length: 4 }).map((_, i) => <ListItemSkeleton key={i} />)}
       {filterTaskList.length === 0 && !pending && (

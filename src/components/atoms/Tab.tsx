@@ -10,11 +10,12 @@ type TabParam = {
   tab: number;
   setTab: (value: number) => void;
   style?: string;
+  isDark?: boolean;
 };
 
-const Tab = ({ tabList, setTab, style, tab }: TabParam) => {
+const Tab = ({ tabList, setTab, style, tab, isDark }: TabParam) => {
   return (
-    <div className="mb-6 font-medium text-center text-gray-500 border-b border-gray-500">
+    <div className="mb-6 font-medium text-center text-gray-400 border-b border-gray-400">
       <ul className={clsx('flex flex-wrap -mb-px', style)}>
         {tabList.map((item) => {
           return (
@@ -29,6 +30,7 @@ const Tab = ({ tabList, setTab, style, tab }: TabParam) => {
                 href="#"
                 className={clsx(
                   'tab-item inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-300 hover:border-gray-300',
+                  isDark ? 'dark' : 'light',
                   tab === item.id && 'active'
                 )}
               >
@@ -40,8 +42,11 @@ const Tab = ({ tabList, setTab, style, tab }: TabParam) => {
       </ul>
       <style jsx>
         {`
-          .tab-item.active {
+          .tab-item.dark.active {
             @apply text-gray-300 border-gray-300;
+          }
+          .tab-item.light.active {
+            @apply text-gray-900 border-gray-900;
           }
         `}
       </style>

@@ -62,7 +62,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <div className="h-screen">
       <Header handleMenu={handleMenu} />
       {isShowMenu && <Menu />}
-      <main className="min-h-[calc(100%-150px)]">{children}</main>
+      <main className="min-h-[calc(100%-150px)] mt-20 md:mt-0">{children}</main>
       <Footer />
       {renderComp()}
       <ChatContainer />

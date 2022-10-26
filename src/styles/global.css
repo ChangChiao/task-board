@@ -31,7 +31,7 @@
     @apply w-full p-1 mb-2 border rounded;
   }
   .btn {
-    @apply w-full h-8 text-white rounded-md bg-cyan-900;
+    @apply w-full h-8 cursor-pointer text-white rounded-md bg-cyan-900;
   }
   .mask{
     @apply w-full h-full bg-black/50;
