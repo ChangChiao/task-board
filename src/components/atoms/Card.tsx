@@ -64,7 +64,7 @@ const Card = ({
       triggerOnce={true}
       onClick={handleClick}
       className={clsx([
-        'relative p-4 mr-auto bg-blue-500 shadow-3xl w-80 min-h-[400px] rounded-xl',
+        'relative p-4 mx-auto bg-blue-500 shadow-3xl w-80 min-h-[400px] rounded-xl',
         status === 0 ? 'cursor-pointer' : 'cursor-default',
       ])}
       onChange={handleInView}

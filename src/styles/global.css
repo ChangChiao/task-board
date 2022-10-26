@@ -15,7 +15,7 @@
   select {
     /* Reset Select */
     @apply 
-    border-0 shadow-none appearance-none outline-0;
+    border-0 shadow-none outline-0;
     /* Personalize */
     @apply flex-1 p-2 text-white cursor-pointer bg-slate-500;
   }
@@ -40,7 +40,7 @@
     @apply max-w-[1600px] p-10 mx-auto;
   }
   .select {
-    @apply relative flex w-20 h-4 rounded overflow-hidden after:content-['\25BC']
+    @apply relative flex h-10 rounded overflow-hidden after:content-['\25BC']
     after:absolute after:top-0 after:right-0 after:p-4 after:bg-[#34495e] after:pointer-events-none;
   }
 }

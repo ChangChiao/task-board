@@ -10,7 +10,13 @@ const sortList = [
 ];
 const SortSelect = ({ sortType, handleSortChange }: CitySelectParam) => {
   return (
-    <select value={sortType} name="" id="" onChange={handleSortChange}>
+    <select
+      className="mr-2 md:mr-0 select"
+      value={sortType}
+      name=""
+      id=""
+      onChange={handleSortChange}
+    >
       {sortList.map((item) => (
         <option key={item.value} value={item.value}>
           {item.label}

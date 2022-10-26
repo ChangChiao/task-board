@@ -9,7 +9,13 @@ type CitySelectParam = {
 //
 const CitySelect = ({ city, handleCityChange }: CitySelectParam) => {
   return (
-    <select value={city} name="" id="" onChange={handleCityChange}>
+    <select
+      className="select"
+      value={city}
+      name=""
+      id=""
+      onChange={handleCityChange}
+    >
       <option value="">全台</option>
       {CITY_LIST.map((item) => (
         <option key={item.value} value={item.value}>
