@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
@@ -13,21 +13,26 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Menu from '@/components/Menu';
 import { useLoadingContext } from '@/hooks/useLoadingContext';
+import { useMenuContext } from '@/hooks/useMenuContext';
 import { usePopupContext } from '@/hooks/usePopupContext';
 import { userState } from '@/store/user';
 import { getUser } from '@/utils/http/user';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const [isShowMenu, setShowMenu] = useState<boolean>(false);
+  // const [isShowMenu, setShowMenu] = useState<boolean>(false);
   const { showPopupName } = usePopupContext();
   const { isShowLoading } = useLoadingContext();
+  const { isShowMenu } = useMenuContext();
   const router = useRouter();
   const [, setUser] = useRecoilState(userState);
   // const router = useRouter();
-  const handleMenu = () => {
-    setShowMenu(!isShowMenu);
-  };
-
+  useEffect(() => {
+    if (isShowMenu) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isShowMenu]);
   const queryUser = useCallback(async () => {
     try {
       const result = await getUser();
@@ -60,7 +65,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   };
   return (
     <div className="h-screen">
-      <Header handleMenu={handleMenu} />
+      <Header />
       {isShowMenu && <Menu />}
       <main className="min-h-[calc(100%-150px)] mt-20 md:mt-0">{children}</main>
       <Footer />

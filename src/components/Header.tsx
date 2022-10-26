@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import { useMemo } from 'react';
 
 import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
@@ -8,20 +8,18 @@ import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 
 import { MENU } from '@/config';
+import { useMenuContext } from '@/hooks/useMenuContext';
 import { usePopupContext } from '@/hooks/usePopupContext';
 import { userState } from '@/store/user';
 
 import Avatar from './atoms/Avatar';
 
-type HeaderParam = {
-  handleMenu: () => void;
-};
-
-const Header = ({ handleMenu }: HeaderParam) => {
+const Header = () => {
+  const { isShowMenu, setShowMenu } = useMenuContext();
   const { data: session } = useSession();
   console.log('session', session);
   const [user, setUser] = useRecoilState(userState);
-  const isShowMenu = useRef(false);
+  // const isShowMenu = useRef(false);
   const router = useRouter();
   const { setPopup } = usePopupContext();
   const menuList = useMemo(() => {
@@ -31,13 +29,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
     return MENU;
   }, [user]);
   const handClick = () => {
-    handleMenu();
-    isShowMenu.current = !isShowMenu.current;
-    if (isShowMenu.current) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+    setShowMenu(!isShowMenu);
   };
   const handleClickMenu = ({ link, id }: Menu.MenuItem) => {
     if (!user?._id) {
@@ -109,7 +101,7 @@ const Header = ({ handleMenu }: HeaderParam) => {
       <div
         onClick={handClick}
         className={clsx(
-          isShowMenu.current && 'active',
+          isShowMenu && 'active',
           'mobile w-[40px] h-[40px] absolute top-0 right-[10px] cursor-pointer block md:hidden items-center justify-center'
         )}
       >
