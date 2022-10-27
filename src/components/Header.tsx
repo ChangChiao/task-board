@@ -4,25 +4,23 @@ import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 
 import { MENU } from '@/config';
 import { useMenuContext } from '@/hooks/useMenuContext';
-import { usePopupContext } from '@/hooks/usePopupContext';
+import { useSign } from '@/hooks/useSign';
 import { userState } from '@/store/user';
-import { deleteAllCookies } from '@/utils';
 
 import Avatar from './atoms/Avatar';
 
 const Header = () => {
   const { isShowMenu, setShowMenu } = useMenuContext();
   const { data: session } = useSession();
+  const { signIn, signOut, handleClickMenu, toSetPage } = useSign();
   console.log('session', session);
-  const [user, setUser] = useRecoilState(userState);
+  const [user] = useRecoilState(userState);
   // const isShowMenu = useRef(false);
   const router = useRouter();
-  const { setPopup } = usePopupContext();
   const menuList = useMemo(() => {
     if (user.isVip) {
       return MENU.filter((item) => item.id !== 'vip');
@@ -32,30 +30,6 @@ const Header = () => {
   const handClick = () => {
     setShowMenu(!isShowMenu);
   };
-  const handleClickMenu = ({ link, id }: Menu.MenuItem) => {
-    if (!user?._id) {
-      toast('請先登入!');
-      return;
-    }
-    if (id === 'vip') {
-      setPopup('upgrade');
-      return;
-    }
-    router.push(link);
-  };
-  const signIn = () => {
-    setPopup('signIn');
-  };
-
-  const signOut = () => {
-    deleteAllCookies();
-    setUser({});
-    toast('登出成功');
-    if (router.pathname !== '/') {
-      router.push('/');
-    }
-  };
-
   return (
     <header className="fixed top-0 z-50 flex items-center w-full h-16 px-4 text-white md:static bg-cyan-900">
       <Link href="/">
@@ -84,7 +58,10 @@ const Header = () => {
       <div className="items-center hidden md:flex">
         {user._id ? (
           <>
-            <div className="flex items-center mr-2">
+            <div
+              className="flex items-center mr-6 cursor-pointer"
+              onClick={toSetPage}
+            >
               <Avatar
                 isVip={user?.isVip}
                 image={user?.avatar || '/assets/avatar/1.png'}

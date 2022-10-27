@@ -1,7 +1,10 @@
 import clsx from 'clsx';
 import { InView } from 'react-intersection-observer';
+import { toast } from 'react-toastify';
+import { useRecoilState } from 'recoil';
 
 import { usePopupContext } from '@/hooks/usePopupContext';
+import { userState } from '@/store/user';
 
 import Avatar from './Avatar';
 import City from './City';
@@ -27,9 +30,14 @@ const Card = ({
   unit,
   setDetail,
 }: CardProps) => {
+  const [user] = useRecoilState(userState);
   const { setPopup } = usePopupContext();
   const handleClick = () => {
     if (status !== 0) return;
+    if (!user._id) {
+      toast('請先登入');
+      return;
+    }
     setPopup('card');
     setDetail({
       _id,
@@ -64,7 +72,7 @@ const Card = ({
       triggerOnce={true}
       onClick={handleClick}
       className={clsx([
-        'relative p-4 mx-auto bg-blue-500 shadow-3xl w-80 min-h-[400px] rounded-xl',
+        'relative p-4 mx-auto border-2 overflow-hidden border-slate-900/50 bg-blue-500 shadow-3xl w-80 min-h-[400px] rounded-xl',
         status === 0 ? 'cursor-pointer' : 'cursor-default',
       ])}
       onChange={handleInView}
