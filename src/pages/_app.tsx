@@ -2,11 +2,14 @@ import { GetServerSideProps } from 'next';
 import { SessionProvider } from 'next-auth/react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { Router } from 'next/router';
+import NProgress from 'nprogress'; // nprogress module
 import { ToastContainer } from 'react-toastify';
 import { RecoilRoot } from 'recoil';
 
 import { MenuContextProvider } from '@/hooks/useMenuContext';
 
+import 'nprogress/nprogress.css'; // styles of nprogress
 import { LoadingContextProvider } from '../hooks/useLoadingContext';
 import { PopupContextProvider } from '../hooks/usePopupContext';
 import Layout from '../layout/Layout';
@@ -27,6 +30,11 @@ export const getServerSideProps: GetServerSideProps = async ({
     },
   };
 };
+
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
+
 // @ts-ignore
 const MyApp = ({ Component, pageProps, session }: AppProps) => (
   <SessionProvider session={session}>
