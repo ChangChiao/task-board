@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
+import { useSWRConfig } from 'swr';
 
 import AddButton from '@/components/atoms/button/AddButton';
 import TaskAddPop from '@/components/atoms/popup/TaskAddPop';
@@ -32,6 +33,7 @@ const Index = () => {
   // const { data } = useSWR(['/task/all', router.query], queryTask, {
   //   fallbackData,
   // });
+  const { mutate } = useSWRConfig();
   const [searchText, setSearchText] = useState<string>('');
   const [city, setCity] = useState<string>('');
   const [sortType, setSortType] = useState<string>('');
@@ -39,6 +41,10 @@ const Index = () => {
 
   const refreshData = (query: string = '') => {
     router.replace(router.pathname + query);
+  };
+
+  const triggerRefresh = () => {
+    mutate('/task/all');
   };
 
   const queryCardList = useCallback(
@@ -74,7 +80,7 @@ const Index = () => {
       />
       <CardWall />
       <AddButton />
-      {showPopupName === 'taskAdd' && <TaskAddPop getList={refreshData} />}
+      {showPopupName === 'taskAdd' && <TaskAddPop getList={triggerRefresh} />}
     </>
   );
 };

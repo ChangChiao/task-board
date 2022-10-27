@@ -2,6 +2,7 @@ import router from 'next/router';
 import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 
+import { roomState } from '@/store/room';
 import { userState } from '@/store/user';
 import { deleteAllCookies } from '@/utils';
 
@@ -10,6 +11,7 @@ import { usePopupContext } from './usePopupContext';
 
 export const useSign = () => {
   const { setShowMenu } = useMenuContext();
+  const [, setRoom] = useRecoilState(roomState);
   const [user, setUser] = useRecoilState(userState);
   const { setPopup } = usePopupContext();
 
@@ -20,6 +22,7 @@ export const useSign = () => {
   const signOut = () => {
     deleteAllCookies();
     setUser({});
+    setRoom([]);
     toast('登出成功');
     if (router.pathname !== '/') {
       router.push('/');

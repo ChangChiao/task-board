@@ -58,7 +58,7 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
     setLoading(true);
     try {
       const res = await addTask(formData);
-      setLoading(false);
+
       if (res?.status === 'success') {
         getList();
         toast(res.message);
@@ -66,6 +66,8 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
       }
     } catch (error) {
       setPopup('');
+    } finally {
+      setLoading(false);
     }
   };
 
