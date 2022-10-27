@@ -10,9 +10,9 @@ const Reward = ({ reward, unit }: { reward: number; unit: number }) => {
   };
   return (
     <div className="flex items-center text-yellow-500">
-      {unit === 0 ? '一次' : '一小時'}
       <MdAttachMoney />
-      <span>{addThousands()}</span>
+      <span className="px-1">{addThousands()}</span>
+      <span> {`/ ${unit === 0 ? '次' : '小時'}`}</span>
     </div>
   );
 };

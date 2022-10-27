@@ -33,7 +33,6 @@ const Card = ({
   const [user] = useRecoilState(userState);
   const { setPopup } = usePopupContext();
   const handleClick = () => {
-    if (status !== 0) return;
     if (!user._id) {
       toast('請先登入');
       return;
