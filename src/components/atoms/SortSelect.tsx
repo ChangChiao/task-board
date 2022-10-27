@@ -11,7 +11,7 @@ const sortList = [
 const SortSelect = ({ sortType, handleSortChange }: CitySelectParam) => {
   return (
     <select
-      className="mr-2 md:mr-0 select"
+      className="select"
       value={sortType}
       name=""
       id=""

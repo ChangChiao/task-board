@@ -57,14 +57,14 @@ const SearchBar = ({
 
   return (
     <form
-      className="w-[95%] md:w-[800px] md:flex mx-auto my-8 overflow-hidden md:rounded-md"
+      className="w-[95%] md:w-[800px] md:flex items-center md:justify-center mx-auto my-8 overflow-hidden md:rounded-md"
       onSubmit={handleSubmit}
     >
       <div className="flex justify-between mb-4 md:mb-0">
         <SortSelect handleSortChange={handleSortChange} sortType={sortType} />
         <CitySelect handleCityChange={handleCityChange} city={city} />
       </div>
-      <div className="relative w-full">
+      <div className="relative w-full overflow-hidden rounded-md">
         <input
           type="search"
           value={searchText}

@@ -11,6 +11,7 @@ import { MENU } from '@/config';
 import { useMenuContext } from '@/hooks/useMenuContext';
 import { usePopupContext } from '@/hooks/usePopupContext';
 import { userState } from '@/store/user';
+import { deleteAllCookies } from '@/utils';
 
 import Avatar from './atoms/Avatar';
 
@@ -47,9 +48,12 @@ const Header = () => {
   };
 
   const signOut = () => {
-    localStorage.removeItem('token');
+    deleteAllCookies();
     setUser({});
     toast('登出成功');
+    if (router.pathname !== '/') {
+      router.push('/');
+    }
   };
 
   return (

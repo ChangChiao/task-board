@@ -46,6 +46,9 @@ const ChatRoomList = () => {
             <Loading />
           </li>
         )}
+        {!pending && roomList.length === 0 && (
+          <li className="text-center text-white ">暫無記錄</li>
+        )}
       </ul>
     </section>
   );
