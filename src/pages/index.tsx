@@ -19,13 +19,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   console.log('result---', result);
   return {
     props: {
-      fallbackData: result,
+      fallback: {
+        '/task/all': result,
+      },
     },
   };
 };
 
 const Index = () => {
   const router = useRouter();
+  const { mutate } = useSWRConfig();
   // const queryTask = () => {
   //   const { query } = router;
   //   return getAllTask(query);
@@ -33,7 +36,6 @@ const Index = () => {
   // const { data } = useSWR(['/task/all', router.query], queryTask, {
   //   fallbackData,
   // });
-  const { mutate } = useSWRConfig();
   const [searchText, setSearchText] = useState<string>('');
   const [city, setCity] = useState<string>('');
   const [sortType, setSortType] = useState<string>('');
