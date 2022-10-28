@@ -110,6 +110,7 @@ const TaskAddPop = ({ getList }: TaskAddPopProps) => {
               <label htmlFor="reward">酬勞</label>
               <input
                 id="reward"
+                maxLength={8}
                 className="field"
                 placeholder="酬勞"
                 {...register('reward')}

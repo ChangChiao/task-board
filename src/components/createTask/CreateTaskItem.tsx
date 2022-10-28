@@ -55,7 +55,7 @@ const CreateTaskItem = ({
       <div className="absolute right-10 bottom-5">
         <Expire expire={expire} />
       </div>
-      <div className="w-32">
+      <div className="w-32 h-32 overflow-hidden">
         <img src={cover} alt="" />
       </div>
       <div className="w-3/4 pl-4 info">

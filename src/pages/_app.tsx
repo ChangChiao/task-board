@@ -6,7 +6,6 @@ import { Router } from 'next/router';
 import NProgress from 'nprogress'; // nprogress module
 import { ToastContainer } from 'react-toastify';
 import { RecoilRoot } from 'recoil';
-import { SWRConfig } from 'swr';
 
 import { MenuContextProvider } from '@/hooks/useMenuContext';
 import { Meta } from '@/layout/Meta';
@@ -45,20 +44,18 @@ const MyApp = ({ Component, pageProps, session }: AppProps) => (
       <LoadingContextProvider>
         <PopupContextProvider>
           <MenuContextProvider>
-            <SWRConfig value={{ refreshInterval: 3000 }}>
-              <Layout>
-                <Head>
-                  <Meta
-                    title={'任務派發'}
-                    description={
-                      '想找人幫忙? 想賺點外快? 所有臨時任務都可以在這裡找到!'
-                    }
-                  />
-                </Head>
-                <Component {...pageProps} />
-                <ToastContainer />
-              </Layout>
-            </SWRConfig>
+            <Layout>
+              <Head>
+                <Meta
+                  title={'任務派發'}
+                  description={
+                    '想找人幫忙? 想賺點外快? 所有臨時任務都可以在這裡找到!'
+                  }
+                />
+              </Head>
+              <Component {...pageProps} />
+              <ToastContainer />
+            </Layout>
           </MenuContextProvider>
         </PopupContextProvider>
       </LoadingContextProvider>
