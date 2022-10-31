@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 
 import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
@@ -33,7 +34,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 z-50 flex items-center w-full h-16 px-4 text-white md:static bg-cyan-900">
       <Link href="/">
-        <img
+        <Image
           className="w-16 h-16 cursor-pointer"
           src="/assets/logo/logo_task.png"
           alt=""
