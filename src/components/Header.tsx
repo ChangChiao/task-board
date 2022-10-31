@@ -35,7 +35,9 @@ const Header = () => {
     <header className="fixed top-0 z-50 flex items-center w-full h-16 px-4 text-white md:static bg-cyan-900">
       <Link href="/">
         <Image
-          className="w-16 h-16 cursor-pointer"
+          className="cursor-pointer"
+          width={64}
+          height={64}
           src="/assets/logo/logo_task.png"
           alt=""
         />
