@@ -35,6 +35,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }, [isShowMenu]);
   const queryUser = useCallback(async () => {
     try {
+      console.log('router', router);
       const result = await getUser();
       const { status, data } = result;
       if (status === 'success') {
@@ -42,7 +43,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       }
     } catch (error) {
       const err = error as AxiosError;
-      if (err?.response?.status === 401 && router.pathname !== '/') {
+      if (err?.response?.status === 401 && router.asPath !== '/') {
+        console.log('gogog');
         router.push('/');
       }
     }

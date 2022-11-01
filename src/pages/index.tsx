@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
+import { setCookie } from 'cookies-next';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
@@ -12,11 +13,16 @@ import { usePopupContext } from '@/hooks/usePopupContext';
 import { genQueryStr } from '@/utils';
 import { getAllTask } from '@/utils/http';
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const queryObj = context.query ?? {};
-  const result = await getAllTask(queryObj);
-  // let cardList: Task.TaskDetail[] | [] = [];
-  console.log('result---', result);
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  res,
+  query,
+}) => {
+  const queryObj = query;
+  const result = await getAllTask({});
+  if (queryObj.token) {
+    setCookie('key', queryObj.token, { req, res });
+  }
   return {
     props: {
       fallback: {
@@ -80,12 +86,6 @@ const Index = () => {
     queryCardList();
   }, [city, sortType, queryCardList]);
 
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     console.log("mutate('/task/all')");
-  //     mutate(queryTask);
-  //   }, 6000);
-  // }, []);
   return (
     <>
       <SearchBar
