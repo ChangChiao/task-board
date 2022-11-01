@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const queryObj = query;
   const result = await getAllTask({});
   if (queryObj.token) {
-    setCookie('key', queryObj.token, { req, res });
+    setCookie('token', queryObj.token, { req, res });
   }
   return {
     props: {
