@@ -10,4 +10,15 @@ module.exports = withBundleAnalyzer({
   // So, the source code is "basePath-ready".
   // You can remove `basePath` if you don't need it.
   reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: '/:path*',
+        destination:
+          process.env.NODE_ENV === 'development'
+            ? `http://localhost:3008/v1/:path*`
+            : `https://task-board-backend.vercel.app/:path*`,
+      },
+    ];
+  },
 });

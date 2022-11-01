@@ -9,6 +9,8 @@ const service = axios.create({
   withCredentials: true,
 });
 
+axios.defaults.withCredentials = true;
+
 service.interceptors.request.use(
   (config) => {
     const token = getCookie('token');
