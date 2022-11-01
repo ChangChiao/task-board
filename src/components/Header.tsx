@@ -38,7 +38,7 @@ const Header = () => {
           className="cursor-pointer"
           width={64}
           height={64}
-          src={`${router.basePath}/assets/logo/logo_task.png`}
+          src={`/assets/logo/logo_task.png`}
           alt=""
         />
       </Link>
