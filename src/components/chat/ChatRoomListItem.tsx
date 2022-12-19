@@ -27,7 +27,7 @@ const ChatRoomListItem = (room: Chat.RoomInfo) => {
         </div>
       </div>
       <span className="text-xs text-gray">
-        {formateTime(msg?.[0]?.createdAt as string)}
+        {msg?.[0]?.createdAt && formateTime(msg?.[0]?.createdAt as string)}
       </span>
     </li>
   );

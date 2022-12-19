@@ -34,7 +34,7 @@ const ChatRoomMessage = ({
           {message}
         </div>
         <span className="px-2 text-xs text-gray-400">
-          {formateTimeHours(createdAt)}
+          {createdAt ? formateTimeHours(createdAt) : ''}
         </span>
       </div>
     </div>

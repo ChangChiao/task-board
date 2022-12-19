@@ -67,7 +67,7 @@ const Header = () => {
             >
               <Avatar
                 isVip={user?.isVip}
-                image={user?.avatar || '/assets/avatar/1.png'}
+                image={user?.avatar || '~/assets/avatar/1.png'}
               />
               <span className="pl-3">{user?.name ?? 'userName'}</span>
             </div>
